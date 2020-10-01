@@ -1,0 +1,62 @@
+PODS:
+  - Alamofire (5.2.1)
+  - CircleMenu (4.1.0)
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
+  - "NSObject+Rx (5.1.0)":
+    - RxSwift (~> 5.1)
+  - OTPInputView (0.1.2)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
+  - SwiftLint (0.39.1)
+  - TextFieldEffects (1.6.0)
+  - XLPagerTabStrip (9.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.2)
+  - CircleMenu
+  - Moya (~> 14.0)
+  - "NSObject+Rx"
+  - OTPInputView
+  - RxCocoa (~> 5)
+  - RxSwift (~> 5)
+  - SwiftLint
+  - TextFieldEffects
+  - XLPagerTabStrip (~> 9.0)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - CircleMenu
+    - Moya
+    - "NSObject+Rx"
+    - OTPInputView
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SwiftLint
+    - TextFieldEffects
+    - XLPagerTabStrip
+
+SPEC CHECKSUMS:
+  Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
+  CircleMenu: a66095199a5e26f19acbb212f077010257767fe5
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
+  OTPInputView: 8a7cc613e29d264f799d121169d00a745cae4c00
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
+  TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
+  XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
+
+PODFILE CHECKSUM: e5143d0836e8d9d9217006d5f069e6777a69389e
+
+COCOAPODS: 1.9.3
