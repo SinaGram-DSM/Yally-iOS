@@ -7,35 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		64424A6DF72FCACA63BA9E29 /* Pods_Yally.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD50FDF14B6E8149CDE7567A /* Pods_Yally.framework */; };
+		D473E10541457F787D0F8511 /* Pods_Yally.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */; };
 		EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7AF32525DB950082E0EE /* AppDelegate.swift */; };
 		EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7AF72525DB950082E0EE /* ViewController.swift */; };
 		EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBFC7AF92525DB950082E0EE /* Main.storyboard */; };
 		EBFC7AFD2525DB970082E0EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBFC7AFC2525DB970082E0EE /* Assets.xcassets */; };
 		EBFC7B002525DB970082E0EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBFC7AFE2525DB970082E0EE /* LaunchScreen.storyboard */; };
 		EBFC7B182525DF960082E0EE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EBFC7B172525DF960082E0EE /* .swiftlint.yml */; };
-		EBFC7B252525E0D50082E0EE /* TestUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7B242525E0D50082E0EE /* TestUtil.swift */; };
 		EBFC7B282525E0E90082E0EE /* TestNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7B272525E0E90082E0EE /* TestNet.swift */; };
 		EBFC7B2B2525E0F80082E0EE /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7B2A2525E0F80082E0EE /* TestModel.swift */; };
-		EBFC7B2F2525E1040082E0EE /* TestVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7B2E2525E1040082E0EE /* TestVM.swift */; };
+		EBFC7B39252747FF0082E0EE /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7B38252747FF0082E0EE /* TestViewController.swift */; };
+		EBFC7B3E252748170082E0EE /* TestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7B3D252748170082E0EE /* TestService.swift */; };
+		EBFC7B42252748370082E0EE /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7B41252748370082E0EE /* ViewModelType.swift */; };
+		EBFC7B46252748BC0082E0EE /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7B45252748BC0082E0EE /* HTTPClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A7CC13222E7BD2A16070BA16 /* Pods-Yally.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.debug.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.debug.xcconfig"; sourceTree = "<group>"; };
-		BD50FDF14B6E8149CDE7567A /* Pods_Yally.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yally.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E10B0B25E1612F427E2D681A /* Pods-Yally.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.release.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.release.xcconfig"; sourceTree = "<group>"; };
+		585F0FE9F9FE993DDF61E808 /* Pods-Yally.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.debug.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.debug.xcconfig"; sourceTree = "<group>"; };
+		C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yally.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E831A54DDBB2E41C748399B8 /* Pods-Yally.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.release.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.release.xcconfig"; sourceTree = "<group>"; };
 		EBFC7AF02525DB950082E0EE /* Yally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFC7AF32525DB950082E0EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBFC7AF72525DB950082E0EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EBFC7AFA2525DB950082E0EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EBFC7AFC2525DB970082E0EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBFC7AFF2525DB970082E0EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EBFC7B012525DB970082E0EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBFC7B012525DB970082E0EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Yally/Supporting Files/Info.plist"; sourceTree = SOURCE_ROOT; };
 		EBFC7B172525DF960082E0EE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		EBFC7B242525E0D50082E0EE /* TestUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtil.swift; sourceTree = "<group>"; };
 		EBFC7B272525E0E90082E0EE /* TestNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNet.swift; sourceTree = "<group>"; };
 		EBFC7B2A2525E0F80082E0EE /* TestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
-		EBFC7B2E2525E1040082E0EE /* TestVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVM.swift; sourceTree = "<group>"; };
+		EBFC7B38252747FF0082E0EE /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		EBFC7B3D252748170082E0EE /* TestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestService.swift; sourceTree = "<group>"; };
+		EBFC7B41252748370082E0EE /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		EBFC7B45252748BC0082E0EE /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,28 +47,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64424A6DF72FCACA63BA9E29 /* Pods_Yally.framework in Frameworks */,
+				D473E10541457F787D0F8511 /* Pods_Yally.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		25C611ECBBA76EAA149F83D6 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				BD50FDF14B6E8149CDE7567A /* Pods_Yally.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		67AC6084F7A70C609BD67E69 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A7CC13222E7BD2A16070BA16 /* Pods-Yally.debug.xcconfig */,
-				E10B0B25E1612F427E2D681A /* Pods-Yally.release.xcconfig */,
+				585F0FE9F9FE993DDF61E808 /* Pods-Yally.debug.xcconfig */,
+				E831A54DDBB2E41C748399B8 /* Pods-Yally.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		86C305C416ACBDAB461DEA38 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EBFC7AE72525DB950082E0EE = {
@@ -74,7 +78,7 @@
 				EBFC7AF22525DB950082E0EE /* Yally */,
 				EBFC7AF12525DB950082E0EE /* Products */,
 				67AC6084F7A70C609BD67E69 /* Pods */,
-				25C611ECBBA76EAA149F83D6 /* Frameworks */,
+				86C305C416ACBDAB461DEA38 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,16 +93,10 @@
 		EBFC7AF22525DB950082E0EE /* Yally */ = {
 			isa = PBXGroup;
 			children = (
-				EBFC7B212525E08B0082E0EE /* Util */,
-				EBFC7B1B2525E0190082E0EE /* UI */,
-				EBFC7B202525E03C0082E0EE /* Networking */,
-				EBFC7B1F2525E0360082E0EE /* VC */,
-				EBFC7B1E2525E02D0082E0EE /* Model */,
-				EBFC7B1D2525E0250082E0EE /* VIewModel */,
+				EBFC7B35252745E90082E0EE /* Supporting Files */,
+				EBFC7B34252745E40082E0EE /* Resource */,
+				EBFC7B33252745DE0082E0EE /* Source */,
 				EBFC7AF32525DB950082E0EE /* AppDelegate.swift */,
-				EBFC7AFC2525DB970082E0EE /* Assets.xcassets */,
-				EBFC7AFE2525DB970082E0EE /* LaunchScreen.storyboard */,
-				EBFC7B012525DB970082E0EE /* Info.plist */,
 			);
 			path = Yally;
 			sourceTree = "<group>";
@@ -114,7 +112,7 @@
 		EBFC7B1D2525E0250082E0EE /* VIewModel */ = {
 			isa = PBXGroup;
 			children = (
-				EBFC7B2E2525E1040082E0EE /* TestVM.swift */,
+				EBFC7B41252748370082E0EE /* ViewModelType.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -127,28 +125,68 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		EBFC7B1F2525E0360082E0EE /* VC */ = {
+		EBFC7B1F2525E0360082E0EE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				EBFC7AF72525DB950082E0EE /* ViewController.swift */,
 			);
-			path = VC;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		EBFC7B202525E03C0082E0EE /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				EBFC7B272525E0E90082E0EE /* TestNet.swift */,
+				EBFC7B45252748BC0082E0EE /* HTTPClient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		EBFC7B212525E08B0082E0EE /* Util */ = {
+		EBFC7B33252745DE0082E0EE /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				EBFC7B242525E0D50082E0EE /* TestUtil.swift */,
+				EBFC7B3C2527480A0082E0EE /* Service */,
+				EBFC7B37252747EC0082E0EE /* View */,
+				EBFC7B1B2525E0190082E0EE /* UI */,
+				EBFC7B202525E03C0082E0EE /* Networking */,
+				EBFC7B1F2525E0360082E0EE /* ViewController */,
+				EBFC7B1E2525E02D0082E0EE /* Model */,
+				EBFC7B1D2525E0250082E0EE /* VIewModel */,
 			);
-			path = Util;
+			path = Source;
+			sourceTree = "<group>";
+		};
+		EBFC7B34252745E40082E0EE /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				EBFC7AFE2525DB970082E0EE /* LaunchScreen.storyboard */,
+				EBFC7AFC2525DB970082E0EE /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		EBFC7B35252745E90082E0EE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EBFC7B012525DB970082E0EE /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EBFC7B37252747EC0082E0EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EBFC7B38252747FF0082E0EE /* TestViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EBFC7B3C2527480A0082E0EE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				EBFC7B3D252748170082E0EE /* TestService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,12 +196,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EBFC7B042525DB970082E0EE /* Build configuration list for PBXNativeTarget "Yally" */;
 			buildPhases = (
-				123B584A56AC6EC63B7331A0 /* [CP] Check Pods Manifest.lock */,
+				6E48C18936951AD0C89654C8 /* [CP] Check Pods Manifest.lock */,
 				EBFC7AEC2525DB950082E0EE /* Sources */,
 				EBFC7AED2525DB950082E0EE /* Frameworks */,
 				EBFC7AEE2525DB950082E0EE /* Resources */,
-				6516F1F4DEE544A3FEC52CC6 /* [CP] Embed Pods Frameworks */,
 				EBFC7B162525DF500082E0EE /* ShellScript */,
+				B190E6A553956996E19D2552 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -221,7 +259,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		123B584A56AC6EC63B7331A0 /* [CP] Check Pods Manifest.lock */ = {
+		6E48C18936951AD0C89654C8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -243,7 +281,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6516F1F4DEE544A3FEC52CC6 /* [CP] Embed Pods Frameworks */ = {
+		B190E6A553956996E19D2552 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -285,10 +323,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */,
-				EBFC7B252525E0D50082E0EE /* TestUtil.swift in Sources */,
 				EBFC7B2B2525E0F80082E0EE /* TestModel.swift in Sources */,
+				EBFC7B46252748BC0082E0EE /* HTTPClient.swift in Sources */,
 				EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */,
-				EBFC7B2F2525E1040082E0EE /* TestVM.swift in Sources */,
+				EBFC7B42252748370082E0EE /* ViewModelType.swift in Sources */,
+				EBFC7B3E252748170082E0EE /* TestService.swift in Sources */,
+				EBFC7B39252747FF0082E0EE /* TestViewController.swift in Sources */,
 				EBFC7B282525E0E90082E0EE /* TestNet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,12 +473,12 @@
 		};
 		EBFC7B052525DB970082E0EE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A7CC13222E7BD2A16070BA16 /* Pods-Yally.debug.xcconfig */;
+			baseConfigurationReference = 585F0FE9F9FE993DDF61E808 /* Pods-Yally.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Yally/Info.plist;
+				INFOPLIST_FILE = "Yally/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,12 +492,12 @@
 		};
 		EBFC7B062525DB970082E0EE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E10B0B25E1612F427E2D681A /* Pods-Yally.release.xcconfig */;
+			baseConfigurationReference = E831A54DDBB2E41C748399B8 /* Pods-Yally.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Yally/Info.plist;
+				INFOPLIST_FILE = "Yally/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
