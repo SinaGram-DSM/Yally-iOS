@@ -7,11 +7,19 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="NotoSansKR-Bold.otf">
+            <string>NotoSansKR-Bold</string>
+        </array>
+        <array key="NotoSansKR-Light.otf">
+            <string>NotoSansKR-Light</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--Sign In View Controller-->
+        <!--Splash View Controller-->
         <scene sceneID="ZlD-uZ-oEc">
             <objects>
-                <viewController id="L2w-qX-Hry" customClass="SignInViewController" customModule="Yally" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="L2w-qX-Hry" customClass="SplashViewController" customModule="Yally" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VVM-fH-BPa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,67 +28,73 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="562"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y95-Ec-4T2">
-                                <rect key="frame" x="0.0" y="562" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="534" width="414" height="328"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9v-4e-2H0">
-                                        <rect key="frame" x="81" y="32" width="252.5" height="26"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="yally에 오신 것을 환영합니다">
-                                                <attributes>
-                                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="22" name="NotoSansKR-Bold"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gH-8A-G6Z">
+                                        <rect key="frame" x="65" y="77" width="284" height="95"/>
+                                        <string key="text">로그인을 통해 더 넓은 세상을 들으세요.  아름다운 길거리 공연, 페스티벌, 기타 연주, 
+대화, 심지어 동물소리까지! 상상 그 이상의 
+것을 담아 전 세계에 공유하세요.</string>
+                                        <fontDescription key="fontDescription" name="NotoSansKR-Light" family="Noto Sans KR" pointSize="16"/>
+                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yt9-Se-P9k">
-                                        <rect key="frame" x="57" y="198" width="300" height="54"/>
+                                        <rect key="frame" x="57" y="209" width="300" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="Be2-14-D8n"/>
+                                            <constraint firstAttribute="height" constant="48" id="F4e-sD-bp4"/>
                                         </constraints>
                                         <state key="normal" title="로그인"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vF-SB-CRW">
-                                        <rect key="frame" x="148.5" y="274" width="117.5" height="14"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="47B-h1-e27">
+                                        <rect key="frame" x="145.5" y="279" width="123" height="37"/>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="아직 계정이 없으신가요?">
+                                                    <attributes>
+                                                        <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                        <font key="NSFont" size="12" name="NotoSansKR-Light"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9v-4e-2H0">
+                                        <rect key="frame" x="123" y="32" width="221" height="33"/>
                                         <attributedString key="attributedText">
-                                            <fragment content="아직 계정이 없으신가요?">
+                                            <fragment content="에 오신 것을 환영합니다">
                                                 <attributes>
-                                                    <font key="NSFont" size="12" name="NotoSansKR-Light"/>
+                                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <font key="NSFont" size="22" name="NotoSansKR-Medium"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gH-8A-G6Z">
-                                        <rect key="frame" x="69.5" y="70" width="275.5" height="75"/>
-                                        <attributedString key="attributedText">
-                                            <fragment>
-                                                <string key="content">로그인을 통해 더 넓은 세상을 들으세요.  아름다운 길거리 공연, 페스티벌, 기타 연주, 
-대화, 심지어 동물소리까지! 상상 그 이상의 
-것을 담아 전 세계에 공유하세요.</string>
-                                                <attributes>
-                                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                    <font key="NSFont" size="16" name="NotoSansKR-Light"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yally" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U7n-9h-9v1">
+                                        <rect key="frame" x="71" y="32" width="52" height="33"/>
+                                        <fontDescription key="fontDescription" name="NotoSansKR-Bold" family="Noto Sans KR" pointSize="22"/>
+                                        <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="m9v-4e-2H0" firstAttribute="top" secondItem="y95-Ec-4T2" secondAttribute="top" constant="32" id="0VG-vg-Toa"/>
-                                    <constraint firstItem="Yt9-Se-P9k" firstAttribute="top" secondItem="3gH-8A-G6Z" secondAttribute="bottom" constant="53" id="2IN-OO-8BI"/>
                                     <constraint firstItem="3gH-8A-G6Z" firstAttribute="top" secondItem="m9v-4e-2H0" secondAttribute="bottom" constant="12" id="6K0-EK-YFh"/>
-                                    <constraint firstAttribute="bottom" secondItem="4vF-SB-CRW" secondAttribute="bottom" constant="12" id="bH5-3r-58c"/>
+                                    <constraint firstItem="47B-h1-e27" firstAttribute="top" secondItem="Yt9-Se-P9k" secondAttribute="bottom" constant="22" id="FU9-wJ-q5R"/>
+                                    <constraint firstAttribute="trailing" secondItem="m9v-4e-2H0" secondAttribute="trailing" constant="70" id="PHG-2z-Npm"/>
+                                    <constraint firstItem="U7n-9h-9v1" firstAttribute="leading" secondItem="y95-Ec-4T2" secondAttribute="leading" constant="71" id="SfT-rX-sV6"/>
+                                    <constraint firstItem="47B-h1-e27" firstAttribute="centerX" secondItem="y95-Ec-4T2" secondAttribute="centerX" id="X4d-BD-xVB"/>
+                                    <constraint firstAttribute="bottom" secondItem="47B-h1-e27" secondAttribute="bottom" constant="12" id="cUG-lh-ZPQ"/>
                                     <constraint firstItem="Yt9-Se-P9k" firstAttribute="centerX" secondItem="y95-Ec-4T2" secondAttribute="centerX" id="fPF-rA-Oda"/>
-                                    <constraint firstAttribute="height" constant="300" id="lmR-H7-MYN"/>
-                                    <constraint firstItem="4vF-SB-CRW" firstAttribute="centerX" secondItem="y95-Ec-4T2" secondAttribute="centerX" id="mEY-4f-khl"/>
-                                    <constraint firstItem="m9v-4e-2H0" firstAttribute="centerX" secondItem="y95-Ec-4T2" secondAttribute="centerX" id="nph-AM-Vmf"/>
-                                    <constraint firstItem="4vF-SB-CRW" firstAttribute="top" secondItem="Yt9-Se-P9k" secondAttribute="bottom" constant="22" id="qyE-up-Vnw"/>
+                                    <constraint firstItem="m9v-4e-2H0" firstAttribute="leading" secondItem="U7n-9h-9v1" secondAttribute="trailing" id="kGw-ah-tr9"/>
+                                    <constraint firstAttribute="height" constant="328" id="lmR-H7-MYN"/>
+                                    <constraint firstItem="U7n-9h-9v1" firstAttribute="centerY" secondItem="m9v-4e-2H0" secondAttribute="centerY" id="qCj-or-ukq"/>
+                                    <constraint firstItem="Yt9-Se-P9k" firstAttribute="top" secondItem="3gH-8A-G6Z" secondAttribute="bottom" constant="37" id="s8C-gI-Nka"/>
                                     <constraint firstItem="3gH-8A-G6Z" firstAttribute="centerX" secondItem="y95-Ec-4T2" secondAttribute="centerX" id="wcD-g9-mMd"/>
                                 </constraints>
                             </view>
@@ -89,7 +103,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="zEV-zv-MZD" firstAttribute="trailing" secondItem="y95-Ec-4T2" secondAttribute="trailing" id="Nkj-2L-Ta6"/>
-                            <constraint firstItem="y95-Ec-4T2" firstAttribute="top" secondItem="Z3c-2x-xfz" secondAttribute="bottom" id="Nvk-SK-0rs"/>
+                            <constraint firstItem="zEV-zv-MZD" firstAttribute="bottom" secondItem="Z3c-2x-xfz" secondAttribute="bottom" constant="300" id="Nvk-SK-0rs"/>
                             <constraint firstItem="zEV-zv-MZD" firstAttribute="bottom" secondItem="y95-Ec-4T2" secondAttribute="bottom" id="TUG-gS-Eep"/>
                             <constraint firstItem="y95-Ec-4T2" firstAttribute="leading" secondItem="zEV-zv-MZD" secondAttribute="leading" id="WD5-V3-fAu"/>
                             <constraint firstItem="Z3c-2x-xfz" firstAttribute="top" secondItem="VVM-fH-BPa" secondAttribute="top" id="fE5-PV-bi8"/>
@@ -97,10 +111,17 @@
                             <constraint firstItem="zEV-zv-MZD" firstAttribute="trailing" secondItem="Z3c-2x-xfz" secondAttribute="trailing" id="q73-xc-oKX"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="7Eg-0C-6wl"/>
+                    <connections>
+                        <outlet property="circleView" destination="y95-Ec-4T2" id="Glc-Ea-bnx"/>
+                        <outlet property="splashImage" destination="Z3c-2x-xfz" id="j40-nR-rNm"/>
+                        <outlet property="tapLoginBtn" destination="Yt9-Se-P9k" id="Oiu-cp-TN9"/>
+                        <outlet property="tapSignBtn" destination="47B-h1-e27" id="VNj-FV-lYe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VWh-I7-WLP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-291.304347826087" y="69.642857142857139"/>
+            <point key="canvasLocation" x="215.94202898550725" y="73.660714285714278"/>
         </scene>
     </scenes>
     <resources>

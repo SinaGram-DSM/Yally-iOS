@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		D473E10541457F787D0F8511 /* Pods_Yally.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */; };
+		EBB81261252783700089D354 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB81260252783700089D354 /* SplashViewController.swift */; };
+		EBB8126A2527A1DE0089D354 /* NotoSansKR-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812652527A1D80089D354 /* NotoSansKR-Black.otf */; };
+		EBB8126C2527A1E00089D354 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812642527A1D70089D354 /* NotoSansKR-Bold.otf */; };
+		EBB8126E2527A1E30089D354 /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812662527A1D80089D354 /* NotoSansKR-Light.otf */; };
+		EBB812702527A1E50089D354 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812672527A1D80089D354 /* NotoSansKR-Medium.otf */; };
+		EBB812722527A1E70089D354 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812692527A1D80089D354 /* NotoSansKR-Regular.otf */; };
+		EBB812742527A1E90089D354 /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812682527A1D80089D354 /* NotoSansKR-Thin.otf */; };
 		EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7AF32525DB950082E0EE /* AppDelegate.swift */; };
 		EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7AF72525DB950082E0EE /* ViewController.swift */; };
 		EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBFC7AF92525DB950082E0EE /* Main.storyboard */; };
@@ -29,6 +36,13 @@
 		585F0FE9F9FE993DDF61E808 /* Pods-Yally.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.debug.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.debug.xcconfig"; sourceTree = "<group>"; };
 		C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yally.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E831A54DDBB2E41C748399B8 /* Pods-Yally.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.release.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.release.xcconfig"; sourceTree = "<group>"; };
+		EBB81260252783700089D354 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		EBB812642527A1D70089D354 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
+		EBB812652527A1D80089D354 /* NotoSansKR-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Black.otf"; sourceTree = "<group>"; };
+		EBB812662527A1D80089D354 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
+		EBB812672527A1D80089D354 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
+		EBB812682527A1D80089D354 /* NotoSansKR-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Thin.otf"; sourceTree = "<group>"; };
+		EBB812692527A1D80089D354 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		EBFC7AF02525DB950082E0EE /* Yally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFC7AF32525DB950082E0EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBFC7AF72525DB950082E0EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +89,19 @@
 				C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EBB812632527A1CA0089D354 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				EBB812652527A1D80089D354 /* NotoSansKR-Black.otf */,
+				EBB812642527A1D70089D354 /* NotoSansKR-Bold.otf */,
+				EBB812662527A1D80089D354 /* NotoSansKR-Light.otf */,
+				EBB812672527A1D80089D354 /* NotoSansKR-Medium.otf */,
+				EBB812692527A1D80089D354 /* NotoSansKR-Regular.otf */,
+				EBB812682527A1D80089D354 /* NotoSansKR-Thin.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		EBFC7AE72525DB950082E0EE = {
@@ -137,6 +164,7 @@
 			children = (
 				EBFC7AF72525DB950082E0EE /* ViewController.swift */,
 				EBFC7B6625276F650082E0EE /* SignInViewController.swift */,
+				EBB81260252783700089D354 /* SplashViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -168,6 +196,7 @@
 		EBFC7B34252745E40082E0EE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				EBB812632527A1CA0089D354 /* Font */,
 				EBFC7AFE2525DB970082E0EE /* LaunchScreen.storyboard */,
 				EBFC7AFC2525DB970082E0EE /* Assets.xcassets */,
 			);
@@ -259,9 +288,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBFC7B182525DF960082E0EE /* .swiftlint.yml in Resources */,
+				EBB8126C2527A1E00089D354 /* NotoSansKR-Bold.otf in Resources */,
+				EBB8126E2527A1E30089D354 /* NotoSansKR-Light.otf in Resources */,
+				EBB812702527A1E50089D354 /* NotoSansKR-Medium.otf in Resources */,
+				EBB812722527A1E70089D354 /* NotoSansKR-Regular.otf in Resources */,
 				EBFC7B002525DB970082E0EE /* LaunchScreen.storyboard in Resources */,
 				EBFC7B6425276E860082E0EE /* Auth.storyboard in Resources */,
+				EBB8126A2527A1DE0089D354 /* NotoSansKR-Black.otf in Resources */,
 				EBFC7AFD2525DB970082E0EE /* Assets.xcassets in Resources */,
+				EBB812742527A1E90089D354 /* NotoSansKR-Thin.otf in Resources */,
 				EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +377,7 @@
 				EBFC7B39252747FF0082E0EE /* TestViewController.swift in Sources */,
 				EBFC7B6725276F650082E0EE /* SignInViewController.swift in Sources */,
 				EBFC7B282525E0E90082E0EE /* TestNet.swift in Sources */,
+				EBB81261252783700089D354 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
