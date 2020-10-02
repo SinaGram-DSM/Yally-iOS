@@ -20,6 +20,7 @@
 		EBFC7B3E252748170082E0EE /* TestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7B3D252748170082E0EE /* TestService.swift */; };
 		EBFC7B42252748370082E0EE /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7B41252748370082E0EE /* ViewModelType.swift */; };
 		EBFC7B46252748BC0082E0EE /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7B45252748BC0082E0EE /* HTTPClient.swift */; };
+		EBFC7B5A252768B30082E0EE /* YallyURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7B59252768B30082E0EE /* YallyURL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		EBFC7B3D252748170082E0EE /* TestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestService.swift; sourceTree = "<group>"; };
 		EBFC7B41252748370082E0EE /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		EBFC7B45252748BC0082E0EE /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		EBFC7B59252768B30082E0EE /* YallyURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YallyURL.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			children = (
 				EBFC7B272525E0E90082E0EE /* TestNet.swift */,
 				EBFC7B45252748BC0082E0EE /* HTTPClient.swift */,
+				EBFC7B59252768B30082E0EE /* YallyURL.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */,
 				EBFC7B42252748370082E0EE /* ViewModelType.swift in Sources */,
 				EBFC7B3E252748170082E0EE /* TestService.swift in Sources */,
+				EBFC7B5A252768B30082E0EE /* YallyURL.swift in Sources */,
 				EBFC7B39252747FF0082E0EE /* TestViewController.swift in Sources */,
 				EBFC7B282525E0E90082E0EE /* TestNet.swift in Sources */,
 			);
