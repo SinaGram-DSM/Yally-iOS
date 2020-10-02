@@ -6,30 +6,53 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 class SplashViewController: UIViewController {
 
     @IBOutlet weak var splashImage: UIImageView!
-    @IBOutlet weak var tapLoginBtn: UIButton!
-    @IBOutlet weak var tapSignBtn: UIButton!
+    @IBOutlet weak var LoginBtn: UIButton!
+    @IBOutlet weak var SignBtn: UIButton!
     @IBOutlet weak var circleView: UIView!
 
     private var gradientLayer: CAGradientLayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpUI()
 
         splashImage.image = UIImage(named: "SplashImg")
         circleView.layer.cornerRadius = 30
-        tapLoginBtn.backgroundColor = .cyan
-        tapLoginBtn.layer.cornerRadius = 20
+        LoginBtn.backgroundColor = .cyan
 
-//        self.gradientLayer = CAGradientLayer()
-//        self.gradientLayer.frame = self.view.bounds
-//        self.gradientLayer.colors = [UIColor.blue.cgColor, UIColor.purple.cgColor]
-//        self.view.layer.addSublayer(self.gradientLayer)
+        gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.LoginBtn.bounds
+        gradientLayer.colors = [UIColor.blue.cgColor, UIColor.purple.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
+        LoginBtn.layer.insertSublayer(gradientLayer, at: 0)
+        LoginBtn.layer.cornerRadius = 20
+
+        let bar: UINavigationBar! = self.navigationController?.navigationBar
+        bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        bar.shadowImage = UIImage()
+        bar.backgroundColor = UIColor.clear
+
     }
 
+    private func setUpUI() {
+        LoginBtn.rx.tap.asObservable().subscribe(onNext: {
+            guard let signInVC = self.storyboard?.instantiateViewController(identifier: "signInVC") else { return }
+            self.navigationController?.pushViewController(signInVC, animated: true)
+        }).disposed(by: rx.disposeBag)
+
+        SignBtn.rx.tap.asObservable().subscribe(onNext: {
+            guard let signUpVC = self.storyboard?.instantiateViewController(identifier: "signUpVC") else { return }
+            self.navigationController?.pushViewController(signUpVC, animated: true)
+        }).disposed(by: rx.disposeBag)
+    }
     /*
     // MARK: - Navigation
 

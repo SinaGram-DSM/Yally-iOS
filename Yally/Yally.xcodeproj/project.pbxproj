@@ -15,6 +15,7 @@
 		EBB812702527A1E50089D354 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812672527A1D80089D354 /* NotoSansKR-Medium.otf */; };
 		EBB812722527A1E70089D354 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812692527A1D80089D354 /* NotoSansKR-Regular.otf */; };
 		EBB812742527A1E90089D354 /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812682527A1D80089D354 /* NotoSansKR-Thin.otf */; };
+		EBB812772527B1B40089D354 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB812762527B1B40089D354 /* SignUpViewController.swift */; };
 		EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7AF32525DB950082E0EE /* AppDelegate.swift */; };
 		EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7AF72525DB950082E0EE /* ViewController.swift */; };
 		EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBFC7AF92525DB950082E0EE /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		EBB812672527A1D80089D354 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		EBB812682527A1D80089D354 /* NotoSansKR-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Thin.otf"; sourceTree = "<group>"; };
 		EBB812692527A1D80089D354 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
+		EBB812762527B1B40089D354 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		EBFC7AF02525DB950082E0EE /* Yally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFC7AF32525DB950082E0EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBFC7AF72525DB950082E0EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				EBFC7AF72525DB950082E0EE /* ViewController.swift */,
 				EBFC7B6625276F650082E0EE /* SignInViewController.swift */,
 				EBB81260252783700089D354 /* SplashViewController.swift */,
+				EBB812762527B1B40089D354 /* SignUpViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				EBFC7B39252747FF0082E0EE /* TestViewController.swift in Sources */,
 				EBFC7B6725276F650082E0EE /* SignInViewController.swift in Sources */,
 				EBFC7B282525E0E90082E0EE /* TestNet.swift in Sources */,
+				EBB812772527B1B40089D354 /* SignUpViewController.swift in Sources */,
 				EBB81261252783700089D354 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
