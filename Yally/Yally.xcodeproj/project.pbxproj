@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		D473E10541457F787D0F8511 /* Pods_Yally.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */; };
+		EB844F21252864EF009AE68C /* PinCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB844F20252864EF009AE68C /* PinCodeViewController.swift */; };
+		EB844F2525287179009AE68C /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB844F2425287179009AE68C /* Extension.swift */; };
+		EB844F2925289F20009AE68C /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB844F2825289F20009AE68C /* AuthAPI.swift */; };
+		EB844F2C2528A2F1009AE68C /* TokenUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB844F2B2528A2F1009AE68C /* TokenUtils.swift */; };
+		EB844F2F2528B5F5009AE68C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB844F2E2528B5F5009AE68C /* User.swift */; };
+		EB844F322528B630009AE68C /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB844F312528B630009AE68C /* Token.swift */; };
 		EBB81261252783700089D354 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB81260252783700089D354 /* SplashViewController.swift */; };
 		EBB8126A2527A1DE0089D354 /* NotoSansKR-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812652527A1D80089D354 /* NotoSansKR-Black.otf */; };
 		EBB8126C2527A1E00089D354 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812642527A1D70089D354 /* NotoSansKR-Bold.otf */; };
@@ -37,6 +43,12 @@
 		585F0FE9F9FE993DDF61E808 /* Pods-Yally.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.debug.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.debug.xcconfig"; sourceTree = "<group>"; };
 		C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yally.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E831A54DDBB2E41C748399B8 /* Pods-Yally.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.release.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.release.xcconfig"; sourceTree = "<group>"; };
+		EB844F20252864EF009AE68C /* PinCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeViewController.swift; sourceTree = "<group>"; };
+		EB844F2425287179009AE68C /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		EB844F2825289F20009AE68C /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
+		EB844F2B2528A2F1009AE68C /* TokenUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenUtils.swift; sourceTree = "<group>"; };
+		EB844F2E2528B5F5009AE68C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EB844F312528B630009AE68C /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		EBB81260252783700089D354 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		EBB812642527A1D70089D354 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		EBB812652527A1D80089D354 /* NotoSansKR-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Black.otf"; sourceTree = "<group>"; };
@@ -91,6 +103,15 @@
 				C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EB844F2325287122009AE68C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				EB844F2425287179009AE68C /* Extension.swift */,
+				EB844F2B2528A2F1009AE68C /* TokenUtils.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 		EBB812632527A1CA0089D354 /* Font */ = {
@@ -157,6 +178,8 @@
 			isa = PBXGroup;
 			children = (
 				EBFC7B2A2525E0F80082E0EE /* TestModel.swift */,
+				EB844F2E2528B5F5009AE68C /* User.swift */,
+				EB844F312528B630009AE68C /* Token.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -168,6 +191,7 @@
 				EBFC7B6625276F650082E0EE /* SignInViewController.swift */,
 				EBB81260252783700089D354 /* SplashViewController.swift */,
 				EBB812762527B1B40089D354 /* SignUpViewController.swift */,
+				EB844F20252864EF009AE68C /* PinCodeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -178,6 +202,7 @@
 				EBFC7B272525E0E90082E0EE /* TestNet.swift */,
 				EBFC7B45252748BC0082E0EE /* HTTPClient.swift */,
 				EBFC7B59252768B30082E0EE /* YallyURL.swift */,
+				EB844F2825289F20009AE68C /* AuthAPI.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -185,6 +210,7 @@
 		EBFC7B33252745DE0082E0EE /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				EB844F2325287122009AE68C /* Util */,
 				EBFC7B3C2527480A0082E0EE /* Service */,
 				EBFC7B37252747EC0082E0EE /* View */,
 				EBFC7B1B2525E0190082E0EE /* UI */,
@@ -371,15 +397,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */,
+				EB844F2925289F20009AE68C /* AuthAPI.swift in Sources */,
 				EBFC7B2B2525E0F80082E0EE /* TestModel.swift in Sources */,
 				EBFC7B46252748BC0082E0EE /* HTTPClient.swift in Sources */,
 				EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */,
 				EBFC7B42252748370082E0EE /* ViewModelType.swift in Sources */,
+				EB844F21252864EF009AE68C /* PinCodeViewController.swift in Sources */,
+				EB844F2F2528B5F5009AE68C /* User.swift in Sources */,
 				EBFC7B3E252748170082E0EE /* TestService.swift in Sources */,
+				EB844F322528B630009AE68C /* Token.swift in Sources */,
 				EBFC7B5A252768B30082E0EE /* YallyURL.swift in Sources */,
 				EBFC7B39252747FF0082E0EE /* TestViewController.swift in Sources */,
+				EB844F2525287179009AE68C /* Extension.swift in Sources */,
 				EBFC7B6725276F650082E0EE /* SignInViewController.swift in Sources */,
 				EBFC7B282525E0E90082E0EE /* TestNet.swift in Sources */,
+				EB844F2C2528A2F1009AE68C /* TokenUtils.swift in Sources */,
 				EBB812772527B1B40089D354 /* SignUpViewController.swift in Sources */,
 				EBB81261252783700089D354 /* SplashViewController.swift in Sources */,
 			);
