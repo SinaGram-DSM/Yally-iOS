@@ -10,6 +10,9 @@ import Alamofire
 import Security
 
 final class TokenUtils {
+
+    static let shared = TokenUtils()
+
     private let account = "Service"
     private let service = Bundle.main.bundleIdentifier
 
@@ -69,4 +72,8 @@ final class TokenUtils {
         return SecItemDelete(query as [String: Any] as CFDictionary) == noErr
     }
 
+}
+
+var currentToken: Token? {
+    return TokenUtils.shared.readUser()?.token
 }
