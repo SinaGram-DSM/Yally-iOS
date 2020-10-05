@@ -17,42 +17,31 @@ class SplashViewController: UIViewController {
     @IBOutlet weak var SignBtn: UIButton!
     @IBOutlet weak var circleView: UIView!
 
-    private var gradientLayer: CAGradientLayer!
-
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setUpUI()
+        setButton(LoginBtn)
 
         splashImage.image = UIImage(named: "SplashImg")
         circleView.layer.cornerRadius = 30
-        LoginBtn.backgroundColor = .cyan
-
-        gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.LoginBtn.bounds
-        gradientLayer.colors = [UIColor.blue.cgColor, UIColor.purple.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
-        LoginBtn.layer.insertSublayer(gradientLayer, at: 0)
-        LoginBtn.layer.cornerRadius = 20
 
         let bar: UINavigationBar! = self.navigationController?.navigationBar
         bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         bar.shadowImage = UIImage()
         bar.backgroundColor = UIColor.clear
-
     }
 
     private func setUpUI() {
         LoginBtn.rx.tap.asObservable().subscribe(onNext: {
-            guard let signInVC = self.storyboard?.instantiateViewController(identifier: "signInVC") else { return }
-            self.navigationController?.pushViewController(signInVC, animated: true)
+            self.nextScene(identifier: "signInVC")
         }).disposed(by: rx.disposeBag)
 
         SignBtn.rx.tap.asObservable().subscribe(onNext: {
-            guard let signUpVC = self.storyboard?.instantiateViewController(identifier: "signUpVC") else { return }
-            self.navigationController?.pushViewController(signUpVC, animated: true)
+            self.nextScene(identifier: "signUpVC")
         }).disposed(by: rx.disposeBag)
     }
+
     /*
     // MARK: - Navigation
 
