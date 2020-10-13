@@ -13,8 +13,11 @@ pod ‘SwiftLint’
 pod 'TextFieldEffects'
 pod 'XLPagerTabStrip', '~> 9.0'
 pod 'CircleMenu'
-pod 'OTPInputView'
 pod 'NSObject+Rx'
+<<<<<<< refs/remotes/origin/default
 pod 'RxAlamofire'
+=======
+pod "SGCodeTextField"
+>>>>>>> Feat : add SGCodeTextField
 
 end
