@@ -13,7 +13,7 @@ pod ‘SwiftLint’
 pod 'TextFieldEffects'
 pod 'XLPagerTabStrip', '~> 9.0'
 pod 'CircleMenu'
-pod 'OTPInputView'
 pod 'NSObject+Rx'
+pod "SGCodeTextField"
 
 end
