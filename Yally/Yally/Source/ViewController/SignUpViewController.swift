@@ -23,34 +23,37 @@ class SingUpViewController: UIViewController {
         super.viewDidLoad()
 
         defuatlBtn(nextBtn)
-        bindViewModel()
         setUpUI()
+        bindViewModel()
     }
 
     func setUpUI() {
-        emailTextField.rx.text.orEmpty.asObservable()
-            .map { YallyFilter.checkEmail($0) }
-            .subscribe { [self] e in
-                if !e.element! {
-                    self.setUpErrorMessage(placeLabel, title: "이메일 형식이 맞지 않습니다.", superTextField: self.emailTextField)
+        nextBtn.rx.tap
+            .subscribe(onNext: {
+                if YallyFilter.checkEmail(self.emailTextField.text!) {
+                    self.setUpErrorHidden(self.placeLabel)
+                } else {
+                    self.setUpErrorMessage(self.placeLabel, title: "이메일 형식이 맞지 않습니다.", superTextField: self.emailTextField)
                 }
-            }.disposed(by: rx.disposeBag)
-
-        nextBtn.rx.tap.bind { [weak self] in
-            self?.nextScene(identifier: "pinCode")
-        }.disposed(by: rx.disposeBag)
+            }).disposed(by: rx.disposeBag)
     }
 
     func bindViewModel() {
         let input = CodeViewModel.input(email: emailTextField.rx.text.orEmpty.asDriver(),
-                                        doneTap: nextBtn.rx.tap.asSignal())
+            doneTap: nextBtn.rx.tap.asSignal())
         let output = viewModel.transform(input)
 
         output.isEnable.drive(nextBtn.rx.isEnabled).disposed(by: rx.disposeBag)
         output.isEnable.drive(onNext: {_ in
-            self.placeLabel.isHidden = true
             self.setButton(self.nextBtn)
         }).disposed(by: rx.disposeBag)
+
+        output.result.emit(onCompleted: { [unowned self] in nextWithData()}).disposed(by: rx.disposeBag)
     }
 
+    func nextWithData() {
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "pinCode") as? PinCodeViewController else { return }
+        vc.email = emailTextField.text!
+        self.navigationController?.pushViewController(vc, animated: false)
+    }
 }
