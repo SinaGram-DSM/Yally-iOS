@@ -6,33 +6,38 @@
 //
 
 import UIKit
-import OTPInputView
+import SGCodeTextField
+import RxSwift
+import RxCocoa
+import NSObject_Rx
 
 class PinCodeViewController: UIViewController {
 
-    @IBOutlet weak var pinCodeView: OTPInputView!
+    @IBOutlet weak var pinCodeView: SGCodeTextField!
     @IBOutlet weak var nextBtn: UIButton!
+
+    var email = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setUpUI()
         setButton(nextBtn)
+        bindViewModel()
     }
 
-    func setUpUI() {
-        nextBtn.rx.tap.asObservable().subscribe(onNext: {
-            self.nextScene(identifier: "inputUser")
-        }).disposed(by: rx.disposeBag)
-    }
-    /*
-    // MARK: - Navigation
+    func bindViewModel() {
+        self.pinCodeView.textChangeHandler = { [self] (text, completed) in
+            guard let authtext = text else { return }
+            let api = AuthAPI()
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+            self.nextBtn.isSelected = completed
+            self.nextBtn.isEnabled = completed
 
+            self.nextBtn.rx.tap.asObservable().subscribe(onNext: {
+                print(authtext)
+                api.postConfirmCode(email, authtext)
+                self.nextScene(identifier: "inputUser")
+            }).disposed(by: rx.disposeBag)
+        }
+    }
 }
