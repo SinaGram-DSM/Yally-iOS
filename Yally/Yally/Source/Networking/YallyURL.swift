@@ -7,6 +7,7 @@
 
 import Foundation
 import Security
+import Alamofire
 
 enum YallyURL {
         case signIn
@@ -32,7 +33,7 @@ enum YallyURL {
         case .authCode:
             return "/user/auth-code/email"
         case .authConfirm:
-            return "/user/code"
+            return "/user/auth-code"
         case .signUp:
             return "/user"
         case .resetCodeToEmail:
@@ -44,16 +45,16 @@ enum YallyURL {
         }
     }
 
-    func headers() -> [String: String]? {
+    func headers() -> HTTPHeaders? {
         switch self {
         case .signUp, .authCode, .authConfirm, .resetCodeToEmail, .modifyPassword:
             return nil
         case .refreshToken:
-            guard let token = currentToken?.refreshToken else { return nil }
-            return ["Authorization": token]
+            guard let token = TokenManager.currentToken?.refreshToken else { return nil }
+            return ["Authorization" : "Bearer " + token]
         default:
-            guard let token = currentToken?.accesstoekn else { return nil }
-            return ["Authorization": token]
+            guard let token = TokenManager.currentToken?.accesstoekn else { return nil }
+            return ["Authorization" : "Bearer " + token]
         }
     }
 }
