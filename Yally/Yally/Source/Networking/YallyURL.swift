@@ -6,27 +6,43 @@
 //
 
 import Foundation
-import Security
-import Alamofire
+
+import Moya
 
 enum YallyURL {
-        case signIn
-        case authCode
-        case authConfirm
-        case signUp
-        case resetCodeToEmail
-        case modifyPassword
-        case refreshToken
+    case signIn(_ eamil: String, _ password: String)
+    case authCode(_ email: String)
+    case authConfirm(_ code: String)
+    case signUp(_ email: String, _ password: String, _ nickname: String, _ age: Int)
+    case resetCodeToEmail(_ email: String)
+    case modifyPassword(_ email: String, _ code: String, _ password: String)
+    case refreshToken
+}
 
-//    case signIn(_ eamil: String, _ password: String)
-//    case authCode(_ email: String)
-//    case authConfirm(_ code: String)
-//    case signUp(_ email: String, _ password: String, _ nickname: String, _ age: Int)
-//    case resetCodeToEmail(_ email: String)
-//    case modifyPassword(_ email: String, _ code: String, _ password: String)
-//    case refreshToken
+extension YallyURL: TargetType {
+    var baseURL: URL {
+        return URL(string: "http://13.125.238.84:81")!
+    }
+//        case signIn
+//        case authCode
+//        case authConfirm
+//        case signUp
+//        case resetCodeToEmail
+//        case modifyPassword
+//        case refreshToken
 
-    func path() -> String {
+
+
+    var method: Moya.Method {
+        switch self {
+        case .signIn:
+            return .get
+        default:
+            return .post
+        }
+    }
+    
+    var path: String {
         switch self {
         case .signIn:
             return "/user/auth"
@@ -45,7 +61,17 @@ enum YallyURL {
         }
     }
 
-    func headers() -> HTTPHeaders? {
+    
+    var task: Task {
+        switch self {
+        case .signIn(let email, let password):
+            return .requestParameters(parameters: ["email": email, "password": password], encoding: JSONEncoding.prettyPrinted)
+        default:
+            return .requestPlain
+        }
+    }
+    
+    var headers: [String : String]? {
         switch self {
         case .signUp, .authCode, .authConfirm, .resetCodeToEmail, .modifyPassword:
             return nil
@@ -56,5 +82,9 @@ enum YallyURL {
             guard let token = TokenManager.currentToken?.accesstoekn else { return nil }
             return ["Authorization" : "Bearer " + token]
         }
+    }
+    
+    var sampleData: Data{
+        return Data()
     }
 }
