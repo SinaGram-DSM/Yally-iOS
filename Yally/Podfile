@@ -15,5 +15,6 @@ pod 'XLPagerTabStrip', '~> 9.0'
 pod 'CircleMenu'
 pod 'NSObject+Rx'
 pod "SGCodeTextField"
+pod 'Moya', '~> 14.0'
 
 end

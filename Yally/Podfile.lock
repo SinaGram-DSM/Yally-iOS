@@ -1,6 +1,10 @@
 PODS:
   - Alamofire (5.2.1)
   - CircleMenu (4.1.0)
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
   - "NSObject+Rx (5.1.0)":
     - RxSwift (~> 5.1)
   - RxCocoa (5.1.1):
@@ -17,6 +21,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - CircleMenu
+  - Moya (~> 14.0)
   - "NSObject+Rx"
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
@@ -29,6 +34,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - CircleMenu
+    - Moya
     - "NSObject+Rx"
     - RxCocoa
     - RxRelay
@@ -41,6 +47,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   CircleMenu: a66095199a5e26f19acbb212f077010257767fe5
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
@@ -50,6 +57,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 37fb1f1ec17d24eb721572ad1920c93a663db434
+PODFILE CHECKSUM: 35dc053bdfb4277f57627403eef81035664cb464
 
 COCOAPODS: 1.9.3
