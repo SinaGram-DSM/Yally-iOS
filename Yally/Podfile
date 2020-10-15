@@ -14,7 +14,10 @@ pod 'TextFieldEffects'
 pod 'XLPagerTabStrip', '~> 9.0'
 pod 'CircleMenu'
 pod 'NSObject+Rx'
+<<<<<<< HEAD
 pod 'RxAlamofire'
+=======
+>>>>>>> auth
 pod "SGCodeTextField"
 pod 'Moya', '~> 14.0'
 

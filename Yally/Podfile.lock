@@ -7,6 +7,7 @@ PODS:
     - Alamofire (~> 5.0)
   - "NSObject+Rx (5.1.0)":
     - RxSwift (~> 5.1)
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/default
   - OTPInputView (0.1.2)
   - RxAlamofire (5.6.2):
@@ -16,6 +17,8 @@ PODS:
     - RxSwift (~> 5.1)
 =======
 >>>>>>> Feat : add SGCodeTextField
+=======
+>>>>>>> auth
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -32,11 +35,14 @@ DEPENDENCIES:
   - CircleMenu
   - Moya (~> 14.0)
   - "NSObject+Rx"
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/default
   - OTPInputView
   - RxAlamofire
 =======
 >>>>>>> Feat : add SGCodeTextField
+=======
+>>>>>>> auth
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
   - SGCodeTextField
@@ -50,11 +56,14 @@ SPEC REPOS:
     - CircleMenu
     - Moya
     - "NSObject+Rx"
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/default
     - OTPInputView
     - RxAlamofire
 =======
 >>>>>>> Feat : add SGCodeTextField
+=======
+>>>>>>> auth
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -68,11 +77,14 @@ SPEC CHECKSUMS:
   CircleMenu: a66095199a5e26f19acbb212f077010257767fe5
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/default
   OTPInputView: 8a7cc613e29d264f799d121169d00a745cae4c00
   RxAlamofire: aa949d345b1689eae02b7c7a217518878144f6df
 =======
 >>>>>>> Feat : add SGCodeTextField
+=======
+>>>>>>> auth
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
@@ -81,6 +93,7 @@ SPEC CHECKSUMS:
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
+<<<<<<< HEAD
 <<<<<<< refs/remotes/origin/default
 <<<<<<< refs/remotes/origin/default
 PODFILE CHECKSUM: d1fbffde79f20c1481605ca07a7ce2ee983e9029
@@ -90,5 +103,8 @@ PODFILE CHECKSUM: 37fb1f1ec17d24eb721572ad1920c93a663db434
 =======
 PODFILE CHECKSUM: 35dc053bdfb4277f57627403eef81035664cb464
 >>>>>>> Update : podfile
+=======
+PODFILE CHECKSUM: 35dc053bdfb4277f57627403eef81035664cb464
+>>>>>>> auth
 
 COCOAPODS: 1.10.0.beta.1
