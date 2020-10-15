@@ -1,41 +1,44 @@
 //
-//  AuthViewModel.swift
+//  CodeViewModel.swift
 //  Yally
 //
-//  Created by 이가영 on 2020/10/04.
+//  Created by 이가영 on 2020/10/15.
 //
 
 import Foundation
-import RxSwift
 import RxCocoa
-import NSObject_Rx
+import RxSwift
+
 class CodeViewModel: ViewModelType {
 
     private let disposeBag = DisposeBag()
 
     struct input {
         let email: Driver<String>
-        //var authCode: Driver<String>
-        var doneTap: Signal<Void>
+        let doneTap: Signal<Void>
     }
 
     struct output {
-        var isEnable: Driver<Bool>
-        var result: Signal<String>
+        let isEnable: Driver<Bool>
+        let result: Signal<String>
     }
 
-    func transform(_ input: CodeViewModel.input) -> CodeViewModel.output {
+    func transform(_ input: input) -> output {
         let api = AuthAPI()
         let info = input.email
-        let isEnabled = info.map { YallyFilter.checkEmpty($0)}
+        let isEnable = info.map { YallyFilter.checkEmpty($0) }
         let result = PublishSubject<String>()
 
-        input.doneTap.withLatestFrom(info)
-            .asObservable().subscribe(onNext: { userEmail in
-                api.postAuthCode(userEmail)
-                result.onCompleted()
-            }).disposed(by: disposeBag)
+        input.doneTap.withLatestFrom(info).asObservable().subscribe(onNext: { email in
+            api.postAuthCode(email).subscribe(onNext: { response in
+                switch response {
+                case .ok: result.onCompleted()
+                case .overlap: result.onNext("중복된 이메일")
+                default: result.onNext("인증번호 보내기 실패")
+                }
+            }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
 
-        return output(isEnable: isEnabled.asDriver(), result: result.asSignal(onErrorJustReturn: ""))
+        return output(isEnable: isEnable.asDriver(), result: result.asSignal(onErrorJustReturn: "인증번호 보내기 실패패"))
     }
 }
