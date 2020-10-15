@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F40C16825301DE3002883FA /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C16725301DE3002883FA /* ProfileModel.swift */; };
+		9FDCD13325277D7F003CFEF9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FDCD13225277D7F003CFEF9 /* Profile.storyboard */; };
+		9FDCD13625277DB7003CFEF9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDCD13525277DB7003CFEF9 /* ProfileViewController.swift */; };
+		9FDCD15025289257003CFEF9 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FDCD14F25289257003CFEF9 /* Asset.xcassets */; };
+		9FDCD1552528A004003CFEF9 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDCD1542528A004003CFEF9 /* ProfileViewModel.swift */; };
+		9FDCD15C2528A1B6003CFEF9 /* ProfileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDCD15B2528A1B6003CFEF9 /* ProfileAPI.swift */; };
 		D473E10541457F787D0F8511 /* Pods_Yally.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */; };
 		EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7AF32525DB950082E0EE /* AppDelegate.swift */; };
 		EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7AF72525DB950082E0EE /* ViewController.swift */; };
 		EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBFC7AF92525DB950082E0EE /* Main.storyboard */; };
-		EBFC7AFD2525DB970082E0EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBFC7AFC2525DB970082E0EE /* Assets.xcassets */; };
 		EBFC7B002525DB970082E0EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBFC7AFE2525DB970082E0EE /* LaunchScreen.storyboard */; };
 		EBFC7B182525DF960082E0EE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = EBFC7B172525DF960082E0EE /* .swiftlint.yml */; };
 		EBFC7B282525E0E90082E0EE /* TestNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7B272525E0E90082E0EE /* TestNet.swift */; };
@@ -25,13 +30,18 @@
 
 /* Begin PBXFileReference section */
 		585F0FE9F9FE993DDF61E808 /* Pods-Yally.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.debug.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.debug.xcconfig"; sourceTree = "<group>"; };
+		9F40C16725301DE3002883FA /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		9FDCD13225277D7F003CFEF9 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		9FDCD13525277DB7003CFEF9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		9FDCD14F25289257003CFEF9 /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
+		9FDCD1542528A004003CFEF9 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		9FDCD15B2528A1B6003CFEF9 /* ProfileAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAPI.swift; sourceTree = "<group>"; };
 		C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yally.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E831A54DDBB2E41C748399B8 /* Pods-Yally.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.release.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.release.xcconfig"; sourceTree = "<group>"; };
 		EBFC7AF02525DB950082E0EE /* Yally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFC7AF32525DB950082E0EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBFC7AF72525DB950082E0EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EBFC7AFA2525DB950082E0EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EBFC7AFC2525DB970082E0EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBFC7AFF2525DB970082E0EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EBFC7B012525DB970082E0EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Yally/Supporting Files/Info.plist"; sourceTree = SOURCE_ROOT; };
 		EBFC7B172525DF960082E0EE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -107,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				EBFC7AF92525DB950082E0EE /* Main.storyboard */,
+				9FDCD13225277D7F003CFEF9 /* Profile.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -115,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				EBFC7B41252748370082E0EE /* ViewModelType.swift */,
+				9FDCD1542528A004003CFEF9 /* ProfileViewModel.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -123,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				EBFC7B2A2525E0F80082E0EE /* TestModel.swift */,
+				9F40C16725301DE3002883FA /* ProfileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -131,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				EBFC7AF72525DB950082E0EE /* ViewController.swift */,
+				9FDCD13525277DB7003CFEF9 /* ProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -141,6 +155,7 @@
 				EBFC7B272525E0E90082E0EE /* TestNet.swift */,
 				EBFC7B45252748BC0082E0EE /* HTTPClient.swift */,
 				EBFC7B59252768B30082E0EE /* YallyURL.swift */,
+				9FDCD15B2528A1B6003CFEF9 /* ProfileAPI.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -163,7 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				EBFC7AFE2525DB970082E0EE /* LaunchScreen.storyboard */,
-				EBFC7AFC2525DB970082E0EE /* Assets.xcassets */,
+				9FDCD14F25289257003CFEF9 /* Asset.xcassets */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -253,8 +268,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBFC7B182525DF960082E0EE /* .swiftlint.yml in Resources */,
+				9FDCD15025289257003CFEF9 /* Asset.xcassets in Resources */,
 				EBFC7B002525DB970082E0EE /* LaunchScreen.storyboard in Resources */,
-				EBFC7AFD2525DB970082E0EE /* Assets.xcassets in Resources */,
+				9FDCD13325277D7F003CFEF9 /* Profile.storyboard in Resources */,
 				EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,14 +342,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */,
+				9F40C16825301DE3002883FA /* ProfileModel.swift in Sources */,
 				EBFC7B2B2525E0F80082E0EE /* TestModel.swift in Sources */,
+				9FDCD13625277DB7003CFEF9 /* ProfileViewController.swift in Sources */,
 				EBFC7B46252748BC0082E0EE /* HTTPClient.swift in Sources */,
 				EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */,
 				EBFC7B42252748370082E0EE /* ViewModelType.swift in Sources */,
+				9FDCD1552528A004003CFEF9 /* ProfileViewModel.swift in Sources */,
 				EBFC7B3E252748170082E0EE /* TestService.swift in Sources */,
 				EBFC7B5A252768B30082E0EE /* YallyURL.swift in Sources */,
 				EBFC7B39252747FF0082E0EE /* TestViewController.swift in Sources */,
 				EBFC7B282525E0E90082E0EE /* TestNet.swift in Sources */,
+				9FDCD15C2528A1B6003CFEF9 /* ProfileAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
