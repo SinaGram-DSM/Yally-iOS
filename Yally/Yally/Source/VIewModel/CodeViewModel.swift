@@ -33,7 +33,7 @@ class CodeViewModel: ViewModelType {
             api.postAuthCode(email).subscribe(onNext: { response in
                 switch response {
                 case .ok: result.onCompleted()
-                case .overlap: result.onNext("중복된 이메일")
+                case .overlap: result.onNext("중복된 이메일입니다.")
                 default: result.onNext("인증번호 보내기 실패")
                 }
             }).disposed(by: self.disposeBag)
