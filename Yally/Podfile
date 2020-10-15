@@ -4,8 +4,6 @@
 target 'Yally' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
-  # Pods for Yally
 pod ‘RxSwift’, ‘~> 5’
 pod ‘RxCocoa’, ‘~> 5’
 pod ‘Alamofire’, ‘~> 5.2’
@@ -13,12 +11,10 @@ pod ‘SwiftLint’
 pod 'TextFieldEffects'
 pod 'XLPagerTabStrip', '~> 9.0'
 pod 'CircleMenu'
+pod 'OTPInputView'
 pod 'NSObject+Rx'
-<<<<<<< HEAD
 pod 'RxAlamofire'
-=======
->>>>>>> auth
-pod "SGCodeTextField"
-pod 'Moya', '~> 14.0'
+
+  # Pods for Yally
 
 end
