@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9F40C16825301DE3002883FA /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F40C16725301DE3002883FA /* ProfileModel.swift */; };
+		9F806A8925381E8300648B9A /* Noto_Sans_KR in Resources */ = {isa = PBXBuildFile; fileRef = 9F806A8825381E8300648B9A /* Noto_Sans_KR */; };
 		9FDCD13325277D7F003CFEF9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FDCD13225277D7F003CFEF9 /* Profile.storyboard */; };
 		9FDCD13625277DB7003CFEF9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FDCD13525277DB7003CFEF9 /* ProfileViewController.swift */; };
 		9FDCD15025289257003CFEF9 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FDCD14F25289257003CFEF9 /* Asset.xcassets */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		585F0FE9F9FE993DDF61E808 /* Pods-Yally.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.debug.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.debug.xcconfig"; sourceTree = "<group>"; };
 		9F40C16725301DE3002883FA /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		9F806A8825381E8300648B9A /* Noto_Sans_KR */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Noto_Sans_KR; path = ../../../../../Downloads/Noto_Sans_KR; sourceTree = "<group>"; };
 		9FDCD13225277D7F003CFEF9 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		9FDCD13525277DB7003CFEF9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		9FDCD14F25289257003CFEF9 /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			children = (
 				EBFC7AFE2525DB970082E0EE /* LaunchScreen.storyboard */,
 				9FDCD14F25289257003CFEF9 /* Asset.xcassets */,
+				9F806A8825381E8300648B9A /* Noto_Sans_KR */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			files = (
 				EBFC7B182525DF960082E0EE /* .swiftlint.yml in Resources */,
 				9FDCD15025289257003CFEF9 /* Asset.xcassets in Resources */,
+				9F806A8925381E8300648B9A /* Noto_Sans_KR in Resources */,
 				EBFC7B002525DB970082E0EE /* LaunchScreen.storyboard in Resources */,
 				9FDCD13325277D7F003CFEF9 /* Profile.storyboard in Resources */,
 				EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */,
