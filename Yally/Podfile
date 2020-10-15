@@ -14,10 +14,8 @@ pod 'TextFieldEffects'
 pod 'XLPagerTabStrip', '~> 9.0'
 pod 'CircleMenu'
 pod 'NSObject+Rx'
-<<<<<<< refs/remotes/origin/default
 pod 'RxAlamofire'
-=======
 pod "SGCodeTextField"
->>>>>>> Feat : add SGCodeTextField
+pod 'Moya', '~> 14.0'
 
 end

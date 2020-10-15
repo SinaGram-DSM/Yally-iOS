@@ -1,6 +1,10 @@
 PODS:
   - Alamofire (5.2.1)
   - CircleMenu (4.1.0)
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
   - "NSObject+Rx (5.1.0)":
     - RxSwift (~> 5.1)
 <<<<<<< refs/remotes/origin/default
@@ -26,6 +30,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - CircleMenu
+  - Moya (~> 14.0)
   - "NSObject+Rx"
 <<<<<<< refs/remotes/origin/default
   - OTPInputView
@@ -43,6 +48,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - CircleMenu
+    - Moya
     - "NSObject+Rx"
 <<<<<<< refs/remotes/origin/default
     - OTPInputView
@@ -60,6 +66,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: e911732990610fe89af59ac0077f923d72dc3dfd
   CircleMenu: a66095199a5e26f19acbb212f077010257767fe5
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
 <<<<<<< refs/remotes/origin/default
   OTPInputView: 8a7cc613e29d264f799d121169d00a745cae4c00
@@ -75,9 +82,13 @@ SPEC CHECKSUMS:
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
 <<<<<<< refs/remotes/origin/default
+<<<<<<< refs/remotes/origin/default
 PODFILE CHECKSUM: d1fbffde79f20c1481605ca07a7ce2ee983e9029
 =======
 PODFILE CHECKSUM: 37fb1f1ec17d24eb721572ad1920c93a663db434
 >>>>>>> Feat : add SGCodeTextField
+=======
+PODFILE CHECKSUM: 35dc053bdfb4277f57627403eef81035664cb464
+>>>>>>> Update : podfile
 
 COCOAPODS: 1.10.0.beta.1
