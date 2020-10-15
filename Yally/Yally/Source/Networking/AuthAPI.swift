@@ -11,73 +11,74 @@ import RxSwift
 class AuthAPI {
     private let httpClient = HTTPClient()
 
-    func postAuthCode(_ userEmail: String) {
-        httpClient.post(path: YallyURL.authCode.path(),
-                        param: ["email": userEmail],
-                        headers: YallyURL.authCode.headers())
-            .responseJSON { (response) in
-                switch response.response?.statusCode {
+    func postAuthCode(_ userEmail: String) -> Observable<StatusCode> {
+        httpClient.post(.authCode, params: ["email": userEmail])
+            .map { (response, _) -> StatusCode in
+                switch response.statusCode {
                 case 200:
                     print("Auth Code Success")
+                    return .ok
                 case 409:
                     print("Overlap Email")
+                    return .overlap
                 default:
-                    print(response.result)
+                    print("")
+                    return .fault
                 }
             }
     }
 
-    func postConfirmCode(_ email: String, _ code: String) {
-        httpClient.post(path: YallyURL.authConfirm.path(), param: ["email": email, "code": code], headers: YallyURL.authConfirm.headers())
-            .responseJSON { (response) in
-                print(email)
-                print(code)
-                switch response.response?.statusCode {
+    func postConfirmCode(_ email: String, _ code: String) -> Observable<StatusCode> {
+        httpClient.post(.authConfirm, params: ["email": email, "code": code])
+            .map { (response, _) -> StatusCode in
+                switch response.statusCode {
                 case 200:
                     print("Correct User")
+                    return .ok
                 case 401:
                     print("Wrong Code")
+                    return .unauthorized
                 default:
-                    print(response.response?.statusCode ?? "statusCode")
                     print("Another mission")
+                    return .fault
                 }
             }
     }
 
-    func postSignUp(_ userEmail: String, _ userAge: Int, _ userName: String, _ userRepw: String) {
-        httpClient.post(path: YallyURL.signUp.path(),
-                        param: ["email": userEmail,
-                                "password": userRepw,
-                                "nickname": userName,
-                                "age": userAge],
-                        headers: YallyURL.signUp.headers())
-            .responseJSON { (response) in
-                switch response.response?.statusCode {
+    func postSignUp(_ userEmail: String, _ userAge: Int, _ userName: String, _ userRepw: String) -> Observable<StatusCode> {
+        httpClient.post(.signUp, params: ["email": userEmail,
+                                          "password": userRepw,
+                                          "nickname": userName,
+                                          "age": userAge])
+            .map { (response, _) -> StatusCode in
+                switch response.statusCode {
                 case 201:
                     print("Create New User")
+                    return .ok1
                 case 409:
                     print("Overlap User")
+                    return .overlap
                 default:
                     print("Another mission")
+                    return .fault
                 }
             }
     }
 
-        func postSignIn(_ userEmail: String, _ userPw: String) {
-            httpClient.post(path: YallyURL.signIn.path(),
-                            param: ["email": userEmail,
-                                    "password": userPw],
-                            headers: YallyURL.signIn.headers())
-                .responseJSON { (response) in
-                    switch response.response?.statusCode {
+        func postSignIn(_ userEmail: String, _ userPw: String) -> Observable<StatusCode> {
+            httpClient.post(.signIn, params: ["email": userEmail,
+                                              "password": userPw])
+                .map { (response, _) -> StatusCode in
+                    switch response.statusCode {
                     case 200:
                         print("Login Success")
-                        guard let value = response.data else { return }
-                        guard let data = try? JSONDecoder().decode(User.self, from: value) else { return }
+                        return .ok
                     case 404:
                         print("No User")
+                        return .noHere
                     default:
                         print("Another mission")
+                        return .fault
                     }
                 }
         }

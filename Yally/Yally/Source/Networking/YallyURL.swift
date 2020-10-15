@@ -6,43 +6,18 @@
 //
 
 import Foundation
-
-import Moya
+import Alamofire
 
 enum YallyURL {
-    case signIn(_ eamil: String, _ password: String)
-    case authCode(_ email: String)
-    case authConfirm(_ code: String)
-    case signUp(_ email: String, _ password: String, _ nickname: String, _ age: Int)
-    case resetCodeToEmail(_ email: String)
-    case modifyPassword(_ email: String, _ code: String, _ password: String)
+    case signIn
+    case authCode
+    case authConfirm
+    case signUp
+    case resetCodeToEmail
+    case modifyPassword
     case refreshToken
-}
 
-extension YallyURL: TargetType {
-    var baseURL: URL {
-        return URL(string: "http://13.125.238.84:81")!
-    }
-//        case signIn
-//        case authCode
-//        case authConfirm
-//        case signUp
-//        case resetCodeToEmail
-//        case modifyPassword
-//        case refreshToken
-
-
-
-    var method: Moya.Method {
-        switch self {
-        case .signIn:
-            return .get
-        default:
-            return .post
-        }
-    }
-    
-    var path: String {
+    func path() -> String {
         switch self {
         case .signIn:
             return "/user/auth"
@@ -61,17 +36,7 @@ extension YallyURL: TargetType {
         }
     }
 
-    
-    var task: Task {
-        switch self {
-        case .signIn(let email, let password):
-            return .requestParameters(parameters: ["email": email, "password": password], encoding: JSONEncoding.prettyPrinted)
-        default:
-            return .requestPlain
-        }
-    }
-    
-    var headers: [String : String]? {
+    func headers() -> HTTPHeaders? {
         switch self {
         case .signUp, .authCode, .authConfirm, .resetCodeToEmail, .modifyPassword:
             return nil
@@ -83,8 +48,5 @@ extension YallyURL: TargetType {
             return ["Authorization" : "Bearer " + token]
         }
     }
-    
-    var sampleData: Data{
-        return Data()
-    }
+
 }
