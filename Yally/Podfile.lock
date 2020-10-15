@@ -4,6 +4,11 @@ PODS:
   - "NSObject+Rx (5.1.0)":
     - RxSwift (~> 5.1)
   - OTPInputView (0.1.2)
+  - RxAlamofire (5.6.2):
+    - RxAlamofire/Core (= 5.6.2)
+  - RxAlamofire/Core (5.6.2):
+    - Alamofire (~> 5.2)
+    - RxSwift (~> 5.1)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
@@ -19,6 +24,7 @@ DEPENDENCIES:
   - CircleMenu
   - "NSObject+Rx"
   - OTPInputView
+  - RxAlamofire
   - RxCocoa (~> 5)
   - RxSwift (~> 5)
   - SwiftLint
@@ -31,6 +37,7 @@ SPEC REPOS:
     - CircleMenu
     - "NSObject+Rx"
     - OTPInputView
+    - RxAlamofire
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -43,6 +50,7 @@ SPEC CHECKSUMS:
   CircleMenu: a66095199a5e26f19acbb212f077010257767fe5
   "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
   OTPInputView: 8a7cc613e29d264f799d121169d00a745cae4c00
+  RxAlamofire: aa949d345b1689eae02b7c7a217518878144f6df
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
@@ -50,6 +58,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
 
-PODFILE CHECKSUM: 795e6543461d0581fc3c92523643d50252016a35
+PODFILE CHECKSUM: d1fbffde79f20c1481605ca07a7ce2ee983e9029
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0.beta.1
