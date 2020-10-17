@@ -75,6 +75,7 @@ class AuthAPI {
                         print("Login Success")
                         guard let token = try? JSONDecoder().decode(Token.self, from: data) else { return .fault }
                         let user = User(email: userEmail, password: userPw, token: token)
+<<<<<<< HEAD
 
                         if TokenUtils.shared.readUser() != nil {
                             if TokenUtils.shared.updateUser(user) { return .ok }
@@ -82,6 +83,15 @@ class AuthAPI {
 
                         if TokenUtils.shared.createUser(user) { return .ok }
 
+=======
+                        
+                        if TokenUtils.shared.readUser() != nil {
+                            if TokenUtils.shared.updateUser(user) { return .ok }
+                        }
+                        
+                        if TokenUtils.shared.createUser(user) { return .ok }
+                        
+>>>>>>> sign
                         return .fault
                     //return .ok
                     case 404:
