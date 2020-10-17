@@ -49,6 +49,6 @@ class SignInViewController: UIViewController {
             self.setButton(self.signInBtn)
         }).disposed(by: rx.disposeBag)
         //이
-        output.result.emit(onCompleted: { [unowned self] in nextScene(identifier: "pinCode")}).disposed(by: rx.disposeBag)
+        output.result.emit(onCompleted: { [unowned self] in nextScene(identifier: "main")}).disposed(by: rx.disposeBag)
     }
 }

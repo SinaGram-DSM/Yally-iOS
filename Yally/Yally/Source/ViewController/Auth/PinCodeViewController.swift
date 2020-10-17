@@ -15,12 +15,15 @@ class PinCodeViewController: UIViewController {
 
     @IBOutlet weak var pinCodeView: SGCodeTextField!
     @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subTitleLabel: UILabel!
 
     var email = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.SGCodeTextFieldError(pinCodeView.text!, pinCodeView)
         setButton(nextBtn)
         bindViewModel()
         setUpUI()
@@ -44,28 +47,12 @@ class PinCodeViewController: UIViewController {
                     api.postConfirmCode(email, authtext).subscribe(onNext: { (response) in
                         switch response {
                         case .ok: nextWithData()
-                        case .JWTdeadline: SGCodeTextFieldError("재설정 코드가 올바르지 않습니다.")
-                        default: SGCodeTextFieldError("인증 실패")
+                        case .JWTdeadline: SGCodeTextFieldError("재설정 코드가 올바르지 않습니다.", pinCodeView)
+                        default: SGCodeTextFieldError("인증 실패", pinCodeView)
                         }
                     }).disposed(by: rx.disposeBag)
             }).disposed(by: rx.disposeBag)
         }
-    }
-
-    func SGCodeTextFieldError(_ text: String) {
-        let errorLabel = UILabel()
-        errorLabel.translatesAutoresizingMaskIntoConstraints = false
-        errorLabel.text = text
-        errorLabel.textColor = .red
-        errorLabel.isHidden = false
-        errorLabel.font = UIFont.systemFont(ofSize: CGFloat(9))
-
-        view.addSubview(errorLabel)
-
-        NSLayoutConstraint.activate([
-            errorLabel.topAnchor.constraint(equalTo: pinCodeView.bottomAnchor),
-            errorLabel.leadingAnchor.constraint(equalTo: pinCodeView.leadingAnchor)
-        ])
     }
 
     func nextWithData() {

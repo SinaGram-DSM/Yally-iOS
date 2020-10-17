@@ -15,6 +15,8 @@ class SingUpViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subTitleLabel: UILabel!
 
     private let viewModel = CodeViewModel()
     let placeLabel = UILabel()
@@ -22,7 +24,6 @@ class SingUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        defuatlBtn(nextBtn)
         setUpUI()
         bindViewModel()
     }

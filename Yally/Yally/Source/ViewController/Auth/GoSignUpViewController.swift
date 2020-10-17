@@ -16,7 +16,9 @@ class GoSignUpViewController: UIViewController {
     @IBOutlet weak var pwTextField: UITextField!
     @IBOutlet weak var repwTextField: UITextField!
     @IBOutlet weak var signUpBtn: UIButton!
+
     var email = String()
+
     private let viewModel = SignUpViewModel()
     private let nameErrorLabel = UILabel()
     private let pwErrorLabel = UILabel()
@@ -36,6 +38,7 @@ class GoSignUpViewController: UIViewController {
             } else {
                 self.setUpErrorHidden(self.pwErrorLabel)
             }
+
             if self.pwTextField.text! != self.repwTextField.text! {
                 self.setUpErrorMessage(self.repwErrorLabel, title: "비밀번호가 일치하지 않습니다.", superTextField: self.repwTextField)
             } else {
@@ -62,7 +65,7 @@ class GoSignUpViewController: UIViewController {
         output.result.emit(onNext: {
             self.setUpErrorMessage(self.nameErrorLabel, title: $0, superTextField: self.nameTextField)
         }, onCompleted: {
-            self.nextScene(identifier: "Main")
+            self.nextScene(identifier: "signInVC")
         }).disposed(by: rx.disposeBag)
 
     }

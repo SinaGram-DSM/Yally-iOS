@@ -27,6 +27,7 @@ class SignInViewModel: ViewModelType {
     func transform(_ input: SignInViewModel.input) -> SignInViewModel.output {
         //info에서 combineLatest 사용해서 입력될 때 마다 ...
         //isEnable에서 Email, Pw 둘 다 Empty가 아닐 때 isEnable
+
         let api = AuthAPI()
         let info = Driver.combineLatest( input.userEmail, input.userPw )
         let result = PublishSubject<String>()
