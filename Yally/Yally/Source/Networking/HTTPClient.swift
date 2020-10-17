@@ -6,35 +6,53 @@
 //
 
 import Foundation
+import RxAlamofire
+import RxSwift
 import Alamofire
 
 class HTTPClient {
     let baseURI = "http://13.125.238.84:81"
 
-    func get(path: String, param: [String: Any], headers: HTTPHeaders) -> DataRequest {
-        return AF.request(baseURI + path, method: .get, parameters: param, encoding: JSONEncoding.prettyPrinted, headers: headers, interceptor: nil)
+    typealias HttpResult = Observable<(HTTPURLResponse, Data)>
+
+    func get(_ api: YallyURL, params: [String: Any]) -> HttpResult {
+        return requestData(.get, baseURI + api.path(),
+                           parameters: params,
+                           encoding: JSONEncoding.prettyPrinted,
+                           headers: api.headers())
     }
 
-    func put(path: String, param: [String: Any], headers: HTTPHeaders) -> DataRequest {
-        return AF.request(baseURI + path, method: .put, parameters: param, encoding: JSONEncoding.prettyPrinted, headers: headers, interceptor: nil)
+    func post(_ api: YallyURL, params: [String: Any]) -> HttpResult {
+        return requestData(.post, baseURI + api.path(),
+                           parameters: params,
+                           encoding: JSONEncoding.prettyPrinted,
+                           headers: api.headers())
     }
 
-    func delete(path: String, param: [String: Any], headers: HTTPHeaders) -> DataRequest {
-        return AF.request(baseURI + path, method: .delete, parameters: param, encoding: JSONEncoding.prettyPrinted, headers: headers, interceptor: nil)
+    func put(_ api: YallyURL, params: [String: Any]) -> HttpResult {
+        return requestData(.put, baseURI + api.path(),
+                           parameters: params,
+                           encoding: JSONEncoding.prettyPrinted,
+                           headers: api.headers())
     }
 
-    func post(path: String, param: [String: Any], headers: HTTPHeaders) -> DataRequest {
-        return AF.request(baseURI + path, method: .post, parameters: param, encoding: JSONEncoding.prettyPrinted, headers: headers, interceptor: nil)
+    func delete(_ api: YallyURL, params: [String: Any]) -> HttpResult {
+        return requestData(.delete, baseURI + api.path(),
+                           parameters: params,
+                           encoding: JSONEncoding.prettyPrinted,
+                           headers: api.headers())
     }
 }
 
 enum StatusCode: Int {
     case ok = 200
+    case ok1 = 201
     case unauthorized = 401
     case overlap = 409
     case JWTdeadline = 403
     case noHere = 404
     case wrongType = 422
     case badReqeust = 400
-
+    case serverError = 500
+    case fault = 0
 }
