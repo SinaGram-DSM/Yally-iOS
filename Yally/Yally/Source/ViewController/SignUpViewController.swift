@@ -48,12 +48,14 @@ class SingUpViewController: UIViewController {
             self.setButton(self.nextBtn)
         }).disposed(by: rx.disposeBag)
 
-        output.result.emit(onCompleted: { [unowned self] in nextWithData()}).disposed(by: rx.disposeBag)
+        output.result.emit(onNext: {
+            self.setUpErrorMessage(self.placeLabel, title: $0, superTextField: self.emailTextField)
+        }, onCompleted: { [unowned self] in nextWithData()}).disposed(by: rx.disposeBag)
     }
 
     func nextWithData() {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "pinCode") as? PinCodeViewController else { return }
         vc.email = emailTextField.text!
-        self.navigationController?.pushViewController(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -23,6 +23,13 @@ class PinCodeViewController: UIViewController {
 
         setButton(nextBtn)
         bindViewModel()
+        setUpUI()
+    }
+
+    func setUpUI() {
+        pinCodeView.digitBackgroundColor = #colorLiteral(red: 0.7398572564, green: 0.609362185, blue: 0.9509858489, alpha: 1)
+        pinCodeView.digitBorderColor = .clear
+        pinCodeView.digitBorderColorEmpty = .clear
     }
 
     func bindViewModel() {
@@ -34,10 +41,36 @@ class PinCodeViewController: UIViewController {
             self.nextBtn.isEnabled = completed
 
             self.nextBtn.rx.tap.asObservable().subscribe(onNext: {
-                print(authtext)
-                api.postConfirmCode(email, authtext)
-                self.nextScene(identifier: "inputUser")
+                    api.postConfirmCode(email, authtext).subscribe(onNext: { (response) in
+                        switch response {
+                        case .ok: nextWithData()
+                        case .JWTdeadline: SGCodeTextFieldError("재설정 코드가 올바르지 않습니다.")
+                        default: SGCodeTextFieldError("인증 실패")
+                        }
+                    }).disposed(by: rx.disposeBag)
             }).disposed(by: rx.disposeBag)
         }
+    }
+
+    func SGCodeTextFieldError(_ text: String) {
+        let errorLabel = UILabel()
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        errorLabel.text = text
+        errorLabel.textColor = .red
+        errorLabel.isHidden = false
+        errorLabel.font = UIFont.systemFont(ofSize: CGFloat(9))
+
+        view.addSubview(errorLabel)
+
+        NSLayoutConstraint.activate([
+            errorLabel.topAnchor.constraint(equalTo: pinCodeView.bottomAnchor),
+            errorLabel.leadingAnchor.constraint(equalTo: pinCodeView.leadingAnchor)
+        ])
+    }
+
+    func nextWithData() {
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "inputUser") as? GoSignUpViewController else { return }
+        vc.email = email
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
