@@ -6,15 +6,26 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
+import NSObject_Rx
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, UITableViewDelegate {
+
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
+    func setUpTableView() {
+        tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+    }
+
+    private func initDateSource(_ nibName: String) {
+//        self.tableView.rx.items(cellIdentifier: nibName, cellType: )
+    }
     /*
     // MARK: - Navigation
 

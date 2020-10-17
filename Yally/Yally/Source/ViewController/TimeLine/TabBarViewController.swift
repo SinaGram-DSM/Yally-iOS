@@ -17,7 +17,6 @@ class TabBarViewController: UITabBarController {
     }
 
     func setUpCircleBar() {
-
         let button = CircleMenu(
             frame: CGRect(x: self.tabBar.center.x - 30, y: self.tabBar.center.y - 80, width: 60, height: 60),
             normalIcon:"icon_menu",
@@ -38,6 +37,7 @@ class TabBarViewController: UITabBarController {
         button.delegate = self
 
         button.layer.cornerRadius = 30
+        button.backgroundColor = .purple
 
         button.endAngle = Float(-15 * Double.pi)
         button.startAngle = Float(15 * Double.pi)
