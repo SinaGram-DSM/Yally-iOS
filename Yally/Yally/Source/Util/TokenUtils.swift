@@ -13,7 +13,7 @@ final class TokenUtils {
 
     static let shared = TokenUtils()
 
-    private let account = "Service"
+    private let account = "Yally"
     private let service = Bundle.main.bundleIdentifier
 
     private lazy var query: [CFString: Any]? = {
@@ -23,6 +23,7 @@ final class TokenUtils {
                 kSecAttrAccount: account]
     }()
 
+    //생성
     func createUser(_ user: User) -> Bool {
         guard let data = try? JSONEncoder().encode(user),
               let service = self.service else { return false }
@@ -37,10 +38,12 @@ final class TokenUtils {
         return status == noErr
     }
 
+    //조회
     func readUser() -> User? {
+        guard let service = self.service else { return nil }
         let query: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
-                                        kSecAttrService: "서비스",
-                                        kSecAttrAccount: "계정",
+                                        kSecAttrService: service,
+                                        kSecAttrAccount: account,
                                         kSecMatchLimit: kSecMatchLimitOne,
                                         kSecReturnAttributes: true,
                                         kSecReturnData: true]
@@ -54,18 +57,17 @@ final class TokenUtils {
         return user
     }
 
+    //수정
     func updateUser(_ user: User) -> Bool {
-      guard let data = try? JSONEncoder().encode(user) else { return false }
+        guard let query = self.query, let data = try? JSONEncoder().encode(user) else { return false }
 
-      let query: [CFString: Any] = [kSecClass: kSecClassGenericPassword,
-                                    kSecAttrService: "서비스",
-                                    kSecAttrAccount: "계정"]
-      let attributes: [CFString: Any] = [kSecAttrAccount: "계정",
+      let attributes: [CFString: Any] = [kSecAttrAccount: account,
                                          kSecAttrGeneric: data]
 
-      return SecItemUpdate(query as CFDictionary, attributes as CFDictionary) == errSecSuccess
+        return SecItemUpdate(query as CFDictionary, attributes as CFDictionary) == errSecSuccess
     }
 
+    //삭제
     func deleteUser() -> Bool {
         guard let query = self.query else { return false }
 
@@ -74,6 +76,8 @@ final class TokenUtils {
 
 }
 
-var currentToken: Token? {
-    return TokenUtils.shared.readUser()?.token
+struct TokenManager {
+    static var currentToken: Token? {
+        return TokenUtils.shared.readUser()?.token
+    }
 }

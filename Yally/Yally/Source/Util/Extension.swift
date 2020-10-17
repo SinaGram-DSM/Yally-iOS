@@ -8,6 +8,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import SGCodeTextField
 
 extension UIColor {
     func hexUIColor(hex: String) -> UIColor {
@@ -67,17 +68,34 @@ extension UIViewController {
     func setUpErrorHidden(_ sender: UILabel) {
         sender.isHidden = true
     }
+
+    func SGCodeTextFieldError(_ text: String, _ pinCodeView: SGCodeTextField) {
+        let errorLabel = UILabel()
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        errorLabel.text = text
+        errorLabel.textColor = .red
+        errorLabel.isHidden = false
+        errorLabel.font = UIFont.systemFont(ofSize: CGFloat(9))
+
+        view.addSubview(errorLabel)
+
+        NSLayoutConstraint.activate([
+            errorLabel.topAnchor.constraint(equalTo: pinCodeView.bottomAnchor),
+            errorLabel.leadingAnchor.constraint(equalTo: pinCodeView.leadingAnchor)
+        ])
+    }
+
 }
 
 struct YallyFilter {
     static func checkEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,30}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: email)
     }
 
     static func checkPw(_ pw: String) -> Bool {
-        let pwRegEx = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8}$"
+        let pwRegEx = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,16}$"
         let pwTest = NSPredicate(format: "SELF MATCHES %@", pwRegEx)
         return pwTest.evaluate(with: pw)
     }

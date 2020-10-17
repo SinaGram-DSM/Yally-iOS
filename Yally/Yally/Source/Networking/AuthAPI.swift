@@ -52,13 +52,14 @@ class AuthAPI {
                                           "age": userAge])
             .map { (response, _) -> StatusCode in
                 switch response.statusCode {
-                case 201:
+                case 200:
                     print("Create New User")
-                    return .ok1
+                    return .ok
                 case 409:
                     print("Overlap User")
                     return .overlap
                 default:
+                    print(response.statusCode)
                     print("Another mission")
                     return .fault
                 }
@@ -68,11 +69,21 @@ class AuthAPI {
         func postSignIn(_ userEmail: String, _ userPw: String) -> Observable<StatusCode> {
             httpClient.post(.signIn, params: ["email": userEmail,
                                               "password": userPw])
-                .map { (response, _) -> StatusCode in
+                .map { (response, data) -> StatusCode in
                     switch response.statusCode {
                     case 200:
                         print("Login Success")
-                        return .ok
+                        guard let token = try? JSONDecoder().decode(Token.self, from: data) else { return .fault }
+                        let user = User(email: userEmail, password: userPw, token: token)
+                        
+                        if TokenUtils.shared.readUser() != nil {
+                            if TokenUtils.shared.updateUser(user) { return .ok }
+                        }
+                        
+                        if TokenUtils.shared.createUser(user) { return .ok }
+                        
+                        return .fault
+                    //return .ok
                     case 404:
                         print("No User")
                         return .noHere
@@ -82,5 +93,29 @@ class AuthAPI {
                     }
                 }
         }
+
+    func postResetPw(_ email: String) -> Observable<StatusCode> {
+        httpClient.post(.resetCodeToEmail, params: ["email": email]).map { (response, _) -> StatusCode in
+            switch response.statusCode {
+            case 200:
+                return .ok
+            default:
+                return .fault
+            }
+        }
+    }
+
+    func putNewPw(_ email: String, _ code: String, _ password: String) -> Observable<StatusCode> {
+        httpClient.put(.modifyPassword, params: ["email": email, "code": code, "password" : password]).map { response, _ -> StatusCode in
+            switch response.statusCode {
+            case 200:
+                return .ok
+            case 401:
+                return .JWTdeadline
+            default:
+                return .fault
+            }
+        }
+    }
 
 }

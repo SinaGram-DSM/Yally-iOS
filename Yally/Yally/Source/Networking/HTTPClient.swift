@@ -12,6 +12,7 @@ import Alamofire
 
 class HTTPClient {
     let baseURI = "http://13.125.238.84:81"
+
     typealias HttpResult = Observable<(HTTPURLResponse, Data)>
 
     func get(_ api: YallyURL, params: [String: Any]) -> HttpResult {
