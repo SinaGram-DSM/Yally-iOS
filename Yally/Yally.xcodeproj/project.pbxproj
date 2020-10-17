@@ -14,13 +14,22 @@
 		EB844F2C2528A2F1009AE68C /* TokenUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB844F2B2528A2F1009AE68C /* TokenUtils.swift */; };
 		EB844F2F2528B5F5009AE68C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB844F2E2528B5F5009AE68C /* User.swift */; };
 		EB844F322528B630009AE68C /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB844F312528B630009AE68C /* Token.swift */; };
+		EBAC80AF25385B5200DAD71B /* NotoSansKR-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBAC80AC25385B4800DAD71B /* NotoSansKR-Black.otf */; };
+		EBAC80B125385B5400DAD71B /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBAC80AA25385B4800DAD71B /* NotoSansKR-Bold.otf */; };
+		EBAC80B325385B5700DAD71B /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBAC80AB25385B4800DAD71B /* NotoSansKR-Light.otf */; };
+		EBAC80B525385B5900DAD71B /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBAC80AE25385B4900DAD71B /* NotoSansKR-Medium.otf */; };
+		EBAC80B725385B5B00DAD71B /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBAC80AD25385B4800DAD71B /* NotoSansKR-Regular.otf */; };
+		EBAC80B925385B5E00DAD71B /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBAC80A925385B4800DAD71B /* NotoSansKR-Thin.otf */; };
+		EBAC80BD253886A500DAD71B /* GoSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAC80BC253886A500DAD71B /* GoSignUpViewController.swift */; };
+		EBAC8140253ADF1300DAD71B /* ResetPwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAC813F253ADF1300DAD71B /* ResetPwViewController.swift */; };
+		EBAC8143253AE09900DAD71B /* PwCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAC8142253AE09900DAD71B /* PwCodeViewController.swift */; };
+		EBAC8146253AE23E00DAD71B /* NewPwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAC8145253AE23E00DAD71B /* NewPwViewController.swift */; };
+		EBAC8149253AE50F00DAD71B /* ResetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAC8148253AE50F00DAD71B /* ResetViewModel.swift */; };
+		EBAC814C253AE55900DAD71B /* NewPwViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAC814B253AE55900DAD71B /* NewPwViewModel.swift */; };
+		EBB34E2425383B3800DAD3FA /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB34E2325383B3800DAD3FA /* SignInViewModel.swift */; };
+		EBB34E2725383B5000DAD3FA /* CodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB34E2625383B5000DAD3FA /* CodeViewModel.swift */; };
+		EBB34E2A25383B5C00DAD3FA /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB34E2925383B5C00DAD3FA /* SignUpViewModel.swift */; };
 		EBB81261252783700089D354 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB81260252783700089D354 /* SplashViewController.swift */; };
-		EBB8126A2527A1DE0089D354 /* NotoSansKR-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812652527A1D80089D354 /* NotoSansKR-Black.otf */; };
-		EBB8126C2527A1E00089D354 /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812642527A1D70089D354 /* NotoSansKR-Bold.otf */; };
-		EBB8126E2527A1E30089D354 /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812662527A1D80089D354 /* NotoSansKR-Light.otf */; };
-		EBB812702527A1E50089D354 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812672527A1D80089D354 /* NotoSansKR-Medium.otf */; };
-		EBB812722527A1E70089D354 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812692527A1D80089D354 /* NotoSansKR-Regular.otf */; };
-		EBB812742527A1E90089D354 /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812682527A1D80089D354 /* NotoSansKR-Thin.otf */; };
 		EBB812772527B1B40089D354 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB812762527B1B40089D354 /* SignUpViewController.swift */; };
 		EB9030D1253B49520019A08E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9030D0253B49520019A08E /* MainViewController.swift */; };
 		EB903943253B1DBA0070C58C /* TimeLine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB903942253B1DBA0070C58C /* TimeLine.storyboard */; };
@@ -52,13 +61,22 @@
 		EB844F2B2528A2F1009AE68C /* TokenUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenUtils.swift; sourceTree = "<group>"; };
 		EB844F2E2528B5F5009AE68C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EB844F312528B630009AE68C /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		EBAC80A925385B4800DAD71B /* NotoSansKR-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Thin.otf"; sourceTree = "<group>"; };
+		EBAC80AA25385B4800DAD71B /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
+		EBAC80AB25385B4800DAD71B /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
+		EBAC80AC25385B4800DAD71B /* NotoSansKR-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Black.otf"; sourceTree = "<group>"; };
+		EBAC80AD25385B4800DAD71B /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
+		EBAC80AE25385B4900DAD71B /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
+		EBAC80BC253886A500DAD71B /* GoSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoSignUpViewController.swift; sourceTree = "<group>"; };
+		EBAC813F253ADF1300DAD71B /* ResetPwViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPwViewController.swift; sourceTree = "<group>"; };
+		EBAC8142253AE09900DAD71B /* PwCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PwCodeViewController.swift; sourceTree = "<group>"; };
+		EBAC8145253AE23E00DAD71B /* NewPwViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPwViewController.swift; sourceTree = "<group>"; };
+		EBAC8148253AE50F00DAD71B /* ResetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetViewModel.swift; sourceTree = "<group>"; };
+		EBAC814B253AE55900DAD71B /* NewPwViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPwViewModel.swift; sourceTree = "<group>"; };
+		EBB34E2325383B3800DAD3FA /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		EBB34E2625383B5000DAD3FA /* CodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeViewModel.swift; sourceTree = "<group>"; };
+		EBB34E2925383B5C00DAD3FA /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		EBB81260252783700089D354 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		EBB812642527A1D70089D354 /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
-		EBB812652527A1D80089D354 /* NotoSansKR-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Black.otf"; sourceTree = "<group>"; };
-		EBB812662527A1D80089D354 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
-		EBB812672527A1D80089D354 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
-		EBB812682527A1D80089D354 /* NotoSansKR-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Thin.otf"; sourceTree = "<group>"; };
-		EBB812692527A1D80089D354 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		EBB812762527B1B40089D354 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		EB9030D0253B49520019A08E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EB903942253B1DBA0070C58C /* TimeLine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeLine.storyboard; sourceTree = "<group>"; };
@@ -120,15 +138,42 @@
 			path = Util;
 			sourceTree = "<group>";
 		};
+		EBAC813D253ADDEF00DAD71B /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				EBFC7B6625276F650082E0EE /* SignInViewController.swift */,
+				EBB81260252783700089D354 /* SplashViewController.swift */,
+				EBB812762527B1B40089D354 /* SignUpViewController.swift */,
+				EB844F20252864EF009AE68C /* PinCodeViewController.swift */,
+				EBAC80BC253886A500DAD71B /* GoSignUpViewController.swift */,
+				EBAC813F253ADF1300DAD71B /* ResetPwViewController.swift */,
+				EBAC8142253AE09900DAD71B /* PwCodeViewController.swift */,
+				EBAC8145253AE23E00DAD71B /* NewPwViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		EBAC814E253AE83500DAD71B /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				EBB34E2325383B3800DAD3FA /* SignInViewModel.swift */,
+				EBB34E2625383B5000DAD3FA /* CodeViewModel.swift */,
+				EBB34E2925383B5C00DAD3FA /* SignUpViewModel.swift */,
+				EBAC8148253AE50F00DAD71B /* ResetViewModel.swift */,
+				EBAC814B253AE55900DAD71B /* NewPwViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		EBB812632527A1CA0089D354 /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				EBB812652527A1D80089D354 /* NotoSansKR-Black.otf */,
-				EBB812642527A1D70089D354 /* NotoSansKR-Bold.otf */,
-				EBB812662527A1D80089D354 /* NotoSansKR-Light.otf */,
-				EBB812672527A1D80089D354 /* NotoSansKR-Medium.otf */,
-				EBB812692527A1D80089D354 /* NotoSansKR-Regular.otf */,
-				EBB812682527A1D80089D354 /* NotoSansKR-Thin.otf */,
+				EBAC80AC25385B4800DAD71B /* NotoSansKR-Black.otf */,
+				EBAC80AA25385B4800DAD71B /* NotoSansKR-Bold.otf */,
+				EBAC80AB25385B4800DAD71B /* NotoSansKR-Light.otf */,
+				EBAC80AE25385B4900DAD71B /* NotoSansKR-Medium.otf */,
+				EBAC80AD25385B4800DAD71B /* NotoSansKR-Regular.otf */,
+				EBAC80A925385B4800DAD71B /* NotoSansKR-Thin.otf */,
 			);
 			path = Font;
 		EB903945253B393B0070C58C /* TimeLine */ = {
@@ -183,6 +228,7 @@
 		EBFC7B1D2525E0250082E0EE /* VIewModel */ = {
 			isa = PBXGroup;
 			children = (
+				EBAC814E253AE83500DAD71B /* Auth */,
 				EBFC7B41252748370082E0EE /* ViewModelType.swift */,
 			);
 			path = VIewModel;
@@ -201,12 +247,8 @@
 		EBFC7B1F2525E0360082E0EE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				EB903945253B393B0070C58C /* TimeLine */,
+				EBAC813D253ADDEF00DAD71B /* Auth */,
 				EBFC7AF72525DB950082E0EE /* ViewController.swift */,
-				EBFC7B6625276F650082E0EE /* SignInViewController.swift */,
-				EBB81260252783700089D354 /* SplashViewController.swift */,
-				EBB812762527B1B40089D354 /* SignUpViewController.swift */,
-				EB844F20252864EF009AE68C /* PinCodeViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -339,9 +381,9 @@
 				EB903943253B1DBA0070C58C /* TimeLine.storyboard in Resources */,
 				EBFC7B002525DB970082E0EE /* LaunchScreen.storyboard in Resources */,
 				EBFC7B6425276E860082E0EE /* Auth.storyboard in Resources */,
-				EBB8126A2527A1DE0089D354 /* NotoSansKR-Black.otf in Resources */,
+				EBAC80AF25385B5200DAD71B /* NotoSansKR-Black.otf in Resources */,
 				EBFC7AFD2525DB970082E0EE /* Assets.xcassets in Resources */,
-				EBB812742527A1E90089D354 /* NotoSansKR-Thin.otf in Resources */,
+				EBAC80B925385B5E00DAD71B /* NotoSansKR-Thin.otf in Resources */,
 				EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,23 +456,31 @@
 			files = (
 				EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */,
 				EB844F2925289F20009AE68C /* AuthAPI.swift in Sources */,
-				EB9030D1253B49520019A08E /* MainViewController.swift in Sources */,
+				EBAC8149253AE50F00DAD71B /* ResetViewModel.swift in Sources */,
+				EBAC814C253AE55900DAD71B /* NewPwViewModel.swift in Sources */,
 				EBFC7B2B2525E0F80082E0EE /* TestModel.swift in Sources */,
+				EBB34E2425383B3800DAD3FA /* SignInViewModel.swift in Sources */,
 				EBFC7B46252748BC0082E0EE /* HTTPClient.swift in Sources */,
 				EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */,
 				EBFC7B42252748370082E0EE /* ViewModelType.swift in Sources */,
 				EB844F21252864EF009AE68C /* PinCodeViewController.swift in Sources */,
+				EBAC8146253AE23E00DAD71B /* NewPwViewController.swift in Sources */,
 				EB844F2F2528B5F5009AE68C /* User.swift in Sources */,
 				EBFC7B3E252748170082E0EE /* TestService.swift in Sources */,
 				EB844F322528B630009AE68C /* Token.swift in Sources */,
 				EBFC7B5A252768B30082E0EE /* YallyURL.swift in Sources */,
 				EBFC7B39252747FF0082E0EE /* TestViewController.swift in Sources */,
+				EBB34E2A25383B5C00DAD3FA /* SignUpViewModel.swift in Sources */,
+				EBB34E2725383B5000DAD3FA /* CodeViewModel.swift in Sources */,
+				EBAC8140253ADF1300DAD71B /* ResetPwViewController.swift in Sources */,
 				EB844F2525287179009AE68C /* Extension.swift in Sources */,
 				EBFC7B6725276F650082E0EE /* SignInViewController.swift in Sources */,
 				EB903947253B39640070C58C /* TabBarViewController.swift in Sources */,
 				EBFC7B282525E0E90082E0EE /* TestNet.swift in Sources */,
+				EBAC80BD253886A500DAD71B /* GoSignUpViewController.swift in Sources */,
 				EB844F2C2528A2F1009AE68C /* TokenUtils.swift in Sources */,
 				EBB812772527B1B40089D354 /* SignUpViewController.swift in Sources */,
+				EBAC8143253AE09900DAD71B /* PwCodeViewController.swift in Sources */,
 				EBB81261252783700089D354 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
