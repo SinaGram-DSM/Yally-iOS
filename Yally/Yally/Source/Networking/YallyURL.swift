@@ -11,6 +11,7 @@ import Alamofire
 enum YallyURL {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     case signIn
     case authCode
     case authConfirm
@@ -50,9 +51,4 @@ enum YallyURL {
             return ["Authorization" : "Bearer " + token]
         }
     }
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-
 }

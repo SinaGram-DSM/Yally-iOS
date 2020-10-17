@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D473E10541457F787D0F8511 /* Pods_Yally.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */; };
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 		EB844F21252864EF009AE68C /* PinCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB844F20252864EF009AE68C /* PinCodeViewController.swift */; };
 		EB844F2525287179009AE68C /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB844F2425287179009AE68C /* Extension.swift */; };
 		EB844F2925289F20009AE68C /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB844F2825289F20009AE68C /* AuthAPI.swift */; };
@@ -24,16 +22,9 @@
 		EBB812722527A1E70089D354 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812692527A1D80089D354 /* NotoSansKR-Regular.otf */; };
 		EBB812742527A1E90089D354 /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = EBB812682527A1D80089D354 /* NotoSansKR-Thin.otf */; };
 		EBB812772527B1B40089D354 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB812762527B1B40089D354 /* SignUpViewController.swift */; };
-=======
 		EB9030D1253B49520019A08E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9030D0253B49520019A08E /* MainViewController.swift */; };
 		EB903943253B1DBA0070C58C /* TimeLine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB903942253B1DBA0070C58C /* TimeLine.storyboard */; };
 		EB903947253B39640070C58C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB903946253B39640070C58C /* TabBarViewController.swift */; };
->>>>>>> Stashed changes
-=======
-		EB9030D1253B49520019A08E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9030D0253B49520019A08E /* MainViewController.swift */; };
-		EB903943253B1DBA0070C58C /* TimeLine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB903942253B1DBA0070C58C /* TimeLine.storyboard */; };
-		EB903947253B39640070C58C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB903946253B39640070C58C /* TabBarViewController.swift */; };
->>>>>>> Stashed changes
 		EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7AF32525DB950082E0EE /* AppDelegate.swift */; };
 		EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7AF72525DB950082E0EE /* ViewController.swift */; };
 		EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBFC7AF92525DB950082E0EE /* Main.storyboard */; };
@@ -55,8 +46,6 @@
 		585F0FE9F9FE993DDF61E808 /* Pods-Yally.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.debug.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.debug.xcconfig"; sourceTree = "<group>"; };
 		C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yally.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E831A54DDBB2E41C748399B8 /* Pods-Yally.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.release.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.release.xcconfig"; sourceTree = "<group>"; };
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 		EB844F20252864EF009AE68C /* PinCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinCodeViewController.swift; sourceTree = "<group>"; };
 		EB844F2425287179009AE68C /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		EB844F2825289F20009AE68C /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
@@ -71,16 +60,9 @@
 		EBB812682527A1D80089D354 /* NotoSansKR-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Thin.otf"; sourceTree = "<group>"; };
 		EBB812692527A1D80089D354 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
 		EBB812762527B1B40089D354 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-=======
 		EB9030D0253B49520019A08E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EB903942253B1DBA0070C58C /* TimeLine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeLine.storyboard; sourceTree = "<group>"; };
 		EB903946253B39640070C58C /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
->>>>>>> Stashed changes
-=======
-		EB9030D0253B49520019A08E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		EB903942253B1DBA0070C58C /* TimeLine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeLine.storyboard; sourceTree = "<group>"; };
-		EB903946253B39640070C58C /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
->>>>>>> Stashed changes
 		EBFC7AF02525DB950082E0EE /* Yally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFC7AF32525DB950082E0EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBFC7AF72525DB950082E0EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -129,8 +111,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 		EB844F2325287122009AE68C /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,9 +131,6 @@
 				EBB812682527A1D80089D354 /* NotoSansKR-Thin.otf */,
 			);
 			path = Font;
-=======
-=======
->>>>>>> Stashed changes
 		EB903945253B393B0070C58C /* TimeLine */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,10 +138,6 @@
 				EB9030D0253B49520019A08E /* MainViewController.swift */,
 			);
 			path = TimeLine;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 			sourceTree = "<group>";
 		};
 		EBFC7AE72525DB950082E0EE = {
@@ -201,15 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				EBFC7AF92525DB950082E0EE /* Main.storyboard */,
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 				EBFC7B6325276E860082E0EE /* Auth.storyboard */,
-=======
 				EB903942253B1DBA0070C58C /* TimeLine.storyboard */,
->>>>>>> Stashed changes
-=======
-				EB903942253B1DBA0070C58C /* TimeLine.storyboard */,
->>>>>>> Stashed changes
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -366,18 +332,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBFC7B182525DF960082E0EE /* .swiftlint.yml in Resources */,
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 				EBB8126C2527A1E00089D354 /* NotoSansKR-Bold.otf in Resources */,
 				EBB8126E2527A1E30089D354 /* NotoSansKR-Light.otf in Resources */,
 				EBB812702527A1E50089D354 /* NotoSansKR-Medium.otf in Resources */,
 				EBB812722527A1E70089D354 /* NotoSansKR-Regular.otf in Resources */,
-=======
 				EB903943253B1DBA0070C58C /* TimeLine.storyboard in Resources */,
->>>>>>> Stashed changes
-=======
-				EB903943253B1DBA0070C58C /* TimeLine.storyboard in Resources */,
->>>>>>> Stashed changes
 				EBFC7B002525DB970082E0EE /* LaunchScreen.storyboard in Resources */,
 				EBFC7B6425276E860082E0EE /* Auth.storyboard in Resources */,
 				EBB8126A2527A1DE0089D354 /* NotoSansKR-Black.otf in Resources */,
@@ -454,15 +413,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */,
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 				EB844F2925289F20009AE68C /* AuthAPI.swift in Sources */,
-=======
 				EB9030D1253B49520019A08E /* MainViewController.swift in Sources */,
->>>>>>> Stashed changes
-=======
-				EB9030D1253B49520019A08E /* MainViewController.swift in Sources */,
->>>>>>> Stashed changes
 				EBFC7B2B2525E0F80082E0EE /* TestModel.swift in Sources */,
 				EBFC7B46252748BC0082E0EE /* HTTPClient.swift in Sources */,
 				EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */,
@@ -473,16 +425,9 @@
 				EB844F322528B630009AE68C /* Token.swift in Sources */,
 				EBFC7B5A252768B30082E0EE /* YallyURL.swift in Sources */,
 				EBFC7B39252747FF0082E0EE /* TestViewController.swift in Sources */,
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 				EB844F2525287179009AE68C /* Extension.swift in Sources */,
 				EBFC7B6725276F650082E0EE /* SignInViewController.swift in Sources */,
-=======
 				EB903947253B39640070C58C /* TabBarViewController.swift in Sources */,
->>>>>>> Stashed changes
-=======
-				EB903947253B39640070C58C /* TabBarViewController.swift in Sources */,
->>>>>>> Stashed changes
 				EBFC7B282525E0E90082E0EE /* TestNet.swift in Sources */,
 				EB844F2C2528A2F1009AE68C /* TokenUtils.swift in Sources */,
 				EBB812772527B1B40089D354 /* SignUpViewController.swift in Sources */,
