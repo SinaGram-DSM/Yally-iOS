@@ -8,6 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		D473E10541457F787D0F8511 /* Pods_Yally.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */; };
+		EB4BC155253B6D6600BDCAE0 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC153253B6D6600BDCAE0 /* Token.swift */; };
+		EB4BC156253B6D6600BDCAE0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC154253B6D6600BDCAE0 /* User.swift */; };
+		EB4BC159253B6D7500BDCAE0 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC158253B6D7500BDCAE0 /* AuthAPI.swift */; };
+		EB4BC15C253B6DAD00BDCAE0 /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4BC15B253B6DAD00BDCAE0 /* Auth.storyboard */; };
+		EB4BC165253B6DCA00BDCAE0 /* TokenUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC163253B6DCA00BDCAE0 /* TokenUtils.swift */; };
+		EB4BC166253B6DCA00BDCAE0 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC164253B6DCA00BDCAE0 /* Extension.swift */; };
+		EB4BC171253B6DD500BDCAE0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC169253B6DD500BDCAE0 /* SignUpViewController.swift */; };
+		EB4BC172253B6DD500BDCAE0 /* PwCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC16A253B6DD500BDCAE0 /* PwCodeViewController.swift */; };
+		EB4BC173253B6DD500BDCAE0 /* GoSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC16B253B6DD500BDCAE0 /* GoSignUpViewController.swift */; };
+		EB4BC174253B6DD500BDCAE0 /* ResetPwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC16C253B6DD500BDCAE0 /* ResetPwViewController.swift */; };
+		EB4BC175253B6DD500BDCAE0 /* NewPwViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC16D253B6DD500BDCAE0 /* NewPwViewController.swift */; };
+		EB4BC176253B6DD500BDCAE0 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC16E253B6DD500BDCAE0 /* SplashViewController.swift */; };
+		EB4BC177253B6DD500BDCAE0 /* PinCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC16F253B6DD500BDCAE0 /* PinCodeViewController.swift */; };
+		EB4BC178253B6DD500BDCAE0 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC170253B6DD500BDCAE0 /* SignInViewController.swift */; };
+		EB4BC180253B6DDE00BDCAE0 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC17B253B6DDE00BDCAE0 /* SignUpViewModel.swift */; };
+		EB4BC181253B6DDE00BDCAE0 /* ResetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC17C253B6DDE00BDCAE0 /* ResetViewModel.swift */; };
+		EB4BC182253B6DDE00BDCAE0 /* NewPwViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC17D253B6DDE00BDCAE0 /* NewPwViewModel.swift */; };
+		EB4BC183253B6DDE00BDCAE0 /* CodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC17E253B6DDE00BDCAE0 /* CodeViewModel.swift */; };
+		EB4BC184253B6DDE00BDCAE0 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC17F253B6DDE00BDCAE0 /* SignInViewModel.swift */; };
 		EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7AF32525DB950082E0EE /* AppDelegate.swift */; };
 		EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7AF72525DB950082E0EE /* ViewController.swift */; };
 		EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBFC7AF92525DB950082E0EE /* Main.storyboard */; };
@@ -27,6 +46,25 @@
 		585F0FE9F9FE993DDF61E808 /* Pods-Yally.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.debug.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.debug.xcconfig"; sourceTree = "<group>"; };
 		C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yally.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E831A54DDBB2E41C748399B8 /* Pods-Yally.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.release.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.release.xcconfig"; sourceTree = "<group>"; };
+		EB4BC153253B6D6600BDCAE0 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		EB4BC154253B6D6600BDCAE0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EB4BC158253B6D7500BDCAE0 /* AuthAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
+		EB4BC15B253B6DAD00BDCAE0 /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
+		EB4BC163253B6DCA00BDCAE0 /* TokenUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenUtils.swift; sourceTree = "<group>"; };
+		EB4BC164253B6DCA00BDCAE0 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		EB4BC169253B6DD500BDCAE0 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		EB4BC16A253B6DD500BDCAE0 /* PwCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PwCodeViewController.swift; sourceTree = "<group>"; };
+		EB4BC16B253B6DD500BDCAE0 /* GoSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoSignUpViewController.swift; sourceTree = "<group>"; };
+		EB4BC16C253B6DD500BDCAE0 /* ResetPwViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPwViewController.swift; sourceTree = "<group>"; };
+		EB4BC16D253B6DD500BDCAE0 /* NewPwViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPwViewController.swift; sourceTree = "<group>"; };
+		EB4BC16E253B6DD500BDCAE0 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		EB4BC16F253B6DD500BDCAE0 /* PinCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinCodeViewController.swift; sourceTree = "<group>"; };
+		EB4BC170253B6DD500BDCAE0 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		EB4BC17B253B6DDE00BDCAE0 /* SignUpViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		EB4BC17C253B6DDE00BDCAE0 /* ResetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetViewModel.swift; sourceTree = "<group>"; };
+		EB4BC17D253B6DDE00BDCAE0 /* NewPwViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPwViewModel.swift; sourceTree = "<group>"; };
+		EB4BC17E253B6DDE00BDCAE0 /* CodeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeViewModel.swift; sourceTree = "<group>"; };
+		EB4BC17F253B6DDE00BDCAE0 /* SignInViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		EBFC7AF02525DB950082E0EE /* Yally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFC7AF32525DB950082E0EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBFC7AF72525DB950082E0EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +111,42 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EB4BC162253B6DCA00BDCAE0 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				EB4BC163253B6DCA00BDCAE0 /* TokenUtils.swift */,
+				EB4BC164253B6DCA00BDCAE0 /* Extension.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		EB4BC168253B6DD500BDCAE0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				EB4BC169253B6DD500BDCAE0 /* SignUpViewController.swift */,
+				EB4BC16A253B6DD500BDCAE0 /* PwCodeViewController.swift */,
+				EB4BC16B253B6DD500BDCAE0 /* GoSignUpViewController.swift */,
+				EB4BC16C253B6DD500BDCAE0 /* ResetPwViewController.swift */,
+				EB4BC16D253B6DD500BDCAE0 /* NewPwViewController.swift */,
+				EB4BC16E253B6DD500BDCAE0 /* SplashViewController.swift */,
+				EB4BC16F253B6DD500BDCAE0 /* PinCodeViewController.swift */,
+				EB4BC170253B6DD500BDCAE0 /* SignInViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		EB4BC17A253B6DDE00BDCAE0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				EB4BC17B253B6DDE00BDCAE0 /* SignUpViewModel.swift */,
+				EB4BC17C253B6DDE00BDCAE0 /* ResetViewModel.swift */,
+				EB4BC17D253B6DDE00BDCAE0 /* NewPwViewModel.swift */,
+				EB4BC17E253B6DDE00BDCAE0 /* CodeViewModel.swift */,
+				EB4BC17F253B6DDE00BDCAE0 /* SignInViewModel.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		EBFC7AE72525DB950082E0EE = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				EBFC7AF92525DB950082E0EE /* Main.storyboard */,
+				EB4BC15B253B6DAD00BDCAE0 /* Auth.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -114,6 +189,7 @@
 		EBFC7B1D2525E0250082E0EE /* VIewModel */ = {
 			isa = PBXGroup;
 			children = (
+				EB4BC17A253B6DDE00BDCAE0 /* Auth */,
 				EBFC7B41252748370082E0EE /* ViewModelType.swift */,
 			);
 			path = VIewModel;
@@ -123,6 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				EBFC7B2A2525E0F80082E0EE /* TestModel.swift */,
+				EB4BC153253B6D6600BDCAE0 /* Token.swift */,
+				EB4BC154253B6D6600BDCAE0 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -130,6 +208,7 @@
 		EBFC7B1F2525E0360082E0EE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				EB4BC168253B6DD500BDCAE0 /* Auth */,
 				EBFC7AF72525DB950082E0EE /* ViewController.swift */,
 			);
 			path = ViewController;
@@ -141,6 +220,7 @@
 				EBFC7B272525E0E90082E0EE /* TestNet.swift */,
 				EBFC7B45252748BC0082E0EE /* HTTPClient.swift */,
 				EBFC7B59252768B30082E0EE /* YallyURL.swift */,
+				EB4BC158253B6D7500BDCAE0 /* AuthAPI.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -148,6 +228,7 @@
 		EBFC7B33252745DE0082E0EE /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				EB4BC162253B6DCA00BDCAE0 /* Util */,
 				EBFC7B3C2527480A0082E0EE /* Service */,
 				EBFC7B37252747EC0082E0EE /* View */,
 				EBFC7B1B2525E0190082E0EE /* UI */,
@@ -254,6 +335,7 @@
 			files = (
 				EBFC7B182525DF960082E0EE /* .swiftlint.yml in Resources */,
 				EBFC7B002525DB970082E0EE /* LaunchScreen.storyboard in Resources */,
+				EB4BC15C253B6DAD00BDCAE0 /* Auth.storyboard in Resources */,
 				EBFC7AFD2525DB970082E0EE /* Assets.xcassets in Resources */,
 				EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */,
 			);
@@ -325,15 +407,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB4BC178253B6DD500BDCAE0 /* SignInViewController.swift in Sources */,
+				EB4BC177253B6DD500BDCAE0 /* PinCodeViewController.swift in Sources */,
 				EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */,
+				EB4BC155253B6D6600BDCAE0 /* Token.swift in Sources */,
 				EBFC7B2B2525E0F80082E0EE /* TestModel.swift in Sources */,
 				EBFC7B46252748BC0082E0EE /* HTTPClient.swift in Sources */,
+				EB4BC159253B6D7500BDCAE0 /* AuthAPI.swift in Sources */,
+				EB4BC183253B6DDE00BDCAE0 /* CodeViewModel.swift in Sources */,
+				EB4BC174253B6DD500BDCAE0 /* ResetPwViewController.swift in Sources */,
 				EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */,
+				EB4BC172253B6DD500BDCAE0 /* PwCodeViewController.swift in Sources */,
+				EB4BC182253B6DDE00BDCAE0 /* NewPwViewModel.swift in Sources */,
+				EB4BC165253B6DCA00BDCAE0 /* TokenUtils.swift in Sources */,
 				EBFC7B42252748370082E0EE /* ViewModelType.swift in Sources */,
+				EB4BC175253B6DD500BDCAE0 /* NewPwViewController.swift in Sources */,
+				EB4BC180253B6DDE00BDCAE0 /* SignUpViewModel.swift in Sources */,
 				EBFC7B3E252748170082E0EE /* TestService.swift in Sources */,
+				EB4BC171253B6DD500BDCAE0 /* SignUpViewController.swift in Sources */,
+				EB4BC166253B6DCA00BDCAE0 /* Extension.swift in Sources */,
 				EBFC7B5A252768B30082E0EE /* YallyURL.swift in Sources */,
 				EBFC7B39252747FF0082E0EE /* TestViewController.swift in Sources */,
 				EBFC7B282525E0E90082E0EE /* TestNet.swift in Sources */,
+				EB4BC173253B6DD500BDCAE0 /* GoSignUpViewController.swift in Sources */,
+				EB4BC184253B6DDE00BDCAE0 /* SignInViewModel.swift in Sources */,
+				EB4BC156253B6D6600BDCAE0 /* User.swift in Sources */,
+				EB4BC181253B6DDE00BDCAE0 /* ResetViewModel.swift in Sources */,
+				EB4BC176253B6DD500BDCAE0 /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
