@@ -15,5 +15,6 @@ pod 'XLPagerTabStrip', '~> 9.0'
 pod 'CircleMenu'
 pod 'OTPInputView'
 pod 'NSObject+Rx'
-
+pod 'RxAlamofire'
+pod 'SGCodeTextField'
 end
