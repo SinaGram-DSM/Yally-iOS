@@ -15,7 +15,7 @@ pod 'OTPInputView'
 pod 'NSObject+Rx'
 pod 'RxAlamofire'
 pod 'Moya', '~> 14.0'
-pod "SGCodeTextField"
+pod 'SGCodeTextField'
 
   # Pods for Yally
 
