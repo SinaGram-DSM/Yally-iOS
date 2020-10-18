@@ -8,8 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		D473E10541457F787D0F8511 /* Pods_Yally.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */; };
+<<<<<<< HEAD
 		EBEBE4A4253B78AC00C7E100 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEBE4A2253B78AC00C7E100 /* MainTableViewCell.swift */; };
 		EBEBE4A5253B78AC00C7E100 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBEBE4A3253B78AC00C7E100 /* MainTableViewCell.xib */; };
+=======
+>>>>>>> timeLine
 		EB4BC19B253B705D00BDCAE0 /* TimeLine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4BC19A253B705D00BDCAE0 /* TimeLine.storyboard */; };
 		EB4BC1A0253B707000BDCAE0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC19E253B707000BDCAE0 /* MainViewController.swift */; };
 		EB4BC1A1253B707000BDCAE0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC19F253B707000BDCAE0 /* TabBarViewController.swift */; };
@@ -32,8 +35,11 @@
 		585F0FE9F9FE993DDF61E808 /* Pods-Yally.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.debug.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.debug.xcconfig"; sourceTree = "<group>"; };
 		C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yally.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E831A54DDBB2E41C748399B8 /* Pods-Yally.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.release.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.release.xcconfig"; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		EBEBE4A2253B78AC00C7E100 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		EBEBE4A3253B78AC00C7E100 /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
+=======
+>>>>>>> timeLine
 		EB4BC19A253B705D00BDCAE0 /* TimeLine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TimeLine.storyboard; sourceTree = "<group>"; };
 		EB4BC19E253B707000BDCAE0 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EB4BC19F253B707000BDCAE0 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
