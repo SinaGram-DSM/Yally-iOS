@@ -91,7 +91,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2PW-7Z-H23">
                                 <rect key="frame" x="0.0" y="0.0" width="394" height="64"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="오늘의 달빛! #해시태그 $냥냥펀치">
+                                    <fragment content="textView">
                                         <attributes>
                                             <color key="NSColor" systemColor="labelColor"/>
                                             <font key="NSFont" metaFont="system" size="14"/>
