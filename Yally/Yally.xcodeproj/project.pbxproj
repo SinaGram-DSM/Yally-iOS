@@ -10,6 +10,9 @@
 		D473E10541457F787D0F8511 /* Pods_Yally.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */; };
 		EBEBE4A4253B78AC00C7E100 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBEBE4A2253B78AC00C7E100 /* MainTableViewCell.swift */; };
 		EBEBE4A5253B78AC00C7E100 /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EBEBE4A3253B78AC00C7E100 /* MainTableViewCell.xib */; };
+		EB4BC19B253B705D00BDCAE0 /* TimeLine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4BC19A253B705D00BDCAE0 /* TimeLine.storyboard */; };
+		EB4BC1A0253B707000BDCAE0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC19E253B707000BDCAE0 /* MainViewController.swift */; };
+		EB4BC1A1253B707000BDCAE0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC19F253B707000BDCAE0 /* TabBarViewController.swift */; };
 		EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7AF32525DB950082E0EE /* AppDelegate.swift */; };
 		EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBFC7AF72525DB950082E0EE /* ViewController.swift */; };
 		EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EBFC7AF92525DB950082E0EE /* Main.storyboard */; };
@@ -31,6 +34,9 @@
 		E831A54DDBB2E41C748399B8 /* Pods-Yally.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.release.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.release.xcconfig"; sourceTree = "<group>"; };
 		EBEBE4A2253B78AC00C7E100 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		EBEBE4A3253B78AC00C7E100 /* MainTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
+		EB4BC19A253B705D00BDCAE0 /* TimeLine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TimeLine.storyboard; sourceTree = "<group>"; };
+		EB4BC19E253B707000BDCAE0 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		EB4BC19F253B707000BDCAE0 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		EBFC7AF02525DB950082E0EE /* Yally.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yally.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBFC7AF32525DB950082E0EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBFC7AF72525DB950082E0EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +83,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		EB4BC19D253B707000BDCAE0 /* TimeLine */ = {
+			isa = PBXGroup;
+			children = (
+				EB4BC19E253B707000BDCAE0 /* MainViewController.swift */,
+				EB4BC19F253B707000BDCAE0 /* TabBarViewController.swift */,
+			);
+			path = TimeLine;
+			sourceTree = "<group>";
+		};
 		EBFC7AE72525DB950082E0EE = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +125,7 @@
 		EBFC7B1B2525E0190082E0EE /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				EB4BC19A253B705D00BDCAE0 /* TimeLine.storyboard */,
 				EBFC7AF92525DB950082E0EE /* Main.storyboard */,
 			);
 			path = UI;
@@ -134,6 +150,7 @@
 		EBFC7B1F2525E0360082E0EE /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				EB4BC19D253B707000BDCAE0 /* TimeLine */,
 				EBFC7AF72525DB950082E0EE /* ViewController.swift */,
 			);
 			path = ViewController;
@@ -259,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBFC7B182525DF960082E0EE /* .swiftlint.yml in Resources */,
+				EB4BC19B253B705D00BDCAE0 /* TimeLine.storyboard in Resources */,
 				EBFC7B002525DB970082E0EE /* LaunchScreen.storyboard in Resources */,
 				EBFC7AFD2525DB970082E0EE /* Assets.xcassets in Resources */,
 				EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */,
@@ -334,6 +352,7 @@
 			files = (
 				EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */,
 				EBFC7B2B2525E0F80082E0EE /* TestModel.swift in Sources */,
+				EB4BC1A1253B707000BDCAE0 /* TabBarViewController.swift in Sources */,
 				EBFC7B46252748BC0082E0EE /* HTTPClient.swift in Sources */,
 				EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */,
 				EBEBE4A4253B78AC00C7E100 /* MainTableViewCell.swift in Sources */,
@@ -342,6 +361,7 @@
 				EBFC7B5A252768B30082E0EE /* YallyURL.swift in Sources */,
 				EBFC7B39252747FF0082E0EE /* TestViewController.swift in Sources */,
 				EBFC7B282525E0E90082E0EE /* TestNet.swift in Sources */,
+				EB4BC1A0253B707000BDCAE0 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
