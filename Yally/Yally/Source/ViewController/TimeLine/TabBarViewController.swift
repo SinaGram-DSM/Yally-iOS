@@ -8,7 +8,7 @@
 import UIKit
 import CircleMenu
 
-class TabBarViewController: UITabBarController {
+class TabBarViewController: UITabBarController, CircleMenuDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +45,17 @@ class TabBarViewController: UITabBarController {
         self.view.insertSubview(button, aboveSubview: self.tabBar)
     }
 
+    func circleMenu(_ circleMenu: CircleMenu, buttonDidSelected button: UIButton, atIndex: Int) {
+        if atIndex == 1 {
+            //글쓰기
+            let mainView: UIStoryboard = UIStoryboard(name: "Posting", bundle: nil)
+            let VC = mainView.instantiateViewController(identifier: "postVC") as PostViewController
+            navigationController?.pushViewController(VC, animated: true)
+        } else {
+            //검색
+        }
+    }
+
     /*
     // MARK: - Navigation
 
@@ -54,9 +65,5 @@ class TabBarViewController: UITabBarController {
         // Pass the selected object to the new view controller.
     }
     */
-
-}
-
-extension TabBarViewController: CircleMenuDelegate {
 
 }
