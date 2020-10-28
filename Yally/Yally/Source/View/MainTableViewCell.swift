@@ -23,6 +23,8 @@ class MainTableViewCell: UITableViewCell {
 
     private var onGesture: Bool = false
 
+    static var Identifier = "mainCell"
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -39,17 +41,12 @@ class MainTableViewCell: UITableViewCell {
     func setUpUI() {
         backImageView.backgroundColor = .black
         backImageView.alpha = 0.7
-        backImageView.image = UIImage(named: "나은.jpeg")//
 
         mainTextView.textAlignment = .center
         mainTextView.isEditable = false
         mainTextView.isSelectable = false
         mainTextView.textColor = .black
-        mainTextView.text = "슬라이더 등장이요슬라이더 등장이요슬라이더 등장이요슬라이더 등장이요슬"//
-
-        let fixedWidth = mainTextView.frame.size.width
-        let newSize = mainTextView.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        mainTextView.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        mainTextView.sizeToFit()
     }
 
     @objc func touchToOn() {

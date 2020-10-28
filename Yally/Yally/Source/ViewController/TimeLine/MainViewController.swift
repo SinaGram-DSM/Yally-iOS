@@ -10,30 +10,51 @@ import RxCocoa
 import RxSwift
 import NSObject_Rx
 
-class MainViewController: UIViewController, UITableViewDelegate {
+class MainViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
+    private let viewModel = MainViewModel()
+    private let loadData = BehaviorRelay<Void>(value: ())
+    private let label = UILabel()
+    //VC는 Model을 알면 안됨...
+    private let loadPosts = BehaviorRelay<[MainModel]>(value: [])
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        bindViewModel()
+        configureTableView()
     }
 
-    func setUpTableView() {
-        tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    func bindViewModel() {
+        let input = MainViewModel.input(loadData: loadData.asSignal(onErrorJustReturn: ()))
+        let output = viewModel.transform(input)
+
+        output.data.drive().disposed(by: rx.disposeBag)
+        output.data.drive(onNext: { _ in self.tableView.reloadData()}).disposed(by: rx.disposeBag)
     }
 
-    private func initDateSource(_ nibName: String) {
-//        self.tableView.rx.items(cellIdentifier: nibName, cellType: )
+    private func registerCell() {
+        let nib = UINib(nibName: "MainTableViewCell", bundle: nil)
+       tableView.register(nib, forCellReuseIdentifier: "mainCell")
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func configureTableView() {
+        registerCell()
+        tableView.rowHeight = 308
+
+        MainViewModel.loadData
+            .bind(to: tableView.rx.items(cellIdentifier: "mainCell", cellType: MainTableViewCell.self)) { (_, repository, cell) in
+                cell.userImageView.image = UIImage(named: repository.user.img)
+                cell.userNameLabel.text = repository.user.nickname
+                cell.postTimeLabel.text = repository.createdAt
+                cell.mainTextView.text = repository.content
+                cell.countOfYally.text = String(repository.yally)
+                cell.countOfComment.text = String(repository.comment)
+                cell.backImageView.image = UIImage(named: repository.img ?? "")
+            }.disposed(by: rx.disposeBag)
     }
-    */
-
 }

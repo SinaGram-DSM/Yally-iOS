@@ -12,16 +12,23 @@ class TimeLineAPI {
 
     private let httpClient = HTTPClient()
 
-    func getTimeLine() -> Observable<StatusCode> {
-        httpClient.get(.timeLine, params: nil).map {
-            response, _ -> StatusCode in
+    func getTimeLine() -> Observable<(posts?, StatusCode)> {
+        httpClient.get(.timeLine, params: nil)
+            .map { (response, data) -> (posts?, StatusCode) in
             switch response.statusCode {
             case 200:
-                return .ok
+                print(data)
+                do {
+                    try JSONDecoder().decode(posts.self, from: data)
+                } catch {
+                    print(error)
+                }
+                guard let data = try? JSONDecoder().decode(posts.self, from: data) else { return (nil, .fault)}
+                return  (data, .ok)
             case 404:
-                return .noHere
+                return (nil, .noHere)
             default:
-                return .fault
+                return (nil, .fault)
             }
         }
     }
@@ -86,7 +93,7 @@ class TimeLineAPI {
             }
         }
     }
-    
+
     func postComment(_ file: String, _ content: String) -> Observable<StatusCode> {
         httpClient.post(.postComment, params: ["file":file, "content":content]).map {response, _ -> StatusCode in
             switch response.statusCode {
@@ -99,7 +106,7 @@ class TimeLineAPI {
             }
         }
     }
-    
+
     func deleteComment() -> Observable<StatusCode> {
         httpClient.delete(.deleteComment, params: nil).map {response, _ -> StatusCode in
             switch response.statusCode {
@@ -112,7 +119,7 @@ class TimeLineAPI {
             }
         }
     }
-    
+
     func postYally() -> Observable<StatusCode> {
         httpClient.get(.postYally, params: nil).map {response, _ -> StatusCode in
             switch response.statusCode {
@@ -125,7 +132,7 @@ class TimeLineAPI {
             }
         }
     }
-    
+
     func deleteYally() -> Observable<StatusCode> {
         httpClient.delete(.cancelYally, params: nil).map {response, _ -> StatusCode in
             switch response.statusCode {

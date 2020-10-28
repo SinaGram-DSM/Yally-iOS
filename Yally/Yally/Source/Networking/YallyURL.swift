@@ -23,7 +23,7 @@ enum YallyURL {
     var path: String {
         switch self {
         case .timeLine:
-            return "/timeline/<int:page>"
+            return "/timeline/1"
         case .createPost:
             return "/post"
         case .detailPost, .deletePost, .updatePost:
