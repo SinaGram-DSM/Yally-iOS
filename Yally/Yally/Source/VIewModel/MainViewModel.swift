@@ -13,9 +13,11 @@ class MainViewModel: ViewModelType {
 
     private let disposeBag = DisposeBag()
     static let loadData = PublishRelay<[MainModel]>()
+    static let loadMoreData = PublishRelay<[MainModel]>()
 
     struct input {
         let loadData: Signal<Void>
+        let loadMoreData: Signal<Void>
     }
 
     struct output {
@@ -35,12 +37,23 @@ class MainViewModel: ViewModelType {
 //                    var result = [MainModel]()
                     print(response as Any)
                     MainViewModel.loadData.accept(response!.posts)
-
-                    print(MainViewModel.loadData)
                 case .unauthorized:
                     result.onNext("페이지가 없습니다.")
                 default:
                     result.onNext("타임라인을 불러올 수 없습니다.")
+                }
+            }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
+
+        input.loadMoreData.asObservable().subscribe(onNext: { _ in
+            api.getTimeLine().subscribe(onNext: { response, statusCode in
+                switch statusCode {
+                case .ok:
+                    MainViewModel.loadData.accept(response!.posts)
+                case .unauthorized:
+                    result.onNext("스크롤을 할 수 없습니다.")
+                default:
+                    result.onNext("무한 스크롤을 할 수 없습니다.")
                 }
             }).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
