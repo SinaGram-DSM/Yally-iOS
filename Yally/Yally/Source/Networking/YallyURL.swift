@@ -11,14 +11,14 @@ import Alamofire
 enum YallyURL {
     case timeLine
     case createPost
-    case detailPost
-    case detailPostComment
-    case deletePost
-    case updatePost
+    case detailPost(id: String)
+    case detailPostComment(id: String)
+    case deletePost(id: String)
+    case updatePost(id: String)
     case postComment
     case deleteComment
-    case postYally
-    case cancelYally
+    case postYally(id: String)
+    case cancelYally(id: String)
 
     var path: String {
         switch self {
@@ -26,16 +26,16 @@ enum YallyURL {
             return "/timeline/1"
         case .createPost:
             return "/post"
-        case .detailPost, .deletePost, .updatePost:
-            return "/post/<id>"
-        case .detailPostComment:
-            return "/post/<id>/comment"
+        case .detailPost(let id), .deletePost(let id), .updatePost(let id):
+            return "/post/\(id)"
+        case .detailPostComment(let id):
+            return "/post/\(id)/comment"
         case .postComment:
             return "/post/commnet/<id>"
         case .deleteComment:
             return "/post/commnet/<commentId"
-        case .postYally, .cancelYally:
-            return "/post/yally/<id>"
+        case .postYally(let id), .cancelYally(let id):
+            return "/post/yally/\(id)"
         }
     }
 

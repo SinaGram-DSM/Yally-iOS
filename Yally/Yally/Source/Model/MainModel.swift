@@ -20,7 +20,7 @@ struct MainModel: Codable {
     let user: User
     let comment: Int
     let yally: Int
-    let isYally: Bool
+    var isYally: Bool
     let isMine: Bool
 }
 
