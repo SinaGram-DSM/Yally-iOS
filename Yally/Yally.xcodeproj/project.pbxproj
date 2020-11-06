@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		D473E10541457F787D0F8511 /* Pods_Yally.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */; };
 		EB046F3D25456F2000340F12 /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB046F3C25456F2000340F12 /* MainModel.swift */; };
+		EB129FBF254E998C009D5151 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB129FBE254E998C009D5151 /* DetailViewController.swift */; };
+		EB129FC7254E9B91009D5151 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB129FC5254E9B91009D5151 /* CommentTableViewCell.swift */; };
+		EB129FC8254E9B91009D5151 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB129FC6254E9B91009D5151 /* CommentTableViewCell.xib */; };
+		EB129FCB254EB7E9009D5151 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB129FCA254EB7E9009D5151 /* DetailViewModel.swift */; };
+		EB129FCE254ED658009D5151 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB129FCD254ED658009D5151 /* CommentModel.swift */; };
 		EB4BC19B253B705D00BDCAE0 /* TimeLine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4BC19A253B705D00BDCAE0 /* TimeLine.storyboard */; };
 		EB4BC1A0253B707000BDCAE0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC19E253B707000BDCAE0 /* MainViewController.swift */; };
 		EB4BC1A1253B707000BDCAE0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC19F253B707000BDCAE0 /* TabBarViewController.swift */; };
@@ -36,6 +41,11 @@
 		C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yally.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E831A54DDBB2E41C748399B8 /* Pods-Yally.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.release.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.release.xcconfig"; sourceTree = "<group>"; };
 		EB046F3C25456F2000340F12 /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
+		EB129FBE254E998C009D5151 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		EB129FC5254E9B91009D5151 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		EB129FC6254E9B91009D5151 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		EB129FCA254EB7E9009D5151 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		EB129FCD254ED658009D5151 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		EB4BC19A253B705D00BDCAE0 /* TimeLine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TimeLine.storyboard; sourceTree = "<group>"; };
 		EB4BC19E253B707000BDCAE0 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EB4BC19F253B707000BDCAE0 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +104,7 @@
 			children = (
 				EB4BC19E253B707000BDCAE0 /* MainViewController.swift */,
 				EB4BC19F253B707000BDCAE0 /* TabBarViewController.swift */,
+				EB129FBE254E998C009D5151 /* DetailViewController.swift */,
 			);
 			path = TimeLine;
 			sourceTree = "<group>";
@@ -142,6 +153,7 @@
 			children = (
 				EBFC7B41252748370082E0EE /* ViewModelType.swift */,
 				EB88D41A2544A340009E86AC /* MainViewModel.swift */,
+				EB129FCA254EB7E9009D5151 /* DetailViewModel.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -151,6 +163,7 @@
 			children = (
 				EBFC7B2A2525E0F80082E0EE /* TestModel.swift */,
 				EB046F3C25456F2000340F12 /* MainModel.swift */,
+				EB129FCD254ED658009D5151 /* CommentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -212,6 +225,8 @@
 				EBFC7B38252747FF0082E0EE /* TestViewController.swift */,
 				EBEBE4A2253B78AC00C7E100 /* MainTableViewCell.swift */,
 				EBEBE4A3253B78AC00C7E100 /* MainTableViewCell.xib */,
+				EB129FC5254E9B91009D5151 /* CommentTableViewCell.swift */,
+				EB129FC6254E9B91009D5151 /* CommentTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -288,6 +303,7 @@
 				EB4BC19B253B705D00BDCAE0 /* TimeLine.storyboard in Resources */,
 				EBFC7B002525DB970082E0EE /* LaunchScreen.storyboard in Resources */,
 				EBFC7AFD2525DB970082E0EE /* Assets.xcassets in Resources */,
+				EB129FC8254E9B91009D5151 /* CommentTableViewCell.xib in Resources */,
 				EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */,
 				EBEBE4A5253B78AC00C7E100 /* MainTableViewCell.xib in Resources */,
 			);
@@ -365,13 +381,17 @@
 				EBFC7B46252748BC0082E0EE /* HTTPClient.swift in Sources */,
 				EBFC7AF42525DB950082E0EE /* AppDelegate.swift in Sources */,
 				EBEBE4A4253B78AC00C7E100 /* MainTableViewCell.swift in Sources */,
+				EB129FC7254E9B91009D5151 /* CommentTableViewCell.swift in Sources */,
 				EBFC7B42252748370082E0EE /* ViewModelType.swift in Sources */,
+				EB129FBF254E998C009D5151 /* DetailViewController.swift in Sources */,
 				EB88D41B2544A340009E86AC /* MainViewModel.swift in Sources */,
 				EB046F3D25456F2000340F12 /* MainModel.swift in Sources */,
 				EBFC7B3E252748170082E0EE /* TestService.swift in Sources */,
 				EBEBE4DD253C96A000C7E100 /* TimeLineAPI.swift in Sources */,
+				EB129FCB254EB7E9009D5151 /* DetailViewModel.swift in Sources */,
 				EBFC7B5A252768B30082E0EE /* YallyURL.swift in Sources */,
 				EBFC7B39252747FF0082E0EE /* TestViewController.swift in Sources */,
+				EB129FCE254ED658009D5151 /* CommentModel.swift in Sources */,
 				EBFC7B282525E0E90082E0EE /* TestNet.swift in Sources */,
 				EB4BC1A0253B707000BDCAE0 /* MainViewController.swift in Sources */,
 			);
@@ -522,6 +542,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 43892VQKJ3;
 				INFOPLIST_FILE = "Yally/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -541,6 +562,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 43892VQKJ3;
 				INFOPLIST_FILE = "Yally/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

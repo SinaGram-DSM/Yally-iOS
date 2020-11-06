@@ -50,6 +50,59 @@
             </objects>
             <point key="canvasLocation" x="2072" y="-508"/>
         </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="XTN-eN-shp">
+            <objects>
+                <viewController storyboardIdentifier="detailVC" id="lIZ-sI-pem" customClass="DetailViewController" customModule="Yally" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9a3-AC-IYp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YIv-rb-jE1">
+                                <rect key="frame" x="0.0" y="360" width="414" height="502"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="P2f-d8-VR4">
+                                <rect key="frame" x="0.0" y="44" width="414" height="308"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="308" id="QbH-A2-RmH"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainCell" id="lQJ-PU-uCo">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lQJ-PU-uCo" id="dSv-Gk-oB1">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="12y-kw-jpv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="12y-kw-jpv" firstAttribute="bottom" secondItem="YIv-rb-jE1" secondAttribute="bottom" id="0sA-AG-yK6"/>
+                            <constraint firstItem="12y-kw-jpv" firstAttribute="trailing" secondItem="YIv-rb-jE1" secondAttribute="trailing" id="1TD-cn-SdT"/>
+                            <constraint firstItem="P2f-d8-VR4" firstAttribute="centerX" secondItem="9a3-AC-IYp" secondAttribute="centerX" id="1dM-Zs-422"/>
+                            <constraint firstItem="12y-kw-jpv" firstAttribute="trailing" secondItem="P2f-d8-VR4" secondAttribute="trailing" id="60M-wy-6oo"/>
+                            <constraint firstItem="P2f-d8-VR4" firstAttribute="leading" secondItem="12y-kw-jpv" secondAttribute="leading" id="Y3J-lQ-pVq"/>
+                            <constraint firstItem="YIv-rb-jE1" firstAttribute="centerX" secondItem="9a3-AC-IYp" secondAttribute="centerX" id="h1G-Go-6lS"/>
+                            <constraint firstItem="YIv-rb-jE1" firstAttribute="top" secondItem="P2f-d8-VR4" secondAttribute="bottom" constant="8" symbolic="YES" id="mNN-QN-loU"/>
+                            <constraint firstItem="P2f-d8-VR4" firstAttribute="top" secondItem="12y-kw-jpv" secondAttribute="top" id="qHU-8R-BNr"/>
+                            <constraint firstItem="YIv-rb-jE1" firstAttribute="leading" secondItem="12y-kw-jpv" secondAttribute="leading" id="v1n-vw-2A0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="commentTableView" destination="YIv-rb-jE1" id="JET-QY-hQZ"/>
+                        <outlet property="detailTableView" destination="P2f-d8-VR4" id="Egz-JS-Jtz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KNA-G6-Y9m" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2821.739130434783" y="-508.25892857142856"/>
+        </scene>
         <!--Item-->
         <scene sceneID="1cA-H6-HpK">
             <objects>

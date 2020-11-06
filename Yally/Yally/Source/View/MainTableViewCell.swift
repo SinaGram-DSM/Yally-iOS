@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MainCellDelegate {
+    func selectIndex(_ cell: MainTableViewCell, index: Int)
+}
+
 class MainTableViewCell: UITableViewCell {
 
     @IBOutlet weak var userImageView: UIImageView!
@@ -22,11 +26,9 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
 
     private var onGesture: Bool = false
-
-    static var Identifier = "mainCell"
+    var index = Int()
 
     override func awakeFromNib() {
-        super.awakeFromNib()
 
         sliderBar.isHidden = true
         timeLabel.isHidden = true
@@ -41,7 +43,6 @@ class MainTableViewCell: UITableViewCell {
     func setUpUI() {
         backImageView.backgroundColor = .black
         backImageView.alpha = 0.7
-
         mainTextView.textAlignment = .center
         mainTextView.isEditable = false
         mainTextView.isSelectable = false
@@ -50,6 +51,7 @@ class MainTableViewCell: UITableViewCell {
     }
 
     @objc func touchToOn() {
+
         if !onGesture {
             //음원 재생
 
@@ -72,18 +74,23 @@ class MainTableViewCell: UITableViewCell {
         }
     }
 
-    override var isSelected: Bool {
-        didSet {
-            doYally.tintColor = isSelected ? UIColor.purple
-                : UIColor.gray
-            doComment.tintColor = isSelected ? UIColor.purple
-                : UIColor.gray
-        }
-    }
+//    override var isSelected: Bool {
+//        didSet {
+//            doYally.tintColor = isSelected ? UIColor.purple
+//                : UIColor.gray
+//            doComment.tintColor = isSelected ? UIColor.purple
+//                : UIColor.gray
+//        }
+//    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+//        if selected {
+//            doYally.tintColor = isSelected ? UIColor.purple
+//                : UIColor.gray
+//            doComment.tintColor = isSelected ? UIColor.purple
+//                : UIColor.gray
+//        }
         // Configure the view for the selected state
     }
 
