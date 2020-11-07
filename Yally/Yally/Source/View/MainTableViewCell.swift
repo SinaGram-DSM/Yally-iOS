@@ -24,7 +24,7 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var doComment: UIButton!
     @IBOutlet weak var sliderBar: UISlider!
     @IBOutlet weak var timeLabel: UILabel!
-
+    @IBOutlet weak var viewmoreBtn: UIButton!
     private var onGesture: Bool = false
     var index = Int()
 

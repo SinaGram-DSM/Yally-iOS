@@ -18,6 +18,7 @@ class DetailViewModel: ViewModelType {
     struct input {
         let loadDetail: Signal<Void>
         let selectIndexPath: String
+        let deletePost: Signal<Void>
     }
 
     struct output {
@@ -27,11 +28,10 @@ class DetailViewModel: ViewModelType {
     func transform(_ input: input) -> output {
         let api = TimeLineAPI()
         let result = PublishSubject<String>()
-
+        let deletePost = PublishSubject<String>()
 //        let info = Signal.combineLatest(input.selectIndexPath, detailData.asSignal()).asObservable()
 
         input.loadDetail.asObservable().subscribe(onNext: { _ in
-            print(input.selectIndexPath)
             api.postDetailPost(input.selectIndexPath).subscribe(onNext: { response, statusCode in
                 print(statusCode)
                 switch statusCode {
@@ -51,6 +51,17 @@ class DetailViewModel: ViewModelType {
                     DetailViewModel.detailComment.accept(response!.comments)
                 default:
                     result.onNext("댓글을 불러올 수 없음")
+                }
+            }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
+
+        input.deletePost.asObservable().subscribe(onNext: { _ in
+            api.deletePost(input.selectIndexPath).subscribe(onNext: { statusCode in
+                switch statusCode {
+                case .ok:
+                    deletePost.onCompleted()
+                default:
+                    deletePost.onNext("포스트 삭제 실패")
                 }
             }).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)

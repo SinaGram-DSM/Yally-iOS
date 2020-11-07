@@ -17,6 +17,7 @@ class DetailViewController: UIViewController {
 
     private let viewModel = DetailViewModel()
     private let detailData = BehaviorRelay<Void>(value: ())
+    private let deleteText = BehaviorRelay<Void>(value: ())
 
     var selectIndexPath = String()
 
@@ -25,7 +26,6 @@ class DetailViewController: UIViewController {
 
         registerCell()
         bindTableView()
-        // Do any additional setup after loading the view.
     }
 
     private func registerCell() {
@@ -40,7 +40,10 @@ class DetailViewController: UIViewController {
     }
 
     func bindTableView() {
-        let input = DetailViewModel.input(loadDetail: detailData.asSignal(onErrorJustReturn: ()), selectIndexPath: selectIndexPath)
+        let input = DetailViewModel.input(
+            loadDetail: detailData.asSignal(onErrorJustReturn: ()),
+            selectIndexPath: selectIndexPath, deletePost:
+                deleteText.asSignal(onErrorJustReturn: ()))
         let output = viewModel.transform(input)
 
         DetailViewModel.detailData.asObservable()

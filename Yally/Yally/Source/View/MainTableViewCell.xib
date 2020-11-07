@@ -119,16 +119,16 @@
                             <constraint firstItem="u1w-Ee-wIv" firstAttribute="top" secondItem="6vb-dY-HcX" secondAttribute="bottom" constant="2" id="eUG-g7-4vJ"/>
                         </constraints>
                     </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vY-s7-14t">
-                        <rect key="frame" x="375.5" y="14" width="18.5" height="22"/>
-                        <state key="normal" image="chevron.down" catalog="system"/>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Seg-wQ-Zcx">
+                        <rect key="frame" x="116" y="14" width="21" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" image="square.and.pencil" catalog="system"/>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Ab4-Tn-9ui" secondAttribute="bottom" constant="3" id="0fm-4x-PFf"/>
                     <constraint firstItem="Z9y-VD-Leh" firstAttribute="leading" secondItem="Bfk-xn-7h3" secondAttribute="trailing" constant="1" id="1LY-p8-bsP"/>
                     <constraint firstItem="XCb-K0-cDu" firstAttribute="leading" secondItem="Ab4-Tn-9ui" secondAttribute="trailing" constant="182" id="1TY-k6-N9U"/>
-                    <constraint firstItem="5vY-s7-14t" firstAttribute="trailing" secondItem="Z9y-VD-Leh" secondAttribute="trailing" id="1ut-Ov-T6S"/>
                     <constraint firstItem="Ab4-Tn-9ui" firstAttribute="top" secondItem="NV0-N3-PBn" secondAttribute="bottom" id="2hw-zq-yIC"/>
                     <constraint firstItem="Bfk-xn-7h3" firstAttribute="bottom" secondItem="T4x-6J-hcH" secondAttribute="bottom" id="2sE-xs-GMI"/>
                     <constraint firstAttribute="trailing" secondItem="IDU-n2-150" secondAttribute="trailing" constant="10" id="369-zt-fvI"/>
@@ -142,7 +142,6 @@
                     <constraint firstItem="Bfk-xn-7h3" firstAttribute="leading" secondItem="s1O-yc-qvY" secondAttribute="trailing" id="PWN-0F-z6K"/>
                     <constraint firstItem="jk4-8l-rBG" firstAttribute="leading" secondItem="zFh-Hu-epf" secondAttribute="leading" id="RfA-Su-pzg"/>
                     <constraint firstItem="tzE-hR-8m7" firstAttribute="bottom" secondItem="T4x-6J-hcH" secondAttribute="bottom" id="Rj6-Ty-M9R"/>
-                    <constraint firstItem="5vY-s7-14t" firstAttribute="top" secondItem="coY-Fj-iSD" secondAttribute="top" id="SXa-Ye-H9p"/>
                     <constraint firstItem="NV0-N3-PBn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="64" id="cdy-2f-yau"/>
                     <constraint firstItem="IDU-n2-150" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ffq-Op-ozk"/>
                     <constraint firstItem="Ab4-Tn-9ui" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="81" id="g1O-sS-1fv"/>
@@ -177,11 +176,11 @@
                 <outlet property="userImageView" destination="coY-Fj-iSD" id="kTF-bw-zgf"/>
                 <outlet property="userNameLabel" destination="zFh-Hu-epf" id="5SA-8Y-CkJ"/>
             </connections>
-            <point key="canvasLocation" x="145" y="-23"/>
+            <point key="canvasLocation" x="144.92753623188406" y="-23.4375"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="chevron.down" catalog="system" width="128" height="72"/>
+        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
