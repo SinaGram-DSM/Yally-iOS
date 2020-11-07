@@ -13,7 +13,7 @@ class DetailViewModel: ViewModelType {
     private let disposeBag = DisposeBag()
 
     static let detailComment = PublishRelay<[Comment]>()
-    static let detailData = PublishRelay<MainModel>()
+    static let detailData = PublishRelay<[DetailModel]>()
 
     struct input {
         let loadDetail: Signal<Void>
@@ -27,7 +27,7 @@ class DetailViewModel: ViewModelType {
     func transform(_ input: input) -> output {
         let api = TimeLineAPI()
         let result = PublishSubject<String>()
-        let detailData = PublishRelay<[MainModel]>()
+
 //        let info = Signal.combineLatest(input.selectIndexPath, detailData.asSignal()).asObservable()
 
         input.loadDetail.asObservable().subscribe(onNext: { _ in
@@ -36,8 +36,10 @@ class DetailViewModel: ViewModelType {
                 print(statusCode)
                 switch statusCode {
                 case .ok:
-                    DetailViewModel.detailData.accept(response!)
-                    print(response)
+                    var model = [DetailModel]()
+                    model.append(response!)
+                    DetailViewModel.detailData.accept(model)
+                    model.removeAll()
                 default:
                     result.onNext("자세히보기를 불러올 수 없음")
                 }

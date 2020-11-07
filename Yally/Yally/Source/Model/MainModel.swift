@@ -29,3 +29,20 @@ struct User: Codable {
     let nickname: String
     let img: String
 }
+
+struct DetailModel: Codable {
+    let content: String
+    let sound: String
+    let img: String?
+    let createdAt: String
+    let user: DetailUser
+    let comment: Int
+    let yally: Int
+    var isYally: Bool
+    let isMine: Bool
+}
+
+struct DetailUser: Codable {
+    let nickname: String
+    let img: String
+}

@@ -43,16 +43,16 @@ class DetailViewController: UIViewController {
         let input = DetailViewModel.input(loadDetail: detailData.asSignal(onErrorJustReturn: ()), selectIndexPath: selectIndexPath)
         let output = viewModel.transform(input)
 
-//        DetailViewModel.detailData.asObservable()
-//            .bind(to: detailTableView.rx.items(cellIdentifier: "mainCell", cellType: MainTableViewCell.self)) { (_, repository, cell) in
-//            cell.userImageView.image = UIImage(named: repository.user.img)
-//            cell.userNameLabel.text = repository.user.nickname
-//            cell.postTimeLabel.text = repository.createdAt
-//            cell.mainTextView.text = repository.content
-//            cell.countOfYally.text = String(repository.yally)
-//            cell.countOfComment.text = String(repository.comment)
-//            cell.backImageView.image = UIImage(named: repository.img ?? "")
-//            }.disposed(by: rx.disposeBag)
+        DetailViewModel.detailData.asObservable()
+            .bind(to: detailTableView.rx.items(cellIdentifier: "mainCell", cellType: MainTableViewCell.self)) { (_, repository, cell) in
+            cell.userImageView.image = UIImage(named: repository.user.img)
+            cell.userNameLabel.text = repository.user.nickname
+            cell.postTimeLabel.text = repository.createdAt
+            cell.mainTextView.text = repository.content
+            cell.countOfYally.text = String(repository.yally)
+            cell.countOfComment.text = String(repository.comment)
+            cell.backImageView.image = UIImage(named: repository.img ?? "")
+            }.disposed(by: rx.disposeBag)
 
         DetailViewModel.detailComment
             .bind(to: commentTableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (_, repository, cell) in

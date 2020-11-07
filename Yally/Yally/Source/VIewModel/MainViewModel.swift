@@ -20,7 +20,6 @@ class MainViewModel: ViewModelType {
         let loadMoreData: Signal<Void>
         let selectCell: Signal<IndexPath>
         let selectIndexPath: Signal<Int>
-
     }
 
     struct output {
@@ -34,20 +33,18 @@ class MainViewModel: ViewModelType {
     func transform(_ input: input) -> output {
         let api = TimeLineAPI()
         let result = PublishSubject<String>()
-        let loadData = PublishRelay<[MainModel]>()
         let info = Signal.combineLatest(input.selectIndexPath, MainViewModel.loadData.asSignal()).asObservable()
+        let detailInfo = Signal.combineLatest(input.selectCell, MainViewModel.loadData.asSignal()).asObservable()
         let yallyPost = PublishSubject<String>()
         let yallyDelete = PublishSubject<String>()
-        var selectIdx = String()
         let nextView = PublishSubject<String>()
-
+        var selectIdx = String()
         input.loadData.asObservable().subscribe(onNext: { [weak self] _ in
             guard let self = self else {return}
             api.getTimeLine().subscribe(onNext: { response, statusCode in
                 switch statusCode {
                 case .ok:
                     MainViewModel.loadData.accept(response!.posts)
-                    print(response?.posts)
                     result.onCompleted()
                 case .unauthorized:
                     result.onNext("페이지가 없습니다.")
@@ -90,7 +87,6 @@ class MainViewModel: ViewModelType {
                     switch response {
                     case .ok:
                         yallyDelete.onCompleted()
-                        data[row].isYally
                     case .noHere:
                         yallyDelete.onNext("게시물이 존재하지 않음")
                     default:
@@ -100,8 +96,8 @@ class MainViewModel: ViewModelType {
             }
         }).disposed(by: disposeBag)
 
-        input.selectCell.asObservable().withLatestFrom(info).subscribe(onNext: { indexPath, data in
-            selectIdx = data[indexPath].id
+        input.selectCell.asObservable().withLatestFrom(detailInfo).subscribe(onNext: { indexPath, data in
+            selectIdx = data[indexPath.row].id
             nextView.onNext(selectIdx)
         }).disposed(by: disposeBag)
 

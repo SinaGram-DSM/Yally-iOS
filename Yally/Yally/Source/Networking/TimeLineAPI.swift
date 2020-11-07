@@ -39,11 +39,11 @@ class TimeLineAPI {
         }
     }
 
-    func postDetailPost(_ id: String) -> Observable<(MainModel?, StatusCode)> {
-        httpClient.post(.detailPost(id: id), params: nil).map { (response, data) -> (MainModel?, StatusCode) in
+    func postDetailPost(_ id: String) -> Observable<(DetailModel?, StatusCode)> {
+        httpClient.get(.detailPost(id: id), params: nil).map { (response, data) -> (DetailModel?, StatusCode) in
             switch response.statusCode {
             case 200:
-                guard let data = try? JSONDecoder().decode(MainModel.self, from: data) else { return (nil, .fault) }
+                guard let data = try? JSONDecoder().decode(DetailModel.self, from: data) else { return (nil, .fault) }
                 return (data, .ok)
             case 404:
                 return (nil, .noHere)
