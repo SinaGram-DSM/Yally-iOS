@@ -9,53 +9,51 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol recordViewControllerDelegate: class {
-    func finishRecording(_ recordVC: PostViewController)
-}
-
 class PostViewModel: ViewModelType {
 
     private let disposeBag = DisposeBag()
 
     struct input {
-        let selectRec: Driver<Void>
         let postText: Driver<String>
-        let selectFile: Driver<Void>
-        let selectCover: Driver<Void>
-        let hashtag: Driver<[String]>
+        let selectFile: Driver<URL>
+        let selectCover: Driver<Data?>
         let doneTap: Driver<Void>
     }
 
     struct output {
         let isEnable: Driver<Bool>
         let result: Signal<String>
-        let timeFlow: Driver<String>
     }
 
-    func transform(_ input: PostViewModel.input) -> PostViewModel.output {
+    func transform(_ input: input) -> output {
         let api = TimeLineAPI()
-        let info = Driver.combineLatest(input.postText, input.selectFile, input.selectCover, input.hashtag)
-        let isEnable = info.map {
-            YallyFilter.checkEmpty($0.0)
-        }
+        let hashtag = input.postText.map { $0.getHashtags() }
+        let info = Driver.combineLatest(input.postText, input.selectFile, input.selectCover, hashtag)
+        let isEnable = info.map { !$0.0.isEmpty}
         let result = PublishSubject<String>()
-        let timeFlow = PublishSubject<String>()
-        
-        //info에 하나만 있어서그럼
-        input.doneTap.withLatestFrom(info).asObservable().subscribe(onNext: {
-            _, _, _, _ in
 
-        }).disposed(by: disposeBag)
-        
-        input.selectRec.asObservable().subscribe(onNext: { [weak self] in
-            guard let self = self else {return}
-            let driver = Driver<Int>.interval(.seconds(1)).map { _ in
-                return 1
+        input.doneTap.asObservable().withLatestFrom(info).subscribe(onNext: { content, sound, img, hashtag in
+            let httpClient = HTTPClient()
+            httpClient.postFormData(.createPost, param: ["content": content, "hashtag": hashtag ?? ""], sound, img ?? nil).responseJSON { (response) in
+                print(response.result)
+                switch response.response?.statusCode {
+                case 201:
+                    print("post success")
+                default:
+                    print(response.response?.statusCode ?? "dd")
+                    print("post fault")
+                }
             }
-            
+
+//            api.createPost(sound, content, img, hashtag!).subscribe(onNext: { (response) in
+//                switch response {
+//                case .ok: result.onCompleted()
+//                default: result.onNext("포스트 실패")
+//                }
+//            }).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
-        
-        return output(isEnable: isEnable.asDriver(), result: result.asSignal(onErrorJustReturn: "포스팅 실패"), timeFlow: timeFlow.asDriver(onErrorJustReturn: ""))
+
+        return output(isEnable: isEnable.asDriver(), result: result.asSignal(onErrorJustReturn: "포스팅 실패"))
     }
 }
 

@@ -12,6 +12,7 @@ import RxSwift
 
 class HTTPClient {
     let baseURI = "http://13.125.238.84:81"
+
     typealias HttpResult = Observable<(HTTPURLResponse, Data)>
 
     func get(_ api: YallyURL, params: [String:Any]?) -> HttpResult {
@@ -28,6 +29,28 @@ class HTTPClient {
 
     func delete(_ api: YallyURL, params: [String:Any]?) -> HttpResult {
         return requestData(.delete, baseURI + api.path, parameters: params, encoding: URLEncoding.queryString, headers: api.header)
+    }
+
+    func postFormData(_ api: YallyURL, param: [String:Any], _ sound: URL, _ img: Data?) -> DataRequest {
+        let urlStr = "\(sound)"
+        let pathArr = urlStr.components(separatedBy: "/")
+        let fileName = String(pathArr.last!)
+
+        return AF.upload(multipartFormData: { (multipartFormData) in
+            do {
+                let audioData = try Data(contentsOf: sound)
+
+                multipartFormData.append(audioData, withName: "sound", fileName: fileName, mimeType: "audio/aac")
+                print(audioData)
+            } catch {
+                print(error)
+            }
+            if img != nil {
+                multipartFormData.append(img!, withName: "img", mimeType: "image/jpg")
+            }
+            for (key, value) in param { multipartFormData.append("\(value)".data(using: .utf8)!, withName: key, mimeType: "text/plain") }
+
+        }, to: baseURI + api.path, method: .post, headers: api.header)
     }
 }
 
