@@ -259,9 +259,9 @@ extension PostViewController: MPMediaPickerControllerDelegate, UIImagePickerCont
             return
         }
         audioFile.accept(mediaItem.value(forProperty: MPMediaItemPropertyAssetURL) as! URL)
+
         print(mediaItem.value(forProperty: MPMediaItemPropertyAssetURL) as! URL)
     }
-    
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)

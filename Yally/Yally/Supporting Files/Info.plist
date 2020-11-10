@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>녹음을 하도록 허용해주세요</string>
+	<string></string>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>음성 파일에 접근하도록 허용</string>
 	<key>NSPhotoLibraryUsageDescription</key>

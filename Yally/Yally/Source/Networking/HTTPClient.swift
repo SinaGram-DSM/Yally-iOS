@@ -48,6 +48,7 @@ class HTTPClient {
             if img != nil {
                 multipartFormData.append(img!, withName: "img", mimeType: "image/jpg")
             }
+
             for (key, value) in param { multipartFormData.append("\(value)".data(using: .utf8)!, withName: key, mimeType: "text/plain") }
 
         }, to: baseURI + api.path, method: .post, headers: api.header)
