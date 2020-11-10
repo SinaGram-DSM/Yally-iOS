@@ -119,11 +119,28 @@
                             <constraint firstItem="u1w-Ee-wIv" firstAttribute="top" secondItem="6vb-dY-HcX" secondAttribute="bottom" constant="2" id="eUG-g7-4vJ"/>
                         </constraints>
                     </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Seg-wQ-Zcx">
-                        <rect key="frame" x="116" y="14" width="21" height="22"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <state key="normal" image="square.and.pencil" catalog="system"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPf-8r-hEp">
+                        <rect key="frame" x="375.5" y="14" width="18.5" height="22"/>
+                        <state key="normal" image="chevron.down" catalog="system"/>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DtN-QH-nxA">
+                        <rect key="frame" x="358" y="36" width="56" height="28"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VYK-Nw-qdW">
+                                <rect key="frame" x="11" y="1" width="35" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="56" id="4Wf-25-GU2"/>
+                            <constraint firstAttribute="trailing" secondItem="VYK-Nw-qdW" secondAttribute="trailing" constant="10" id="9k6-1z-eeM"/>
+                            <constraint firstItem="VYK-Nw-qdW" firstAttribute="top" secondItem="DtN-QH-nxA" secondAttribute="top" constant="1" id="JzU-lV-2NK"/>
+                            <constraint firstItem="VYK-Nw-qdW" firstAttribute="leading" secondItem="DtN-QH-nxA" secondAttribute="leading" constant="11" id="Ucm-c1-yOZ"/>
+                            <constraint firstAttribute="bottom" secondItem="VYK-Nw-qdW" secondAttribute="bottom" constant="1" id="ras-ft-dGh"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Ab4-Tn-9ui" secondAttribute="bottom" constant="3" id="0fm-4x-PFf"/>
@@ -133,16 +150,19 @@
                     <constraint firstItem="Bfk-xn-7h3" firstAttribute="bottom" secondItem="T4x-6J-hcH" secondAttribute="bottom" id="2sE-xs-GMI"/>
                     <constraint firstAttribute="trailing" secondItem="IDU-n2-150" secondAttribute="trailing" constant="10" id="369-zt-fvI"/>
                     <constraint firstItem="6y4-dU-WXt" firstAttribute="bottom" secondItem="T4x-6J-hcH" secondAttribute="bottom" id="6kv-8e-iDg"/>
+                    <constraint firstAttribute="trailing" secondItem="DtN-QH-nxA" secondAttribute="trailing" id="80s-Vz-PNb"/>
                     <constraint firstItem="IDU-n2-150" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="8RJ-fi-mL9"/>
                     <constraint firstItem="T4x-6J-hcH" firstAttribute="bottom" secondItem="coY-Fj-iSD" secondAttribute="bottom" id="CAO-RX-53i"/>
                     <constraint firstItem="s1O-yc-qvY" firstAttribute="bottom" secondItem="T4x-6J-hcH" secondAttribute="bottom" id="Doj-HX-T0s"/>
                     <constraint firstItem="coY-Fj-iSD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Fdb-Cg-S0M"/>
+                    <constraint firstItem="NPf-8r-hEp" firstAttribute="trailing" secondItem="Z9y-VD-Leh" secondAttribute="trailing" id="GfO-vv-txS"/>
                     <constraint firstItem="XCb-K0-cDu" firstAttribute="top" secondItem="NV0-N3-PBn" secondAttribute="bottom" id="Nom-s7-DAv"/>
                     <constraint firstItem="s1O-yc-qvY" firstAttribute="leading" secondItem="tzE-hR-8m7" secondAttribute="trailing" constant="8" symbolic="YES" id="O0L-gM-CdB"/>
                     <constraint firstItem="Bfk-xn-7h3" firstAttribute="leading" secondItem="s1O-yc-qvY" secondAttribute="trailing" id="PWN-0F-z6K"/>
                     <constraint firstItem="jk4-8l-rBG" firstAttribute="leading" secondItem="zFh-Hu-epf" secondAttribute="leading" id="RfA-Su-pzg"/>
                     <constraint firstItem="tzE-hR-8m7" firstAttribute="bottom" secondItem="T4x-6J-hcH" secondAttribute="bottom" id="Rj6-Ty-M9R"/>
                     <constraint firstItem="NV0-N3-PBn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="64" id="cdy-2f-yau"/>
+                    <constraint firstItem="NPf-8r-hEp" firstAttribute="top" secondItem="coY-Fj-iSD" secondAttribute="top" id="e4O-4G-ykh"/>
                     <constraint firstItem="IDU-n2-150" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ffq-Op-ozk"/>
                     <constraint firstItem="Ab4-Tn-9ui" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="81" id="g1O-sS-1fv"/>
                     <constraint firstItem="NV0-N3-PBn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="iHI-Y6-7qY"/>
@@ -158,7 +178,9 @@
                     <constraint firstAttribute="trailing" secondItem="Z9y-VD-Leh" secondAttribute="trailing" constant="20" symbolic="YES" id="rEK-l8-51L"/>
                     <constraint firstAttribute="bottom" secondItem="XCb-K0-cDu" secondAttribute="bottom" constant="3" id="ryy-ou-QpC"/>
                     <constraint firstItem="coY-Fj-iSD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="sYf-nZ-OI2"/>
+                    <constraint firstItem="NV0-N3-PBn" firstAttribute="top" secondItem="DtN-QH-nxA" secondAttribute="bottom" id="uIQ-Xn-vno"/>
                     <constraint firstItem="tzE-hR-8m7" firstAttribute="leading" secondItem="6y4-dU-WXt" secondAttribute="trailing" id="uZU-3q-qkf"/>
+                    <constraint firstItem="DtN-QH-nxA" firstAttribute="top" secondItem="NPf-8r-hEp" secondAttribute="bottom" id="uwn-hM-Qj9"/>
                     <constraint firstItem="zFh-Hu-epf" firstAttribute="leading" secondItem="coY-Fj-iSD" secondAttribute="trailing" constant="8" id="v0e-ve-Uqi"/>
                 </constraints>
             </tableViewCellContentView>
@@ -170,19 +192,25 @@
                 <outlet property="doComment" destination="XCb-K0-cDu" id="oRH-XY-QAJ"/>
                 <outlet property="doYally" destination="Ab4-Tn-9ui" id="WUo-QZ-nMU"/>
                 <outlet property="mainTextView" destination="2PW-7Z-H23" id="K25-Lf-4Eg"/>
+                <outlet property="popupTitle" destination="VYK-Nw-qdW" id="3Hj-Ba-9U6"/>
+                <outlet property="popupView" destination="DtN-QH-nxA" id="5yv-Cg-pOk"/>
                 <outlet property="postTimeLabel" destination="jk4-8l-rBG" id="PR2-6p-qqP"/>
                 <outlet property="sliderBar" destination="6vb-dY-HcX" id="TbW-7b-vOA"/>
                 <outlet property="timeLabel" destination="u1w-Ee-wIv" id="tgt-5f-uJE"/>
                 <outlet property="userImageView" destination="coY-Fj-iSD" id="kTF-bw-zgf"/>
                 <outlet property="userNameLabel" destination="zFh-Hu-epf" id="5SA-8Y-CkJ"/>
+                <outlet property="viewmoreBtn" destination="NPf-8r-hEp" id="ax2-Ai-Xah"/>
             </connections>
             <point key="canvasLocation" x="144.92753623188406" y="-23.4375"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

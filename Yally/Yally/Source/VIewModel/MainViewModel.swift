@@ -26,6 +26,7 @@ class MainViewModel: ViewModelType {
         let result: Signal<String>
         let yallyPost: Signal<String>
         let yallyDelete: Signal<String>
+        let deletePost: Driver<String>
         let data: Driver<[MainModel]>
         let nextView: Signal<String>
     }
@@ -35,10 +36,14 @@ class MainViewModel: ViewModelType {
         let result = PublishSubject<String>()
         let info = Signal.combineLatest(input.selectIndexPath, MainViewModel.loadData.asSignal()).asObservable()
         let detailInfo = Signal.combineLatest(input.selectCell, MainViewModel.loadData.asSignal()).asObservable()
+
         let yallyPost = PublishSubject<String>()
         let yallyDelete = PublishSubject<String>()
+        let deletePost = PublishSubject<String>()
+
         let nextView = PublishSubject<String>()
         var selectIdx = String()
+
         input.loadData.asObservable().subscribe(onNext: { [weak self] _ in
             guard let self = self else {return}
             api.getTimeLine().subscribe(onNext: { response, statusCode in
@@ -69,7 +74,6 @@ class MainViewModel: ViewModelType {
 
         input.selectIndexPath.asObservable().withLatestFrom(info).subscribe(onNext: { row, data in
             let loadSet = data[row].id
-            print("loaSet \(loadSet)")
             if !data[row].isYally {
                 api.postYally(loadSet).subscribe(onNext: { response in
                     switch response {
@@ -101,6 +105,25 @@ class MainViewModel: ViewModelType {
             nextView.onNext(selectIdx)
         }).disposed(by: disposeBag)
 
-        return output(result: result.asSignal(onErrorJustReturn: "타임라인 불러오기 실패"), yallyPost: yallyPost.asSignal(onErrorJustReturn: "얄리 post 실패"), yallyDelete: yallyDelete.asSignal(onErrorJustReturn: "얄리 delete 실패"), data: MainViewModel.loadData.asDriver(onErrorJustReturn: []), nextView: nextView.asSignal(onErrorJustReturn: "디테일 포스트 실패"))
+        input.selectIndexPath.asObservable().withLatestFrom(info).subscribe(onNext: { row, data in
+            let deleteId = data[row].id
+            api.deletePost(deleteId).subscribe(onNext: { response in
+                switch response {
+                 case .ok:
+                    print("onCompleted")
+                    deletePost.onCompleted()
+                default:
+                    deletePost.onNext("Yally 실패")
+                }
+            }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
+
+        return output(
+            result: result.asSignal(onErrorJustReturn: "타임라인 불러오기 실패"),
+            yallyPost: yallyPost.asSignal(onErrorJustReturn: "얄리 post 실패"),
+            yallyDelete: yallyDelete.asSignal(onErrorJustReturn: "얄리 delete 실패"),
+            deletePost: deletePost.asDriver(onErrorJustReturn: "글 삭제 실패"),
+            data: MainViewModel.loadData.asDriver(onErrorJustReturn: []),
+            nextView: nextView.asSignal(onErrorJustReturn: "디테일 포스트 실패"))
     }
 }

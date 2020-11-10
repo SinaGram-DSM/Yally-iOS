@@ -6,10 +6,8 @@
 //
 
 import UIKit
-
-protocol MainCellDelegate {
-    func selectIndex(_ cell: MainTableViewCell, index: Int)
-}
+import RxSwift
+import NSObject_Rx
 
 class MainTableViewCell: UITableViewCell {
 
@@ -25,15 +23,15 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var sliderBar: UISlider!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var viewmoreBtn: UIButton!
+    @IBOutlet weak var popupView: UIView!
+    @IBOutlet weak var popupTitle: UIButton!
+
     private var onGesture: Bool = false
-    var index = Int()
+    private var onPopup: Bool = false
 
     override func awakeFromNib() {
-
-        sliderBar.isHidden = true
-        timeLabel.isHidden = true
-
         setUpUI()
+        setupView()
 
         let tapGestureOn = UITapGestureRecognizer(target: self, action: #selector(touchToOn))
         backImageView?.addGestureRecognizer(tapGestureOn)
@@ -48,20 +46,39 @@ class MainTableViewCell: UITableViewCell {
         mainTextView.isSelectable = false
         mainTextView.textColor = .black
         mainTextView.sizeToFit()
+        userImageView.layer.cornerRadius = 20
+        sliderBar.isHidden = true
+        timeLabel.isHidden = true
+        popupView.isHidden = true
+        popupTitle.isHidden = true
+
+        viewmoreBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
+            if self.onPopup {
+                self.popupView.isHidden = true
+                self.popupTitle.isHidden = true
+
+            } else {
+                self.popupView.isHidden = false
+                self.popupTitle.isHidden = false
+            }
+            self.onPopup = !self.onPopup
+        }).disposed(by: rx.disposeBag)
+    }
+
+    func setupView() {
+        popupView.layer.cornerRadius = 14
+        popupView.layer.borderWidth = 0.5
+        popupView.layer.borderColor = UIColor.gray.cgColor
     }
 
     @objc func touchToOn() {
-
+        onGesture = !onGesture
         if !onGesture {
             //음원 재생
 
             backImageView.alpha = 0.3
-
             sliderBar.isHidden = false
             timeLabel.isHidden = false
-
-            onGesture = true
-
         } else {
             //음원 재생
 
@@ -69,28 +86,11 @@ class MainTableViewCell: UITableViewCell {
 
             sliderBar.isHidden = true
             timeLabel.isHidden = true
-
-            onGesture = false
         }
     }
 
-//    override var isSelected: Bool {
-//        didSet {
-//            doYally.tintColor = isSelected ? UIColor.purple
-//                : UIColor.gray
-//            doComment.tintColor = isSelected ? UIColor.purple
-//                : UIColor.gray
-//        }
-//    }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-//        if selected {
-//            doYally.tintColor = isSelected ? UIColor.purple
-//                : UIColor.gray
-//            doComment.tintColor = isSelected ? UIColor.purple
-//                : UIColor.gray
-//        }
         // Configure the view for the selected state
     }
 

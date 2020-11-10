@@ -9,19 +9,23 @@ import UIKit
 import RxCocoa
 import RxSwift
 import NSObject_Rx
+import AVFoundation
 
 class MainViewController: UIViewController {
+
     @IBOutlet weak var tableView: UITableView!
 
     private let viewModel = MainViewModel()
     private let loadData = BehaviorRelay<Void>(value: ())
     private let loadMoreData = BehaviorRelay<Void>(value: ())
     private var selectIndexPath = BehaviorRelay<Int>(value: 0)
+
     private let label = UILabel()
 
     //VC는 Model을 알면 안됨...
 
     private var isAvailable = Bool()
+    var player: AVAudioPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,8 +54,8 @@ class MainViewController: UIViewController {
                 cell.mainTextView.text = repository.content
                 cell.countOfYally.text = String(repository.yally)
                 cell.countOfComment.text = String(repository.comment)
-                cell.backImageView.image = UIImage(named: repository.img ?? "")
-                self.setButton(cell.doYally, repository.isYally)
+                cell.userImageView.load(urlString: repository.user.img)
+                cell.backImageView.load(urlString: repository.img!)
 
                 cell.doYally.rx.tap.subscribe(onNext: { _ in
                     print(row)
@@ -61,11 +65,23 @@ class MainViewController: UIViewController {
                 cell.doComment.rx.tap.subscribe(onNext: { _ in
                     self.nextView("detailVC")
                 }).disposed(by: self.rx.disposeBag)
+                self.setButton(cell.doYally, repository.isYally)
 
+                cell.popupTitle.rx.tap.subscribe(onNext: { _ in
+                    self.selectIndexPath.accept(row)
+                }).disposed(by: self.rx.disposeBag)
+
+                if repository.isMine {
+                    cell.popupTitle.setTitle("삭제", for: .normal)
+                }
             }.disposed(by: rx.disposeBag)
 
         output.data.drive().disposed(by: rx.disposeBag)
         output.data.drive(onNext: { _ in self.tableView.reloadData()}).disposed(by: rx.disposeBag)
+        output.deletePost.drive(onNext: { _ in
+            print("reload")
+            self.tableView.reloadData()
+        }).disposed(by: rx.disposeBag)
 
         output.nextView.asObservable().subscribe(onNext: { id in
             guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "detailVC") as? DetailViewController else { return }
@@ -99,5 +115,22 @@ extension UIViewController {
     func nextView(_ identifier: String) {
         let vc = self.storyboard?.instantiateViewController(identifier: identifier)
         self.navigationController?.pushViewController(vc!, animated: true)
+    }
+}
+
+extension UIImageView {
+    func load(urlString : String) {
+        guard let url = URL(string: "https://yally-sinagram.s3.ap-northeast-2.amazonaws.com/" + urlString)else {
+            return
+        }
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
     }
 }
