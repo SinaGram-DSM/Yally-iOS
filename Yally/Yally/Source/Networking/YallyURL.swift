@@ -7,17 +7,41 @@
 
 import Foundation
 
+import RxSwift
+import RxCocoa
+import Alamofire
+
 enum YallyURL {
-    case listeningValue
-    case listenerValue
+
+    case profileValue(_ email: String)
+    case modifyProfile(_ nickname: String, _ image: String)
+    case listeningList(_ email: String)
+    case listenerList(_ email: String)
 
     func path() -> String {
-        let baseURL = "http://13.125.238.84:81"
+
         switch self {
-        case .listeningValue:
-            return baseURL + "/profile/<email>"
-        case .listenerValue:
-            return baseURL + "/profile/<email>"
+        case .profileValue(let email):
+            return "/profile/\(email)"
+        case .modifyProfile(let nickname, let image):
+            return " /profile "
+        case .listeningList(let email):
+            return " /profile\(email)"
+        case .listenerList(let email):
+            return "/profile\(email)"
+        default:
+            return ""
+
+        }
+    }
+
+    func header() -> HTTPHeaders? {
+        switch self {
+        case .profileValue:
+            return ["":""]
+
+        default:
+            return nil
         }
     }
 

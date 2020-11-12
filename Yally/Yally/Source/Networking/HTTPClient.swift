@@ -7,24 +7,28 @@
 
 import Foundation
 import Alamofire
+import RxAlamofire
+import RxSwift
 
 class HTTPClient {
     let baseURI = "http://13.125.238.84:81"
 
-    func get(path: String, param: [String: Any], headers: HTTPHeaders) -> DataRequest {
-        return AF.request(baseURI + path, method: .get, parameters: param, encoding: JSONEncoding.prettyPrinted, headers: headers, interceptor: nil)
+    typealias HttpResult = Observable<(HTTPURLResponse, Data)>
+
+    func get(api: YallyURL, param: [String: Any]?) -> HttpResult {
+        return requestData(.get, baseURI + api.path(), parameters: param, headers: api.header())
     }
 
-    func put(path: String, param: [String: Any], headers: HTTPHeaders) -> DataRequest {
-        return AF.request(baseURI + path, method: .put, parameters: param, encoding: JSONEncoding.prettyPrinted, headers: headers, interceptor: nil)
+    func put(api: YallyURL, params: [String:Any]?) -> HttpResult {
+        return requestData(.put, baseURI + api.path(), parameters: params, encoding: URLEncoding.queryString, headers: api.header())
+      }
+
+    func delete(api: YallyURL, params: [String: Any]?) -> HttpResult {
+        return requestData(.delete, baseURI + api.path(), parameters: params, encoding: JSONEncoding.prettyPrinted, headers: api.header())
     }
 
-    func delete(path: String, param: [String: Any], headers: HTTPHeaders) -> DataRequest {
-        return AF.request(baseURI + path, method: .delete, parameters: param, encoding: JSONEncoding.prettyPrinted, headers: headers, interceptor: nil)
-    }
-
-    func post(path: String, param: [String: Any], headers: HTTPHeaders) -> DataRequest {
-        return AF.request(baseURI + path, method: .post, parameters: param, encoding: JSONEncoding.prettyPrinted, headers: headers, interceptor: nil)
+    func post(api: YallyURL, params: [String: Any]?) -> HttpResult {
+        return requestData(.post, baseURI + api.path(), parameters: params, encoding: JSONEncoding.prettyPrinted, headers: api.header())
     }
 }
 
@@ -36,5 +40,5 @@ enum StatusCode: Int {
     case noHere = 404
     case wrongType = 422
     case badReqeust = 400
-
+    case fault = 0
 }
