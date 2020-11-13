@@ -11,11 +11,11 @@ class Comment: Codable {
     let user: User
     let id: String
     let content: String
-    let sound: String
-    let createAt: String
+    let sound: String?
+    let createdAt: String
     let isMine: Bool
 }
 
 class CommentModel: Codable {
-    let comments: [Comment]
+    var comments: [Comment]
 }

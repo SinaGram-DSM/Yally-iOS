@@ -20,6 +20,12 @@ class CommentTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        commentSlider.isHidden = true
+        playBtn.isHidden = true
+        startLabel.isHidden = true
+        lastLabel.isHidden = true
+
         // Initialization code
     }
 

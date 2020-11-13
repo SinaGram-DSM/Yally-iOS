@@ -28,14 +28,16 @@ class MainTableViewCell: UITableViewCell {
 
     private var onGesture: Bool = false
     private var onPopup: Bool = false
+    var tapGestureOn = UITapGestureRecognizer()
 
     override func awakeFromNib() {
         setUpUI()
         setupView()
 
-        let tapGestureOn = UITapGestureRecognizer(target: self, action: #selector(touchToOn))
+        tapGestureOn = UITapGestureRecognizer(target: self, action: #selector(touchToOn))
         backImageView?.addGestureRecognizer(tapGestureOn)
         backImageView?.isUserInteractionEnabled = true
+
     }
 
     func setUpUI() {

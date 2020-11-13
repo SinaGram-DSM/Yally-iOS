@@ -17,14 +17,14 @@ class MainViewController: UIViewController {
 
     private let viewModel = MainViewModel()
     private let loadData = BehaviorRelay<Void>(value: ())
-    private let loadMoreData = BehaviorRelay<Void>(value: ())
+    private let loadMoreData = BehaviorRelay<Int>(value: 0)
     private var selectIndexPath = BehaviorRelay<Int>(value: 0)
+    private var selectDelete = BehaviorRelay<Int>(value: 0)
+    //    private var isAvailable = BehaviorRelay<Void>(value: ())
 
-    private let label = UILabel()
-
-    //VC는 Model을 알면 안됨...
-
-    private var isAvailable = Bool()
+    var check = Bool()
+    var isAvailable = Bool()
+    var page = 1
     var player: AVAudioPlayer!
 
     override func viewDidLoad() {
@@ -40,9 +40,10 @@ class MainViewController: UIViewController {
     func bindViewModel() {
         let input = MainViewModel.input(
             loadData: loadData.asSignal(onErrorJustReturn: ()),
-            loadMoreData: loadMoreData.asSignal(onErrorJustReturn: ()),
+            loadMoreData: loadMoreData.asSignal(onErrorJustReturn: 0),
             selectCell: tableView.rx.itemSelected.asSignal(),
-            selectIndexPath: selectIndexPath.asSignal(onErrorJustReturn: 0)
+            selectIndexPath: selectIndexPath.asSignal(onErrorJustReturn: 0),
+            selectDelete: selectDelete.asSignal(onErrorJustReturn: 0)
         )
         let output = viewModel.transform(input)
 
@@ -54,26 +55,29 @@ class MainViewController: UIViewController {
                 cell.mainTextView.text = repository.content
                 cell.countOfYally.text = String(repository.yally)
                 cell.countOfComment.text = String(repository.comment)
+                cell.doYally.isSelected = repository.isYally
                 cell.userImageView.load(urlString: repository.user.img)
                 cell.backImageView.load(urlString: repository.img!)
 
                 cell.doYally.rx.tap.subscribe(onNext: { _ in
-                    print(row)
+                    cell.doYally.isSelected = !cell.doYally.isSelected
                     self.selectIndexPath.accept(row)
                 }).disposed(by: self.rx.disposeBag)
 
                 cell.doComment.rx.tap.subscribe(onNext: { _ in
                     self.nextView("detailVC")
                 }).disposed(by: self.rx.disposeBag)
-                self.setButton(cell.doYally, repository.isYally)
 
                 cell.popupTitle.rx.tap.subscribe(onNext: { _ in
-                    self.selectIndexPath.accept(row)
+                    self.selectDelete.accept(row)
                 }).disposed(by: self.rx.disposeBag)
 
                 if repository.isMine {
                     cell.popupTitle.setTitle("삭제", for: .normal)
                 }
+
+                self.check = true
+
             }.disposed(by: rx.disposeBag)
 
         output.data.drive().disposed(by: rx.disposeBag)
@@ -81,6 +85,16 @@ class MainViewController: UIViewController {
         output.deletePost.drive(onNext: { _ in
             print("reload")
             self.tableView.reloadData()
+        }).disposed(by: rx.disposeBag)
+
+        output.yallyPost.drive(onCompleted: {
+            self.tableView.reloadData()
+            self.loadData.accept(())
+        }).disposed(by: rx.disposeBag)
+
+        output.yallyDelete.drive(onCompleted: {
+            self.tableView.reloadData()
+            self.loadData.accept(())
         }).disposed(by: rx.disposeBag)
 
         output.nextView.asObservable().subscribe(onNext: { id in
@@ -91,14 +105,29 @@ class MainViewController: UIViewController {
     }
 
     private func registerCell() {
+        let api = TimeLineAPI()
+
         let nib = UINib(nibName: "MainTableViewCell", bundle: nil)
-       tableView.register(nib, forCellReuseIdentifier: "mainCell")
+        tableView.register(nib, forCellReuseIdentifier: "mainCell")
+
+        tableView.rx.didScroll.asObservable().subscribe(onNext: { _ in
+            if self.tableView.contentOffset.y > self.tableView.contentSize.height - self.tableView.bounds.size.height {
+                if self.check {
+                    self.loadMoreData.accept(2)
+                }
+                self.tableView.reloadData()
+            }
+        }).disposed(by: rx.disposeBag)
     }
 
     private func configureTableView() {
         registerCell()
         tableView.rowHeight = 308
     }
+}
+
+extension MainViewController: UITableViewDelegate {
+
 }
 
 extension UIViewController {

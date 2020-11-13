@@ -18,7 +18,8 @@ class DetailViewModel: ViewModelType {
     struct input {
         let loadDetail: Signal<Void>
         let selectIndexPath: String
-        let deletePost: Signal<Void>
+        let selectYally: Signal<Int>
+        let deletePost: Signal<Int>
     }
 
     struct output {
@@ -29,7 +30,9 @@ class DetailViewModel: ViewModelType {
         let api = TimeLineAPI()
         let result = PublishSubject<String>()
         let deletePost = PublishSubject<String>()
-//        let info = Signal.combineLatest(input.selectIndexPath, detailData.asSignal()).asObservable()
+        let info = Signal.combineLatest(input.selectYally, DetailViewModel.detailData.asSignal()).asObservable()
+        let yallyPost = PublishSubject<String>()
+        let yallyDelete = PublishSubject<String>()
 
         input.loadDetail.asObservable().subscribe(onNext: { _ in
             api.postDetailPost(input.selectIndexPath).subscribe(onNext: { response, statusCode in
@@ -46,16 +49,18 @@ class DetailViewModel: ViewModelType {
             }).disposed(by: self.disposeBag)
 
             api.postDetailComment(input.selectIndexPath).subscribe(onNext: { response, statusCode in
+                print(statusCode)
                 switch statusCode {
                 case .ok:
                     DetailViewModel.detailComment.accept(response!.comments)
+                    print(response?.comments)
                 default:
                     result.onNext("댓글을 불러올 수 없음")
                 }
             }).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
 
-        input.deletePost.asObservable().subscribe(onNext: { _ in
+        input.selectYally.asObservable().withLatestFrom(info).subscribe(onNext: { _ in
             api.deletePost(input.selectIndexPath).subscribe(onNext: { statusCode in
                 switch statusCode {
                 case .ok:
@@ -64,6 +69,33 @@ class DetailViewModel: ViewModelType {
                     deletePost.onNext("포스트 삭제 실패")
                 }
             }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
+
+        input.selectYally.asObservable().withLatestFrom(info).subscribe(onNext: { row, data in
+            if !data[row].isYally {
+                api.postYally(input.selectIndexPath).subscribe(onNext: { response in
+                    switch response {
+                     case .ok:
+                        print("onCompleted")
+                        yallyPost.onCompleted()
+                    case .noHere:
+                        yallyPost.onNext("게시물이 존재하지 않음")
+                    default:
+                        yallyPost.onNext("Yally 실패")
+                    }
+                }).disposed(by: self.disposeBag)
+            } else {
+                api.deleteYally(input.selectIndexPath).subscribe(onNext: { response in
+                    switch response {
+                    case .ok:
+                        yallyDelete.onCompleted()
+                    case .noHere:
+                        yallyDelete.onNext("게시물이 존재하지 않음")
+                    default:
+                        yallyDelete.onNext("Yally 실패")
+                    }
+                }).disposed(by: self.disposeBag)
+            }
         }).disposed(by: disposeBag)
 
         return output(result: result.asSignal(onErrorJustReturn: ""))
