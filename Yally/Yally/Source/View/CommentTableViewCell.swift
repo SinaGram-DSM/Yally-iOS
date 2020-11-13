@@ -17,6 +17,7 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var playBtn: UIButton!
     @IBOutlet weak var startLabel: UILabel!
     @IBOutlet weak var lastLabel: UILabel!
+    @IBOutlet weak var deleteCommentBtn: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,7 +26,7 @@ class CommentTableViewCell: UITableViewCell {
         playBtn.isHidden = true
         startLabel.isHidden = true
         lastLabel.isHidden = true
-
+        deleteCommentBtn.isHidden = true
         // Initialization code
     }
 

@@ -20,6 +20,7 @@ class DetailViewModel: ViewModelType {
         let selectIndexPath: String
         let selectYally: Signal<Int>
         let deletePost: Signal<Int>
+        let deleteCommnet: Signal<Int>
     }
 
     struct output {
@@ -31,6 +32,7 @@ class DetailViewModel: ViewModelType {
         let result = PublishSubject<String>()
         let deletePost = PublishSubject<String>()
         let info = Signal.combineLatest(input.selectYally, DetailViewModel.detailData.asSignal()).asObservable()
+        let commentInfo = Signal.combineLatest(input.selectYally, DetailViewModel.detailComment.asSignal())
         let yallyPost = PublishSubject<String>()
         let yallyDelete = PublishSubject<String>()
 
@@ -98,6 +100,17 @@ class DetailViewModel: ViewModelType {
             }
         }).disposed(by: disposeBag)
 
+        input.selectYally.asObservable().withLatestFrom(commentInfo).subscribe(onNext: { (row, data) in
+            let delete = data[row].id
+            api.deleteComment(delete).subscribe(onNext: { response in
+                switch response {
+                case .ok:
+                    print("ok")
+                default:
+                    print("ASdf")
+                }
+            }).disposed(by: self.disposeBag)
+        }).disposed(by: disposeBag)
         return output(result: result.asSignal(onErrorJustReturn: ""))
     }
 }

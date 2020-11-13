@@ -103,8 +103,8 @@ class TimeLineAPI {
         }
     }
 
-    func deleteComment() -> Observable<StatusCode> {
-        httpClient.delete(.deleteComment, params: nil).map {response, _ -> StatusCode in
+    func deleteComment(_ id: String) -> Observable<StatusCode> {
+        httpClient.delete(.deleteComment(id), params: nil).map {response, _ -> StatusCode in
             print(response.statusCode)
             switch response.statusCode {
             case 204:

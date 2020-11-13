@@ -44,7 +44,6 @@ class MainViewModel: ViewModelType {
 
         let nextView = PublishSubject<String>()
         var selectIdx = String()
-        var infinityPage = 1
 
         input.loadData.asObservable().subscribe(onNext: { [weak self] _ in
             guard let self = self else {return}

@@ -20,6 +20,7 @@ class DetailViewController: UIViewController {
     private let detailData = BehaviorRelay<Void>(value: ())
     private let deleteText = BehaviorRelay<Int>(value: 0)
     private var yallyIndex = BehaviorRelay<Int>(value: 0)
+    private var commentIndex = BehaviorRelay<Int>(value: 0)
     private var audioPlayer: AVAudioPlayer?
 
     var CommentTextField = UITextField()
@@ -50,7 +51,8 @@ class DetailViewController: UIViewController {
             selectIndexPath: selectIndexPath,
             selectYally: yallyIndex.asSignal(onErrorJustReturn: 0),
             deletePost:
-                deleteText.asSignal(onErrorJustReturn: 0))
+                deleteText.asSignal(onErrorJustReturn: 0),
+            deleteCommnet: commentIndex.asSignal(onErrorJustReturn: 0))
         let output = viewModel.transform(input)
 
         DetailViewModel.detailData.asObservable()
@@ -83,12 +85,15 @@ class DetailViewController: UIViewController {
             }.disposed(by: rx.disposeBag)
 
         DetailViewModel.detailComment
-            .bind(to: commentTableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (_, repository, cell) in
+            .bind(to: commentTableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (row, repository, cell) in
                 cell.userImageView.load(urlString: repository.user.img)
                 cell.userNameLabel.text = repository.user.nickname
                 cell.commentTextView.text = repository.content
                 cell.postTimeLabel.text = repository.createdAt
 
+                cell.deleteCommentBtn.rx.tap.subscribe(onNext: { _ in
+                    self.commentIndex.accept(row)
+                }).disposed(by: self.rx.disposeBag)
                 if repository.sound != nil {
                     cell.commentSlider.isHidden = false
                     cell.playBtn.isHidden = false
@@ -96,6 +101,9 @@ class DetailViewController: UIViewController {
                     cell.lastLabel.isHidden = false
                 }
 
+                if repository.isMine {
+                    cell.deleteCommentBtn.isHidden = false
+                }
             }.disposed(by: rx.disposeBag)
     }
 

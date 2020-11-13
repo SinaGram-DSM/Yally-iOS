@@ -34,7 +34,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hec-T6-8GL">
-                                <rect key="frame" x="42" y="2" width="27" height="12"/>
+                                <rect key="frame" x="42" y="3.5" width="27" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -92,6 +92,15 @@
                                     <constraint firstItem="LJB-hr-GdS" firstAttribute="top" secondItem="soc-Jv-UpF" secondAttribute="bottom" id="xK8-cW-uFg"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="24t-PQ-NGb">
+                                <rect key="frame" x="72" y="5" width="9" height="9"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="9" id="67R-AV-Oj2"/>
+                                    <constraint firstAttribute="height" constant="9" id="MzK-fY-JT2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" image="trash" catalog="system"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -102,10 +111,12 @@
                             <constraint firstAttribute="trailing" secondItem="zZi-pA-bLU" secondAttribute="trailing" constant="8" id="GUf-hV-rOf"/>
                             <constraint firstAttribute="trailing" secondItem="vG7-uK-OKY" secondAttribute="trailing" constant="8" id="GXL-6c-02Z"/>
                             <constraint firstAttribute="bottom" secondItem="zZi-pA-bLU" secondAttribute="bottom" constant="7" id="Ie9-Zt-YAI"/>
+                            <constraint firstItem="24t-PQ-NGb" firstAttribute="centerY" secondItem="hec-T6-8GL" secondAttribute="centerY" id="QF6-j0-juT"/>
                             <constraint firstItem="zZi-pA-bLU" firstAttribute="top" secondItem="vG7-uK-OKY" secondAttribute="bottom" constant="4" id="RPx-WU-4IS"/>
                             <constraint firstItem="vG7-uK-OKY" firstAttribute="leading" secondItem="89J-QU-kT8" secondAttribute="leading" id="SMB-5E-RpG"/>
+                            <constraint firstItem="24t-PQ-NGb" firstAttribute="leading" secondItem="hec-T6-8GL" secondAttribute="trailing" constant="3" id="Wlo-DM-kgg"/>
                             <constraint firstItem="89J-QU-kT8" firstAttribute="leading" secondItem="00L-Pu-N2W" secondAttribute="leading" constant="8" id="cTG-04-WLG"/>
-                            <constraint firstItem="hec-T6-8GL" firstAttribute="top" secondItem="89J-QU-kT8" secondAttribute="top" id="urw-r7-pgw"/>
+                            <constraint firstItem="hec-T6-8GL" firstAttribute="centerY" secondItem="89J-QU-kT8" secondAttribute="centerY" id="t5X-wo-niQ"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -122,6 +133,7 @@
             <connections>
                 <outlet property="commentSlider" destination="soc-Jv-UpF" id="H4j-Bf-vox"/>
                 <outlet property="commentTextView" destination="vG7-uK-OKY" id="hVC-y2-XYI"/>
+                <outlet property="deleteCommentBtn" destination="24t-PQ-NGb" id="Ncj-CP-YoV"/>
                 <outlet property="lastLabel" destination="F34-Jw-tkp" id="9NT-md-7vR"/>
                 <outlet property="playBtn" destination="Vn6-9b-JAK" id="IV7-S2-J3Y"/>
                 <outlet property="postTimeLabel" destination="hec-T6-8GL" id="toT-hy-StD"/>
@@ -134,6 +146,7 @@
     </objects>
     <resources>
         <image name="play.fill" catalog="system" width="116" height="128"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
