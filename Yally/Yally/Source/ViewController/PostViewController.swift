@@ -94,6 +94,10 @@ class PostViewController: UIViewController {
     }
 
     func setUpView() {
+
+        lineView.layer.borderWidth = 1
+        lineView.layer.borderColor = UIColor.gray.cgColor
+
         recordingSession = AVAudioSession.sharedInstance()
         do {
             try? recordingSession.setCategory(.record, mode: .default)
@@ -253,14 +257,37 @@ extension PostViewController: MPMediaPickerControllerDelegate, UIImagePickerCont
     }
 
     func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
-        self.dismiss(animated: true, completion: nil)
         guard let mediaItem = mediaItemCollection.items.first else {
             NSLog("No item selected.")
             return
         }
-        audioFile.accept(mediaItem.value(forProperty: MPMediaItemPropertyAssetURL) as! URL)
 
-        print(mediaItem.value(forProperty: MPMediaItemPropertyAssetURL) as! URL)
+        if let val = mediaItem.value(forKey: MPMediaItemPropertyAssetURL) as? URL {
+            let asset = AVURLAsset.init(url: val)
+
+            if asset.isExportable {
+                let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A)
+
+                let exportPath: String = NSTemporaryDirectory().appendingFormat("/\(UUID().uuidString).m4a") as String
+                let exportUrl: URL = NSURL.fileURL(withPath: exportPath as String) as URL
+
+                exportSession?.outputURL = exportUrl as URL
+                exportSession?.outputFileType = AVFileType.m4a
+                audioFile.accept(exportUrl)
+
+                exportSession?.exportAsynchronously(completionHandler: {
+                    // do some stuff with the file
+                    do {
+                        try FileManager.default.removeItem(atPath: (exportPath as String?)!)
+                        print(exportUrl)
+
+                    } catch {
+                        print(error)
+                    }
+                })
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
