@@ -23,12 +23,21 @@ class DetailViewController: UIViewController {
     private var commentIndex = BehaviorRelay<Int>(value: 0)
     private var audioPlayer: AVAudioPlayer?
 
-    var CommentTextField = UITextField()
-
     var selectIndexPath = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let CommentTextField = InputTextField()
+        view.addSubview(CommentTextField)
+
+        CommentTextField.translatesAutoresizingMaskIntoConstraints = false
+        CommentTextField.backgroundColor = .white
+        CommentTextField.bottomAnchor.constraint(equalTo: commentTableView.bottomAnchor).isActive = true
+        CommentTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        CommentTextField.leadingAnchor.constraint(equalTo: commentTableView.leadingAnchor).isActive = true
+        CommentTextField.trailingAnchor.constraint(equalTo: commentTableView.trailingAnchor).isActive = true
+        CommentTextField.layer.borderWidth = 0.3
 
         registerCell()
         bindTableView()
@@ -94,6 +103,7 @@ class DetailViewController: UIViewController {
                 cell.deleteCommentBtn.rx.tap.subscribe(onNext: { _ in
                     self.commentIndex.accept(row)
                 }).disposed(by: self.rx.disposeBag)
+
                 if repository.sound != nil {
                     cell.commentSlider.isHidden = false
                     cell.playBtn.isHidden = false

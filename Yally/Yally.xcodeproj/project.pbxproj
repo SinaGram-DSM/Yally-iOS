@@ -14,6 +14,7 @@
 		EB129FC8254E9B91009D5151 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB129FC6254E9B91009D5151 /* CommentTableViewCell.xib */; };
 		EB129FCB254EB7E9009D5151 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB129FCA254EB7E9009D5151 /* DetailViewModel.swift */; };
 		EB129FCE254ED658009D5151 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB129FCD254ED658009D5151 /* CommentModel.swift */; };
+		EB252662255FE92E00908A05 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB252661255FE92E00908A05 /* InputTextField.swift */; };
 		EB4BC19B253B705D00BDCAE0 /* TimeLine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4BC19A253B705D00BDCAE0 /* TimeLine.storyboard */; };
 		EB4BC1A0253B707000BDCAE0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC19E253B707000BDCAE0 /* MainViewController.swift */; };
 		EB4BC1A1253B707000BDCAE0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC19F253B707000BDCAE0 /* TabBarViewController.swift */; };
@@ -46,6 +47,7 @@
 		EB129FC6254E9B91009D5151 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
 		EB129FCA254EB7E9009D5151 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		EB129FCD254ED658009D5151 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
+		EB252661255FE92E00908A05 /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
 		EB4BC19A253B705D00BDCAE0 /* TimeLine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TimeLine.storyboard; sourceTree = "<group>"; };
 		EB4BC19E253B707000BDCAE0 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EB4BC19F253B707000BDCAE0 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				EBEBE4A3253B78AC00C7E100 /* MainTableViewCell.xib */,
 				EB129FC5254E9B91009D5151 /* CommentTableViewCell.swift */,
 				EB129FC6254E9B91009D5151 /* CommentTableViewCell.xib */,
+				EB252661255FE92E00908A05 /* InputTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB252662255FE92E00908A05 /* InputTextField.swift in Sources */,
 				EBFC7AF82525DB950082E0EE /* ViewController.swift in Sources */,
 				EBFC7B2B2525E0F80082E0EE /* TestModel.swift in Sources */,
 				EB4BC1A1253B707000BDCAE0 /* TabBarViewController.swift in Sources */,

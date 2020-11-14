@@ -18,15 +18,26 @@ class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var startLabel: UILabel!
     @IBOutlet weak var lastLabel: UILabel!
     @IBOutlet weak var deleteCommentBtn: UIButton!
+    @IBOutlet weak var backCommentView: UIView!
+    @IBOutlet weak var commentSoundView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        commentSlider.isHidden = true
-        playBtn.isHidden = true
-        startLabel.isHidden = true
-        lastLabel.isHidden = true
+//        commentSlider.isHidden = true
+//        playBtn.isHidden = true
+//        startLabel.isHidden = true
+//        lastLabel.isHidden = true
         deleteCommentBtn.isHidden = true
+        commentSoundView.isHidden = true
+        backCommentView.backgroundColor = UIColor().hexUIColor(hex: "EFEFEF")
+        backCommentView.layer.cornerRadius = 12
+        commentSoundView.backgroundColor = UIColor().hexUIColor(hex: "FDFDFD")
+        commentSoundView.layer.cornerRadius = 12
+        userImageView.layer.cornerRadius = 20
+        postTimeLabel.textColor = .lightGray
+        commentTextView.backgroundColor = .clear
+
         // Initialization code
     }
 
