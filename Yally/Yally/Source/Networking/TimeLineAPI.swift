@@ -7,9 +7,10 @@
 
 import Foundation
 import RxSwift
+import Alamofire
 
 class TimeLineAPI {
-
+    let baseURI = "http://13.125.238.84:81"
     private let httpClient = HTTPClient()
 
     func getTimeLine(_ page: Int) -> Observable<(posts?, StatusCode)> {
@@ -56,7 +57,9 @@ class TimeLineAPI {
         httpClient.get(.detailPostComment(id: id), params: nil).map {response, data -> (CommentModel?, StatusCode) in
             switch response.statusCode {
             case 200:
-                guard let data = try? JSONDecoder().decode(CommentModel.self, from: data) else { return (nil, .fault)}
+                guard let data = try? JSONDecoder().decode(CommentModel?.self, from: data) else { return (nil, .fault)}
+
+                print(data)
                 return (data, .ok)
             default:
                 return (nil, .fault)
@@ -90,17 +93,26 @@ class TimeLineAPI {
         }
     }
 
-    func postComment(_ file: String, _ content: String) -> Observable<StatusCode> {
-        httpClient.post(.postComment, params: ["file":file, "content":content]).map {response, _ -> StatusCode in
-            switch response.statusCode {
-            case 201:
-                return .ok1
-            case 404:
-                return .noHere
-            default:
-                return .fault
+    func postComment(_ api: YallyURL, _ sound: URL?, _ content: String) -> DataRequest {
+        let urlStr = "\(sound)"
+        let pathArr = urlStr.components(separatedBy: "/")
+        let fileName = String(pathArr.last!)
+
+        return AF.upload(multipartFormData: { (multipartFormData) in
+            do {
+                if sound != nil {
+                    let audioData = try Data(contentsOf: sound!)
+
+                multipartFormData.append(audioData, withName: "file", fileName: fileName, mimeType: "audio/aac")
+                print(audioData)
+                }
+            } catch {
+                print(error)
             }
-        }
+
+            multipartFormData.append(content.data(using: .utf8)!, withName: "content", mimeType: "text/plain")
+
+        }, to: baseURI + api.path, method: .post, headers: api.header)
     }
 
     func deleteComment(_ id: String) -> Observable<StatusCode> {

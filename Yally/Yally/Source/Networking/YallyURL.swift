@@ -15,7 +15,7 @@ enum YallyURL {
     case detailPostComment(id: String)
     case deletePost(id: String)
     case updatePost(id: String)
-    case postComment
+    case postComment(_ id: String)
     case deleteComment(_ id: String)
     case postYally(id: String)
     case cancelYally(id: String)
@@ -30,10 +30,10 @@ enum YallyURL {
             return "/post/\(id)"
         case .detailPostComment(let id):
             return "/post/\(id)/comment"
-        case .postComment:
-            return "/post/commnet/<id>"
-        case .deleteComment(let id):
-            return "/post/commnet/\(id)"
+        case .postComment(let id):
+            return "/post/comment/\(id)"
+        case .deleteComment(let commentid):
+            return "/post/commnet/\(commentid)"
         case .postYally(let id), .cancelYally(let id):
             return "/post/yally/\(id)"
         }

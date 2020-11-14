@@ -21,14 +21,19 @@ class DetailViewController: UIViewController {
     private let deleteText = BehaviorRelay<Int>(value: 0)
     private var yallyIndex = BehaviorRelay<Int>(value: 0)
     private var commentIndex = BehaviorRelay<Int>(value: 0)
+    private var recordFile = BehaviorRelay<URL?>(value: nil)
     private var audioPlayer: AVAudioPlayer?
 
     var selectIndexPath = String()
+    let CommentTextField = InputTextField()
+    var isRecord = BehaviorRelay<Bool>(value: false)
+    var recordingSession: AVAudioSession!
+        var recording: AVAudioRecorder!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addKeyboardNotification()
 
-        let CommentTextField = InputTextField()
         view.addSubview(CommentTextField)
 
         CommentTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -59,9 +64,11 @@ class DetailViewController: UIViewController {
             loadDetail: detailData.asSignal(onErrorJustReturn: ()),
             selectIndexPath: selectIndexPath,
             selectYally: yallyIndex.asSignal(onErrorJustReturn: 0),
-            deletePost:
-                deleteText.asSignal(onErrorJustReturn: 0),
-            deleteCommnet: commentIndex.asSignal(onErrorJustReturn: 0))
+            deletePost: deleteText.asSignal(onErrorJustReturn: 0),
+            deleteCommnet: commentIndex.asSignal(onErrorJustReturn: 0),
+            commentContent: CommentTextField.commentTextView.rx.text.orEmpty.asDriver(),
+            commentRecord: recordFile.asDriver(onErrorJustReturn: nil),
+            commentTap: CommentTextField.sendBtn.rx.tap.asDriver())
         let output = viewModel.transform(input)
 
         DetailViewModel.detailData.asObservable()
@@ -93,6 +100,16 @@ class DetailViewController: UIViewController {
                 }
             }.disposed(by: rx.disposeBag)
 
+        output.postYally.emit(onCompleted: {
+            self.detailTableView.reloadData()
+            DetailViewModel.detailData.accept([])
+        }).disposed(by: rx.disposeBag)
+
+        output.deleteYally.emit(onCompleted: {
+            self.detailTableView.reloadData()
+            DetailViewModel.detailData.accept([])
+        }).disposed(by: rx.disposeBag)
+
         DetailViewModel.detailComment
             .bind(to: commentTableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (row, repository, cell) in
                 cell.userImageView.load(urlString: repository.user.img)
@@ -114,7 +131,104 @@ class DetailViewController: UIViewController {
                 if repository.isMine {
                     cell.deleteCommentBtn.isHidden = false
                 }
+
             }.disposed(by: rx.disposeBag)
+
+        output.postComment.emit(onCompleted: {
+            self.commentTableView.reloadData()
+            DetailViewModel.detailComment.accept([])
+        }).disposed(by: rx.disposeBag)
+
+        CommentTextField.recordBtn.rx.tap.subscribe(onNext: { _ in
+            if !self.isRecord.value {
+                self.startRecording()
+                self.isRecord.accept(true)
+            } else {
+                self.finishRecording(success: true)
+                self.isRecord.accept(false)
+            }
+        }).disposed(by: rx.disposeBag)
+    }
+
+    func setUpView() {
+        recordingSession = AVAudioSession.sharedInstance()
+        do {
+            try? recordingSession.setCategory(.record, mode: .default)
+            try? recordingSession.setActive(true)
+
+            recordingSession.requestRecordPermission { [weak self] allowed in
+                DispatchQueue.main.async {
+                    if allowed {
+                        print("good")
+                    } else {
+                        // failed to record
+                    }
+                }
+            }
+        }
+    }
+
+    func startRecording() {
+        let audioFileName = getFileURL()
+        let setting = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 12000,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
+
+        do {
+            recording = try AVAudioRecorder(url: audioFileName, settings: setting)
+            recording?.delegate = self
+            recording?.record(forDuration: 300)
+        } catch {
+            recording?.stop()
+        }
+    }
+
+    func finishRecording(success: Bool) {
+        recording.stop()
+        if success {
+            print("record successfully")
+        } else {
+            recording = nil
+            print("recording failed!")
+        }
+    }
+
+    func getFileURL() -> URL {
+        let fileName = NSUUID().uuidString + ".aac"
+        return getDocumentsDirectory().appendingPathComponent(fileName)
+    }
+
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+
+    private func addKeyboardNotification() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            UIView.animate(withDuration: 0.3, animations: { self.CommentTextField.transform = CGAffineTransform(translationX: 0, y: -keyboardSize.height) })
+        }
+    }
+
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        self.CommentTextField.transform = .identity
     }
 
     func play(_ sound: String) {
@@ -148,7 +262,6 @@ class DetailViewController: UIViewController {
             print(url)
             let data = try Data(contentsOf: url)
             audioPlayer = try AVAudioPlayer(data: data)
-            print("dd")
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
             audioPlayer!.prepareToPlay()
             audioPlayer!.play()
@@ -169,5 +282,16 @@ class DetailViewController: UIViewController {
 
     @objc func updatePost() {
         print("select")
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+         self.view.endEditing(true)
+   }
+}
+
+extension DetailViewController: AVAudioRecorderDelegate {
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        recordFile.accept(recorder.url)
+        print(recorder.url)
     }
 }
