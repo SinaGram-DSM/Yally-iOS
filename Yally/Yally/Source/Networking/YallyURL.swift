@@ -9,33 +9,33 @@ import Foundation
 import Alamofire
 
 enum YallyURL {
-    case timeLine
+    case timeLine(_ page: Int)
     case createPost
-    case detailPost
-    case detailPostComment
-    case deletePost
-    case updatePost
-    case postComment
-    case deleteComment
-    case postYally
-    case cancelYally
+    case detailPost(id: String)
+    case detailPostComment(id: String)
+    case deletePost(id: String)
+    case updatePost(id: String)
+    case postComment(_ id: String)
+    case deleteComment(_ id: String)
+    case postYally(id: String)
+    case cancelYally(id: String)
 
     var path: String {
         switch self {
-        case .timeLine:
-            return "/timeline/<int:page>"
+        case .timeLine(let page):
+            return "/timeline/\(page)"
         case .createPost:
             return "/post"
-        case .detailPost, .deletePost, .updatePost:
-            return "/post/<id>"
-        case .detailPostComment:
-            return "/post/<id>/comment"
-        case .postComment:
-            return "/post/commnet/<id>"
-        case .deleteComment:
-            return "/post/commnet/<commentId"
-        case .postYally, .cancelYally:
-            return "/post/yally/<id>"
+        case .detailPost(let id), .deletePost(let id), .updatePost(let id):
+            return "/post/\(id)"
+        case .detailPostComment(let id):
+            return "/post/\(id)/comment"
+        case .postComment(let id):
+            return "/post/comment/\(id)"
+        case .deleteComment(let commentid):
+            return "/post/commnet/\(commentid)"
+        case .postYally(let id), .cancelYally(let id):
+            return "/post/yally/\(id)"
         }
     }
 
