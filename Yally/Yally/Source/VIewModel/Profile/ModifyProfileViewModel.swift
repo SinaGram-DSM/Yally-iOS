@@ -22,7 +22,7 @@ class ModifyProfileViewModel: ViewModelType {
     
     struct output {
         let result: Signal<String>
-        let isEnabled: Signal<Bool>
+        let isEnabled: Driver<Bool>
     }
     
     func transform(_ input: input) -> output {
