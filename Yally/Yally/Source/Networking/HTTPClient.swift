@@ -20,7 +20,9 @@ class HTTPClient {
     }
 
     func put(api: YallyURL, params: [String:Any]?) -> HttpResult {
-        return requestData(.put, baseURI + api.path(), parameters: params, encoding: URLEncoding.queryString, headers: api.header())
+        //return requestData(.put, baseURI + api.path(), parameters: params, encoding: URLEncoding.queryString, headers: api.header())
+        
+        return requestData(.put, baseURI + api.path(), parameters: params, headers: api.header())
       }
 
     func delete(api: YallyURL, params: [String: Any]?) -> HttpResult {
@@ -34,6 +36,7 @@ class HTTPClient {
 
 enum StatusCode: Int {
     case ok = 200
+    case success = 201
     case unauthorized = 401
     case overlap = 409
     case JWTdeadline = 403
