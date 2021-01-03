@@ -95,7 +95,7 @@ struct YallyFilter {
     }
 
     static func checkPw(_ pw: String) -> Bool {
-        let pwRegEx = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,16}$"
+        let pwRegEx = "^(?=.*[a-zA-Z0-9])(?=.*[a-zA-Z!@#$%^&*])(?=.*[0-9!@#$%^&*]).{8,15}$"
         let pwTest = NSPredicate(format: "SELF MATCHES %@", pwRegEx)
         return pwTest.evaluate(with: pw)
     }
