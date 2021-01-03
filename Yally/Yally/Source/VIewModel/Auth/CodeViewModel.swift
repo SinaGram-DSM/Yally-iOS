@@ -34,7 +34,7 @@ class CodeViewModel: ViewModelType {
                 switch response {
                 case .ok: result.onCompleted()
                 case .overlap: result.onNext("중복된 이메일입니다.")
-                default: result.onNext("인증번호 보내기 실패")
+                default: result.onNext("이메일 형식이 맞지 않습니다.")
                 }
             }).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)

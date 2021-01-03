@@ -22,6 +22,7 @@ class PinCodeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "회원가입"
 
         self.SGCodeTextFieldError(pinCodeView.text!, pinCodeView)
         setButton(nextBtn)
@@ -30,29 +31,27 @@ class PinCodeViewController: UIViewController {
     }
 
     func setUpUI() {
-        pinCodeView.digitBackgroundColor = #colorLiteral(red: 0.7398572564, green: 0.609362185, blue: 0.9509858489, alpha: 1)
+        pinCodeView.digitBackgroundColor = #colorLiteral(red: 0.8624253869, green: 0.7955209613, blue: 1, alpha: 1)
         pinCodeView.digitBorderColor = .clear
         pinCodeView.digitBorderColorEmpty = .clear
     }
 
     func bindViewModel() {
         self.pinCodeView.textChangeHandler = { [self] (text, completed) in
-            guard let authtext = text else { return }
-            let api = AuthAPI()
-
             self.nextBtn.isSelected = completed
             self.nextBtn.isEnabled = completed
-
-            self.nextBtn.rx.tap.asObservable().subscribe(onNext: {
-                    api.postConfirmCode(email, authtext).subscribe(onNext: { (response) in
-                        switch response {
-                        case .ok: nextWithData()
-                        case .JWTdeadline: SGCodeTextFieldError("재설정 코드가 올바르지 않습니다.", pinCodeView)
-                        default: SGCodeTextFieldError("인증 실패", pinCodeView)
-                        }
-                    }).disposed(by: rx.disposeBag)
-            }).disposed(by: rx.disposeBag)
         }
+
+        self.nextBtn.rx.tap.asObservable().subscribe(onNext: {
+            let api = AuthAPI()
+            api.postConfirmCode(self.email, self.pinCodeView.text!).subscribe(onNext: { (response) in
+                    switch response {
+                    case .ok: self.nextWithData()
+                    case .unauthorized: self.SGCodeTextFieldError("재설정 코드가 올바르지 않습니다.", self.pinCodeView)
+                    default: self.SGCodeTextFieldError("인증 실패", self.pinCodeView)
+                    }
+            }).disposed(by: self.rx.disposeBag)
+        }).disposed(by: rx.disposeBag)
     }
 
     func nextWithData() {

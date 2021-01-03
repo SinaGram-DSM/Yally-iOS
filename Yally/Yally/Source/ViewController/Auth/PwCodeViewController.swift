@@ -17,8 +17,10 @@ class PwCodeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "로그인"
 
-        self.SGCodeTextFieldError(pinCode.text!, pinCode)
+        setButton(nextBtn)
+//        self.SGCodeTextFieldError(pinCode.text!, pinCode)
         setUpUI()
         bindViewModel()
     }
@@ -33,8 +35,11 @@ class PwCodeViewController: UIViewController {
         self.pinCode.textChangeHandler = { [self] (text, completed) in
             self.nextBtn.isSelected = completed
             self.nextBtn.isEnabled = completed
-            nextWithData()
         }
+
+        nextBtn.rx.tap.subscribe(onNext: { _ in
+            self.nextWithData()
+        }).disposed(by: rx.disposeBag)
     }
 
     func nextWithData() {
