@@ -31,6 +31,8 @@ class AuthAPI {
     func postConfirmCode(_ email: String, _ code: String) -> Observable<StatusCode> {
         httpClient.post(.authConfirm, params: ["email": email, "code": code])
             .map { (response, _) -> StatusCode in
+                print(response.statusCode)
+                print(code)
                 switch response.statusCode {
                 case 200:
                     print("Correct User")
@@ -52,7 +54,7 @@ class AuthAPI {
                                           "age": userAge])
             .map { (response, _) -> StatusCode in
                 switch response.statusCode {
-                case 200:
+                case 201:
                     print("Create New User")
                     return .ok
                 case 409:
@@ -82,8 +84,8 @@ class AuthAPI {
 
                         if TokenUtils.shared.createUser(user) { return .ok }
 
+                        print("Return fault")
                         return .fault
-                    //return .ok
                     case 404:
                         print("No User")
                         return .noHere
@@ -107,6 +109,7 @@ class AuthAPI {
 
     func putNewPw(_ email: String, _ code: String, _ password: String) -> Observable<StatusCode> {
         httpClient.put(.modifyPassword, params: ["email": email, "code": code, "password" : password]).map { response, _ -> StatusCode in
+            print(response.statusCode)
             switch response.statusCode {
             case 200:
                 return .ok
