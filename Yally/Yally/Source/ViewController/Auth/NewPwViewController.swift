@@ -27,10 +27,10 @@ class NewPwViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "로그인"
 
         setUpUI()
         bindViewModel()
-        // Do any additional setup after loading the view.
     }
 
     func setUpUI() {
@@ -47,6 +47,7 @@ class NewPwViewController: UIViewController {
             }
         }).disposed(by: rx.disposeBag)
     }
+
     func bindViewModel() {
         let input = NewPwViewModel.input(
             userEmail: Driver.just(email),

@@ -23,6 +23,7 @@ class SingUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "회원가입"
 
         setUpUI()
         bindViewModel()

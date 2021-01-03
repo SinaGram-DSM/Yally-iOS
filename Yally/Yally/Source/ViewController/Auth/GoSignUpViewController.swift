@@ -26,6 +26,10 @@ class GoSignUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "회원가입"
+
+        self.setButton(signUpBtn)
+        signUpBtn.isEnabled = false
 
         setUpUI()
         bindViewModel()
@@ -62,9 +66,11 @@ class GoSignUpViewController: UIViewController {
         output.isEnable.drive(onNext: { _ in
             self.setButton(self.signUpBtn)
         }).disposed(by: rx.disposeBag)
+
         output.result.emit(onNext: {
             self.setUpErrorMessage(self.nameErrorLabel, title: $0, superTextField: self.nameTextField)
         }, onCompleted: {
+            print("회원가입 성공")
             self.nextScene(identifier: "signInVC")
         }).disposed(by: rx.disposeBag)
 

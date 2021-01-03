@@ -36,9 +36,9 @@ class NewPwViewModel: ViewModelType {
         input.doneTap.withLatestFrom(info).asObservable().subscribe(onNext: { userE, userC, userR in
             api.putNewPw(userE, userC, userR).subscribe(onNext: { response in
                 switch response {
-                case .ok1: result.onCompleted()
+                case .ok: result.onCompleted()
                 case .overlap: result.onNext("인증코드가 이상합니다.")
-                default: result.onError(Error.self as! Error)
+                default: result.onNext("비밀번호 재설정 실패")
                 }
             }).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)

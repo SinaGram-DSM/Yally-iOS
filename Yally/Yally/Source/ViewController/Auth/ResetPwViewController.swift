@@ -17,6 +17,7 @@ class ResetPwViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "로그인"
 
         setUpUI()
         bindViewModel()
