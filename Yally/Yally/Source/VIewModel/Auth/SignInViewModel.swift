@@ -25,9 +25,6 @@ class SignInViewModel: ViewModelType {
     }
 
     func transform(_ input: SignInViewModel.input) -> SignInViewModel.output {
-        //info에서 combineLatest 사용해서 입력될 때 마다 ...
-        //isEnable에서 Email, Pw 둘 다 Empty가 아닐 때 isEnable
-
         let api = AuthAPI()
         let info = Driver.combineLatest( input.userEmail, input.userPw )
         let result = PublishSubject<String>()
@@ -35,6 +32,7 @@ class SignInViewModel: ViewModelType {
 
         input.doneTap.withLatestFrom(info).asObservable().subscribe(onNext: { (userEmail, userPw) in
             api.postSignIn(userEmail, userPw).subscribe(onNext: { (response) in
+                print(response)
                 switch response {
                 case .ok: result.onCompleted()
                 case .noHere: result.onNext("유효하지 않은 이메일")

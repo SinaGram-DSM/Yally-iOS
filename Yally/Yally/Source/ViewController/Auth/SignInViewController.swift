@@ -9,6 +9,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import NSObject_Rx
+import TextFieldEffects
 
 class SignInViewController: UIViewController {
 
@@ -28,6 +29,10 @@ class SignInViewController: UIViewController {
         emailTextField.clearButtonMode = .whileEditing
         pwTextField.clearButtonMode = .whileEditing
         bindViewModel()
+
+        forgotPwBtn.rx.tap.subscribe(onNext: {
+            self.nextScene(identifier: "Reset")
+        }).disposed(by: rx.disposeBag)
     }
 
     func setUpUI() {
@@ -48,7 +53,7 @@ class SignInViewController: UIViewController {
         output.isEnable.drive(onNext: {_ in
             self.setButton(self.signInBtn)
         }).disposed(by: rx.disposeBag)
-        //이
-        output.result.emit(onCompleted: { [unowned self] in nextScene(identifier: "main")}).disposed(by: rx.disposeBag)
+
+        output.result.emit(onNext: { message in self.setUpErrorMessage(self.errorLabel, title: message, superTextField: self.pwTextField)}, onCompleted: { [unowned self] in nextScene(identifier: "main")}).disposed(by: rx.disposeBag)
     }
 }
