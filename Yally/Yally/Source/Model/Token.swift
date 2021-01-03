@@ -8,6 +8,6 @@
 import Foundation
 
 struct Token: Codable {
-    var accesstoekn: String
+    var accessToken: String
     var refreshToken: String
 }

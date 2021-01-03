@@ -44,7 +44,7 @@ enum YallyURL {
             guard let token = TokenManager.currentToken?.refreshToken else { return nil }
             return ["Authorization" : "Bearer " + token]
         default:
-            guard let token = TokenManager.currentToken?.accesstoekn else { return nil }
+            guard let token = TokenManager.currentToken?.accessToken else { return nil }
             return ["Authorization" : "Bearer " + token]
         }
     }
