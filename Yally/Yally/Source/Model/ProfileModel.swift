@@ -7,10 +7,14 @@
 
 import Foundation
 
-struct ProfileModel: Codable {
-    let profileImage: String
-    let nickname:String
-    let listening: Int
+class ProfileModel: Codable {
+    let nickname: String
+    let image: String
     let listener: Int
-    let email: String
+    let listening: Int
+    let Listening: Bool
+}
+
+class Listening: Codable {
+    let listening: [ProfileModel]
 }
