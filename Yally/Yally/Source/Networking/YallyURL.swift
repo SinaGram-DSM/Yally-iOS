@@ -18,6 +18,7 @@ enum YallyURL {
     case listenerList(_ email: String)
     case mypageTimeLine(_ email: String)
     case modifyprofile
+    case profileTimeLine(_ email: String, _ page: Int)
 
     func path() -> String {
 
@@ -25,13 +26,16 @@ enum YallyURL {
         case .profileValue(let email):
             return "/profile/\(email)"
         case .listeningList(let email):
-            return " /profile\(email)"
+            return " /profile/\(email)"
         case .listenerList(let email):
-            return "/profile\(email)"
+            return "/profile/\(email)"
         case .mypageTimeLine(let email):
-            return "/profile\(email)"
+            return "/profile/\(email)"
         case .modifyprofile:
             return "/profile/"
+        case .profileTimeLine(let email, let page):
+            return "/mypage/timeline/\(email)/\(page)"
+
         default:
             return ""
 
@@ -41,8 +45,11 @@ enum YallyURL {
     func header() -> HTTPHeaders? {
         switch self {
 
+        case .modifyprofile:
+            return ["Authorization" : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDkwMDM2NDksIm5iZiI6MTYwOTAwMzY0OSwianRpIjoiN2Q4YzI0OTgtMDBiMy00ZTdiLTlhNzgtNTM1MjU5Nzg1MzBiIiwiZXhwIjoxNjE3NjQzNjQ5LCJpZGVudGl0eSI6ImFkbWluMTIzQGdtYWlsLmNvbSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.9GNR6d8v33lqNrg5UuljZRPN6fi-t7rNPCFO60VlVwM"]
+
         default:
-            return ["Authorization" : "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDEzNTAyNzUsIm5iZiI6MTYwMTM1MDI3NSwianRpIjoiNjM1ZTk3OWItNjczZC00ZmI5LTg3MmEtZDE2MjdjNGQyYTBlIiwiZXhwIjoxNjA5OTkwMjc1LCJpZGVudGl0eSI6ImFkbWluQGdtYWlsLmNvbSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.3fLkBFWZ9N0Cq0xGEXZzVeKjNvkqkVdREsMOJwbtzy8"]
+            return ["Authorization" : "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MDkwMDM2NDksIm5iZiI6MTYwOTAwMzY0OSwianRpIjoiN2Q4YzI0OTgtMDBiMy00ZTdiLTlhNzgtNTM1MjU5Nzg1MzBiIiwiZXhwIjoxNjE3NjQzNjQ5LCJpZGVudGl0eSI6ImFkbWluMTIzQGdtYWlsLmNvbSIsImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.9GNR6d8v33lqNrg5UuljZRPN6fi-t7rNPCFO60VlVwM"]
         }
     }
 
