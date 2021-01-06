@@ -37,19 +37,18 @@ class ModifyViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 
-        nickNameTxtField.underLine()
         bindAction()
         setUI()
         bindViewModel()
     }
 
     func bindViewModel() {
-        
+
         let api = ProfileAPI()
         let input = ModifyProfileViewModel.input(nickName: nickNameTxtField.rx.text.orEmpty.asDriver(onErrorJustReturn: "" ), userImage: image.asDriver(), doneTap: saveBtn.rx.tap.asSignal())
 
         let output = viewModel.transform(input)
-        
+
         output.result.emit(onCompleted: { self.navigationController?.popViewController(animated: true)}
         ).disposed(by: rx.disposeBag)
     }
@@ -61,9 +60,10 @@ class ModifyViewController: UIViewController {
         imageButton.layer.cornerRadius = imageButton.frame.width/2
         imageButton.layer.backgroundColor = UIColor.white.cgColor
 
+        nickNameTxtField.underLine()
     }
 
-    func bindAction() { 
+    func bindAction() {
         imageButton.rx.tap.subscribe(onNext: { _ in
             self.imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
             self.imagePicker.allowsEditing = false
@@ -74,15 +74,19 @@ class ModifyViewController: UIViewController {
             let vc = self.storyboard!.instantiateViewController(withIdentifier: "profile") as! ProfileViewController
             let navigation = UINavigationController(rootViewController: vc)
         }).disposed(by: disposeBag)
-        
-        logOutBtn.rx.tap.subscribe(onNext:  { _ in
-            UserDefaults.standard.set(false, forKey: "")
-            UserDefaults.standard.synchronize()
-            
-            let vc = self.storyboard?.instantiateViewController(withIdentifier: "firstpage") as! ViewController /*첫화면 vc로 바꾸기*/
-            let appDel: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-           // appDel.window?.rootViewController = 뷰컨트롤러
+
+        logOutBtn.rx.tap.subscribe(onNext: { _ in
+            let alert = UIAlertController(title: "로그아웃", message: "로그아웃 하시겠습니까?", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "네", style: .default) { _ in
+                UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
+            }
+            let noAction = UIAlertAction(title: "아니요", style: .default)
+            alert.addAction(okAction)
+            alert.addAction(noAction)
+
+            self.present(alert, animated: false, completion: nil)
         }).disposed(by: disposeBag)
+
     }
 
 }
