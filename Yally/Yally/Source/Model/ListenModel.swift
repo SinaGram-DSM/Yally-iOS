@@ -19,11 +19,11 @@ class target: Codable {
 }
 
 class listen: Codable {
-    let listen: [listening]
+    let listen: [listenings]
 }
 
-class listening: Codable {
-    let nickname: String
+class listenings: Codable {
+    let nickname:  String
     let image: String
     let listener: Int
     let listening: Int

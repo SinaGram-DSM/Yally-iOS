@@ -9,7 +9,7 @@ import Foundation
 
 class ProfileModel: Codable {
     let nickname: String
-    let image: String
+    let image: Data
     let listener: Int
     let listening: Int
     let Listening: Bool
