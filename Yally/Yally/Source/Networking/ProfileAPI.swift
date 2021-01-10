@@ -77,10 +77,10 @@ class ProfileAPI {
                 }
             }
     }
-    
+
     func putModifyProfile() -> Observable<(ProfileModel?, StatusCode)> {
         return httpClient.put(api: .modifyprofile, params: nil)
-            .map{ (response, data) -> (ProfileModel?, StatusCode) in
+            .map { (response, data) -> (ProfileModel?, StatusCode) in
                 switch response.statusCode {
                 case 201:
                     guard let data = try? JSONDecoder().decode(ProfileModel.self, from: data) else {
@@ -94,7 +94,7 @@ class ProfileAPI {
                 }
             }
     }
-    
+
     func getTimeLine(_ email: String, _ page: Int) -> Observable<(posts?, StatusCode)> {
         return httpClient.get(api: .profileTimeLine(email, page), param: nil)
             .map { (response, data) -> (posts?, StatusCode) in
@@ -124,4 +124,3 @@ class ProfileAPI {
         }
 
 }
-
