@@ -186,6 +186,7 @@
 			children = (
 				9F08475A2585192200D35D22 /* Profile */,
 				EBFC7B41252748370082E0EE /* ViewModelType.swift */,
+				9FDCD1542528A004003CFEF9 /* ProfileViewModel.swift */,
 			);
 			path = VIewModel;
 			sourceTree = "<group>";
@@ -207,6 +208,7 @@
 			children = (
 				9FB0ED2B253ECCD200E23485 /* Profile */,
 				EBFC7AF72525DB950082E0EE /* ViewController.swift */,
+				9FDCD13525277DB7003CFEF9 /* ProfileViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
