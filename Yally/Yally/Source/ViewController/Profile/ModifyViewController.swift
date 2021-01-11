@@ -24,7 +24,7 @@ class ModifyViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel = ModifyProfileViewModel()
     private let loadData = BehaviorSubject<Void>(value: ())
-    private let image = BehaviorRelay<String>(value: "")
+    private let image = BehaviorRelay<Data?>(value: nil)
 
     lazy var imagePicker: UIImagePickerController = {
         let picker: UIImagePickerController = UIImagePickerController()
@@ -44,9 +44,8 @@ class ModifyViewController: UIViewController {
 
     func bindViewModel() {
 
-        let api = ProfileAPI()
-        let input = ModifyProfileViewModel.input(nickName: nickNameTxtField.rx.text.orEmpty.asDriver(onErrorJustReturn: "" ), userImage: image.asDriver(), doneTap: saveBtn.rx.tap.asSignal())
-
+        // let api = ProfileAPI()
+        let input = ModifyProfileViewModel.input(nickName: nickNameTxtField.rx.text.orEmpty.asDriver(onErrorJustReturn: "" ), userImage: image.asDriver(onErrorJustReturn: nil), doneTap: saveBtn.rx.tap.asSignal())
         let output = viewModel.transform(input)
 
         output.result.emit(onCompleted: { self.navigationController?.popViewController(animated: true)}
@@ -78,6 +77,7 @@ class ModifyViewController: UIViewController {
         logOutBtn.rx.tap.subscribe(onNext: { _ in
             let alert = UIAlertController(title: "로그아웃", message: "로그아웃 하시겠습니까?", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "네", style: .default) { _ in
+                //앱 처음으로 돌아가는 코드로 변경하기
                 UIControl().sendAction(#selector(URLSessionTask.suspend), to: UIApplication.shared, for: nil)
             }
             let noAction = UIAlertAction(title: "아니요", style: .default)
@@ -91,8 +91,14 @@ class ModifyViewController: UIViewController {
 
 }
 
-extension UIViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+extension ModifyViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            profileImage.image = image
+            profileImage.isHidden = false
+        }
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension UITextField {
