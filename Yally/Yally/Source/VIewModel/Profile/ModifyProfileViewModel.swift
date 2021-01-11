@@ -16,7 +16,7 @@ class ModifyProfileViewModel: ViewModelType {
 
     struct input {
         let nickName: Driver<String>
-        let userImage: Driver<Data>
+        let userImage: Driver<Data?>
         let doneTap: Signal<Void>
     }
 
@@ -30,7 +30,7 @@ class ModifyProfileViewModel: ViewModelType {
         let result = PublishSubject<String>()
         let info = Driver.combineLatest(input.nickName, input.userImage)
         let isEnabled = info.map { !$0.0.isEmpty }
-        
+
         input.doneTap.withLatestFrom(info).asObservable().subscribe(onNext: { nickname, image in
             api.formData(.modifyprofile, param: ["nickname" : nickname], img: image ?? nil).responseJSON { (response) in
                 switch response.response?.statusCode {
@@ -40,6 +40,7 @@ class ModifyProfileViewModel: ViewModelType {
                     result.onNext("변경실패")
                 default:
                     result.onNext("default")
+
                 }
             }
         }).disposed(by: disposeBag)
