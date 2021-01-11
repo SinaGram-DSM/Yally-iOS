@@ -20,11 +20,11 @@ class ListenerTableViewCell: UITableViewCell {
 //    @IBOutlet weak var nameLabel: UILabel!
 //    @IBOutlet weak var lastLabel: UILabel!
 
-    var listenerData:ProfileModel! {
+    var listenerData:listenings! {
         didSet { setupView() }
     }
-    
-    private func setupView(){
+
+    private func setupView() {
         self.profileImage?.image = UIImage(named: listenerData.image)
         self.nickNameLabel?.text = listenerData.nickname
 
