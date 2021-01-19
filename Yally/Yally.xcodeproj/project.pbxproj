@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D473E10541457F787D0F8511 /* Pods_Yally.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */; };
+
 		EB4BC155253B6D6600BDCAE0 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC153253B6D6600BDCAE0 /* Token.swift */; };
 		EB4BC156253B6D6600BDCAE0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC154253B6D6600BDCAE0 /* User.swift */; };
 		EB4BC159253B6D7500BDCAE0 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4BC158253B6D7500BDCAE0 /* AuthAPI.swift */; };
@@ -46,6 +47,7 @@
 		585F0FE9F9FE993DDF61E808 /* Pods-Yally.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.debug.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.debug.xcconfig"; sourceTree = "<group>"; };
 		C5A29CF9D543F12354D518B3 /* Pods_Yally.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yally.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E831A54DDBB2E41C748399B8 /* Pods-Yally.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yally.release.xcconfig"; path = "Target Support Files/Pods-Yally/Pods-Yally.release.xcconfig"; sourceTree = "<group>"; };
+
 		EB4BC153253B6D6600BDCAE0 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		EB4BC154253B6D6600BDCAE0 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EB4BC158253B6D7500BDCAE0 /* AuthAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
@@ -261,6 +263,8 @@
 			isa = PBXGroup;
 			children = (
 				EBFC7B38252747FF0082E0EE /* TestViewController.swift */,
+				EBEBE4A2253B78AC00C7E100 /* MainTableViewCell.swift */,
+				EBEBE4A3253B78AC00C7E100 /* MainTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -338,6 +342,7 @@
 				EB4BC15C253B6DAD00BDCAE0 /* Auth.storyboard in Resources */,
 				EBFC7AFD2525DB970082E0EE /* Assets.xcassets in Resources */,
 				EBFC7AFB2525DB950082E0EE /* Main.storyboard in Resources */,
+				EBEBE4A5253B78AC00C7E100 /* MainTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
