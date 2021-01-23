@@ -35,7 +35,7 @@ class GoSignUpViewController: UIViewController {
         bindViewModel()
     }
 
-    func setupUI() {
+    private func setupUI() {
         signUpBtn.rx.tap.subscribe(onNext: {
             if !YallyFilter.checkPw(self.pwTextField.text!) {
                 self.textFieldErrorMessage(self.pwErrorLabel, title: "비밀번호 형식이 맞지 않습니다.", superTextField: self.pwTextField)
@@ -51,7 +51,7 @@ class GoSignUpViewController: UIViewController {
         }).disposed(by: rx.disposeBag)
     }
 
-    func bindViewModel() {
+    private func bindViewModel() {
         let age = ageTextField.rx.text.orEmpty.asDriver()
         let input = SignUpViewModel.input(
             userEmail: Driver<String>.just(email),

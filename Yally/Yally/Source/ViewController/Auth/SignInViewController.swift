@@ -35,7 +35,7 @@ class SignInViewController: UIViewController {
         }).disposed(by: rx.disposeBag)
     }
 
-    func bindViewModel() {
+    private func bindViewModel() {
         let input = SignInViewModel.input(userEmail: emailTextField.rx.text.orEmpty.asDriver(),
                                           userPw: pwTextField.rx.text.orEmpty.asDriver(),
                                           doneTap: signInBtn.rx.tap.asSignal())

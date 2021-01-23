@@ -31,7 +31,7 @@ class SplashViewController: UIViewController {
         bar.shadowImage = UIImage()
     }
 
-    func setupUI() {
+    private func setupUI() {
         loginBtn.rx.tap.asObservable().subscribe(onNext: {
             self.pushVC(identifier: "signInVC")
         }).disposed(by: rx.disposeBag)

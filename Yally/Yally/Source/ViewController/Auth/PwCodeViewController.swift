@@ -25,13 +25,13 @@ class PwCodeViewController: UIViewController {
         bindViewModel()
     }
 
-    func setupUI() {
+    private func setupUI() {
         pinCode.digitBackgroundColor = #colorLiteral(red: 0.7398572564, green: 0.609362185, blue: 0.9509858489, alpha: 1)
         pinCode.digitBorderColor = .clear
         pinCode.digitBorderColorEmpty = .clear
     }
 
-    func bindViewModel() {
+    private func bindViewModel() {
         self.pinCode.textChangeHandler = { [unowned self] (text, completed) in
             self.nextBtn.isSelected = completed
             self.nextBtn.isEnabled = completed
@@ -42,7 +42,7 @@ class PwCodeViewController: UIViewController {
         }).disposed(by: rx.disposeBag)
     }
 
-    func pushWithData() {
+    private func pushWithData() {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "newPw") as? NewPwViewController else { return }
         vc.email = email
         vc.authCode = pinCode.text!

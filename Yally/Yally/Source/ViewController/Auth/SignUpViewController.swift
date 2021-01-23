@@ -29,7 +29,7 @@ class SingUpViewController: UIViewController {
         bindViewModel()
     }
 
-    func setupUI() {
+    private func setupUI() {
         nextBtn.rx.tap
             .subscribe(onNext: {
                 if YallyFilter.checkEmail(self.emailTextField.text!) {
@@ -40,7 +40,7 @@ class SingUpViewController: UIViewController {
             }).disposed(by: rx.disposeBag)
     }
 
-    func bindViewModel() {
+    private func bindViewModel() {
         let input = CodeViewModel.input(email: emailTextField.rx.text.orEmpty.asDriver(),
                                         doneTap: nextBtn.rx.tap.asSignal())
         let output = viewModel.transform(input)
@@ -52,10 +52,10 @@ class SingUpViewController: UIViewController {
 
         output.result.emit(onNext: { [unowned self] in
             self.textFieldErrorMessage(self.placeLabel, title: $0, superTextField: self.emailTextField)
-        }, onCompleted: { [unowned self] in nextWithData()}).disposed(by: rx.disposeBag)
+        }, onCompleted: { [unowned self] in pushWithData()}).disposed(by: rx.disposeBag)
     }
 
-    func nextWithData() {
+    private func pushWithData() {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "pinCode") as? PinCodeViewController else { return }
         vc.email = emailTextField.text!
         self.navigationController?.pushViewController(vc, animated: true)

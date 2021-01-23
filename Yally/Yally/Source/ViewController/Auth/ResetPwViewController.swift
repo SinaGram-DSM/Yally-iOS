@@ -24,7 +24,7 @@ class ResetPwViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    func setupUI() {
+    private func setupUI() {
         nextBtn.rx.tap
             .subscribe(onNext: {
                 if YallyFilter.checkEmail(self.emailTextField.text!) {
@@ -35,7 +35,7 @@ class ResetPwViewController: UIViewController {
             }).disposed(by: rx.disposeBag)
     }
 
-    func bindViewModel() {
+    private func bindViewModel() {
         let input = ResetViewModel.input(email: emailTextField.rx.text.orEmpty.asDriver(),
             doneTap: nextBtn.rx.tap.asSignal())
         let output = viewModel.transform(input)
@@ -47,10 +47,10 @@ class ResetPwViewController: UIViewController {
 
         output.result.emit(onNext: { [unowned self] in
             self.textFieldErrorMessage(self.errorLabel, title: $0, superTextField: self.emailTextField)
-        }, onCompleted: { [unowned self] in nextWithData()}).disposed(by: rx.disposeBag)
+        }, onCompleted: { [unowned self] in pushWithData()}).disposed(by: rx.disposeBag)
     }
 
-    func nextWithData() {
+    private func pushWithData() {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "PwPinCode") as? PwCodeViewController else { return }
         vc.email = emailTextField.text!
         self.navigationController?.pushViewController(vc, animated: true)

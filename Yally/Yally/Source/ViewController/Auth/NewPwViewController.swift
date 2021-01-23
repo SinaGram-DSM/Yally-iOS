@@ -33,7 +33,7 @@ class NewPwViewController: UIViewController {
         bindViewModel()
     }
 
-    func setupUI() {
+    private func setupUI() {
         resetBtn.rx.tap.subscribe(onNext: {
             if !YallyFilter.checkPw(self.pwTextField.text!) {
                 self.textFieldErrorMessage(self.pwErrorLabel, title: "비밀번호 형식이 맞지 않습니다.", superTextField: self.pwTextField)
@@ -48,7 +48,7 @@ class NewPwViewController: UIViewController {
         }).disposed(by: rx.disposeBag)
     }
 
-    func bindViewModel() {
+    private func bindViewModel() {
         let input = NewPwViewModel.input(
             userEmail: Driver.just(email),
             userCode: Driver.just(authCode),

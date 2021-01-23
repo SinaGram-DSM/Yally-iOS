@@ -30,13 +30,13 @@ class PinCodeViewController: UIViewController {
         setupUI()
     }
 
-    func setupUI() {
+    private func setupUI() {
         pinCodeView.digitBackgroundColor = #colorLiteral(red: 0.8624253869, green: 0.7955209613, blue: 1, alpha: 1)
         pinCodeView.digitBorderColor = .clear
         pinCodeView.digitBorderColorEmpty = .clear
     }
 
-    func bindViewModel() {
+    private func bindViewModel() {
         self.pinCodeView.textChangeHandler = { [self] (text, completed) in
             self.nextBtn.isSelected = completed
             self.nextBtn.isEnabled = completed
@@ -54,7 +54,7 @@ class PinCodeViewController: UIViewController {
         }).disposed(by: rx.disposeBag)
     }
 
-    func pushWithData() {
+    private func pushWithData() {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "inputUser") as? GoSignUpViewController else { return }
         vc.email = email
         self.navigationController?.pushViewController(vc, animated: true)
