@@ -13,10 +13,10 @@ import NSObject_Rx
 
 class SingUpViewController: UIViewController {
 
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var nextBtn: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subTitleLabel: UILabel!
+    @IBOutlet weak private var emailTextField: UITextField!
+    @IBOutlet weak private var nextBtn: UIButton!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var subTitleLabel: UILabel!
 
     private let viewModel = CodeViewModel()
     private let placeLabel = UILabel()

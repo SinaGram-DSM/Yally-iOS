@@ -12,16 +12,16 @@ import NSObject_Rx
 
 class SplashViewController: UIViewController {
 
-    @IBOutlet weak var splashImage: UIImageView!
-    @IBOutlet weak var LoginBtn: UIButton!
-    @IBOutlet weak var SignBtn: UIButton!
-    @IBOutlet weak var circleView: UIView!
+    @IBOutlet weak private var splashImage: UIImageView!
+    @IBOutlet weak private var loginBtn: UIButton!
+    @IBOutlet weak private var SignBtn: UIButton!
+    @IBOutlet weak private var circleView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
-        addGradient(LoginBtn)
+        addGradient(loginBtn)
 
         splashImage.image = UIImage(named: "SplashImg")
         circleView.layer.cornerRadius = 30

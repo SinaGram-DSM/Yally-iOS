@@ -10,8 +10,8 @@ import SGCodeTextField
 
 class PwCodeViewController: UIViewController {
 
-    @IBOutlet weak var pinCode: SGCodeTextField!
-    @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak private var pinCode: SGCodeTextField!
+    @IBOutlet weak private var nextBtn: UIButton!
 
     var email = String()
 

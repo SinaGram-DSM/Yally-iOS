@@ -13,10 +13,10 @@ import TextFieldEffects
 
 class SignInViewController: UIViewController {
 
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var pwTextField: UITextField!
-    @IBOutlet weak var signInBtn: UIButton!
-    @IBOutlet weak var forgotPwBtn: UIButton!
+    @IBOutlet weak private var emailTextField: UITextField!
+    @IBOutlet weak private var pwTextField: UITextField!
+    @IBOutlet weak private var signInBtn: UIButton!
+    @IBOutlet weak private var forgotPwBtn: UIButton!
 
     private let viewModel = SignInViewModel()
     private let errorLabel = UILabel()

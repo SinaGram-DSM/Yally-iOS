@@ -12,9 +12,9 @@ import NSObject_Rx
 
 class NewPwViewController: UIViewController {
 
-    @IBOutlet weak var pwTextField: UITextField!
-    @IBOutlet weak var repwTextField: UITextField!
-    @IBOutlet weak var resetBtn: UIButton!
+    @IBOutlet weak private var pwTextField: UITextField!
+    @IBOutlet weak private var repwTextField: UITextField!
+    @IBOutlet weak private var resetBtn: UIButton!
 
     var email = String()
     var authCode = String()

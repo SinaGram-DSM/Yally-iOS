@@ -11,11 +11,11 @@ import RxCocoa
 
 class GoSignUpViewController: UIViewController {
 
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var ageTextField: UITextField!
-    @IBOutlet weak var pwTextField: UITextField!
-    @IBOutlet weak var repwTextField: UITextField!
-    @IBOutlet weak var signUpBtn: UIButton!
+    @IBOutlet weak private var nameTextField: UITextField!
+    @IBOutlet weak private var ageTextField: UITextField!
+    @IBOutlet weak private var pwTextField: UITextField!
+    @IBOutlet weak private var repwTextField: UITextField!
+    @IBOutlet weak private var signUpBtn: UIButton!
 
     var email = String()
 

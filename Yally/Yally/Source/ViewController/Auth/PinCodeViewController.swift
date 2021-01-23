@@ -13,10 +13,10 @@ import NSObject_Rx
 
 class PinCodeViewController: UIViewController {
 
-    @IBOutlet weak var pinCodeView: SGCodeTextField!
-    @IBOutlet weak var nextBtn: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var subTitleLabel: UILabel!
+    @IBOutlet weak private var pinCodeView: SGCodeTextField!
+    @IBOutlet weak private var nextBtn: UIButton!
+    @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var subTitleLabel: UILabel!
 
     var email = String()
 

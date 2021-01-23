@@ -9,8 +9,8 @@ import UIKit
 
 class ResetPwViewController: UIViewController {
 
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var nextBtn: UIButton!
+    @IBOutlet weak private var emailTextField: UITextField!
+    @IBOutlet weak private var nextBtn: UIButton!
 
     private let viewModel = ResetViewModel()
     private let errorLabel = UILabel()
