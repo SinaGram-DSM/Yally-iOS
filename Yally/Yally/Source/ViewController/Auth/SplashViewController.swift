@@ -32,7 +32,7 @@ class SplashViewController: UIViewController {
     }
 
     func setupUI() {
-        LoginBtn.rx.tap.asObservable().subscribe(onNext: {
+        loginBtn.rx.tap.asObservable().subscribe(onNext: {
             self.pushVC(identifier: "signInVC")
         }).disposed(by: rx.disposeBag)
 
