@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-class AuthAPI {
+final class AuthAPI {
     private let request = HTTPClient()
 
     func postAuthCode(userEmail: String) -> Observable<StatusCode> {
