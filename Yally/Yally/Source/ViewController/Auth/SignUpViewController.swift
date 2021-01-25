@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 import NSObject_Rx
 
-class SingUpViewController: UIViewController {
+final class SingUpViewController: UIViewController {
 
     @IBOutlet weak private var emailTextField: UITextField!
     @IBOutlet weak private var nextBtn: UIButton!

@@ -11,7 +11,7 @@ import RxSwift
 import NSObject_Rx
 import TextFieldEffects
 
-class SignInViewController: UIViewController {
+final class SignInViewController: UIViewController {
 
     @IBOutlet weak private var emailTextField: UITextField!
     @IBOutlet weak private var pwTextField: UITextField!

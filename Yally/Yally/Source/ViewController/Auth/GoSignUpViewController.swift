@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class GoSignUpViewController: UIViewController {
+final class GoSignUpViewController: UIViewController {
 
     @IBOutlet weak private var nameTextField: UITextField!
     @IBOutlet weak private var ageTextField: UITextField!

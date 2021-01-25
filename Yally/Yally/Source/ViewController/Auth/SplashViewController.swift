@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 
-class SplashViewController: UIViewController {
+final class SplashViewController: UIViewController {
 
     @IBOutlet weak private var splashImage: UIImageView!
     @IBOutlet weak private var loginBtn: UIButton!

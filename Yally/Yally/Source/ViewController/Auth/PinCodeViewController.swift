@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 
-class PinCodeViewController: UIViewController {
+final class PinCodeViewController: UIViewController {
 
     @IBOutlet weak private var pinCodeView: SGCodeTextField!
     @IBOutlet weak private var nextBtn: UIButton!

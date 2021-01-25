@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ResetPwViewController: UIViewController {
+final class ResetPwViewController: UIViewController {
 
     @IBOutlet weak private var emailTextField: UITextField!
     @IBOutlet weak private var nextBtn: UIButton!

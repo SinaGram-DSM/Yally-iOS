@@ -8,7 +8,7 @@
 import UIKit
 import SGCodeTextField
 
-class PwCodeViewController: UIViewController {
+final class PwCodeViewController: UIViewController {
 
     @IBOutlet weak private var pinCode: SGCodeTextField!
     @IBOutlet weak private var nextBtn: UIButton!

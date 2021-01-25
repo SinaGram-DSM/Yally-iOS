@@ -10,7 +10,7 @@ import RxCocoa
 import RxSwift
 import NSObject_Rx
 
-class NewPwViewController: UIViewController {
+final class NewPwViewController: UIViewController {
 
     @IBOutlet weak private var pwTextField: UITextField!
     @IBOutlet weak private var repwTextField: UITextField!
