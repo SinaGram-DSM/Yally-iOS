@@ -22,9 +22,9 @@ final class PinCodeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "회원가입"
+        navigationItem.title = "회원가입"
 
-        self.pinCodeErrorMessage(pinCodeView.text!, pinCodeView)
+        pinCodeErrorMessage(pinCodeView.text!, pinCodeView)
         addGradient(nextBtn)
         bindViewModel()
         setupUI()
@@ -37,20 +37,20 @@ final class PinCodeViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        self.pinCodeView.textChangeHandler = { [self] (text, completed) in
-            self.nextBtn.isSelected = completed
-            self.nextBtn.isEnabled = completed
+        pinCodeView.textChangeHandler = { [self] (text, completed) in
+            nextBtn.isSelected = completed
+            nextBtn.isEnabled = completed
         }
 
-        self.nextBtn.rx.tap.asObservable().subscribe(onNext: { [unowned self] in
+        nextBtn.rx.tap.asObservable().subscribe(onNext: { [unowned self] in
             let api = AuthAPI()
             api.postConfirmCode(code: email, userEmail: pinCodeView.text!).subscribe(onNext: { (response) in
                     switch response {
-                    case .ok: self.pushWithData()
-                    case .unauthorized: self.pinCodeErrorMessage("재설정 코드가 올바르지 않습니다.", pinCodeView)
-                    default: self.pinCodeErrorMessage("인증 실패", pinCodeView)
+                    case .ok: pushWithData()
+                    case .unauthorized: pinCodeErrorMessage("재설정 코드가 올바르지 않습니다.", pinCodeView)
+                    default: pinCodeErrorMessage("인증 실패", pinCodeView)
                     }
-            }).disposed(by: self.rx.disposeBag)
+            }).disposed(by: rx.disposeBag)
         }).disposed(by: rx.disposeBag)
     }
 

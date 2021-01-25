@@ -31,11 +31,11 @@ final class SingUpViewController: UIViewController {
 
     private func setupUI() {
         nextBtn.rx.tap
-            .subscribe(onNext: {
-                if YallyFilter.checkEmail(self.emailTextField.text!) {
-                    self.errorMessageHidden(self.placeLabel)
+            .subscribe(onNext: { [unowned self] _ in
+                if YallyFilter.checkEmail(emailTextField.text!) {
+                    errorMessageHidden(placeLabel)
                 } else {
-                    self.textFieldErrorMessage(self.placeLabel, title: "이메일 형식이 맞지 않습니다.", superTextField: self.emailTextField)
+                    textFieldErrorMessage(placeLabel, title: "이메일 형식이 맞지 않습니다.", superTextField: emailTextField)
                 }
             }).disposed(by: rx.disposeBag)
     }
@@ -47,11 +47,11 @@ final class SingUpViewController: UIViewController {
 
         output.isEnable.drive(nextBtn.rx.isEnabled).disposed(by: rx.disposeBag)
         output.isEnable.drive(onNext: { [unowned self] _ in
-            self.addGradient(nextBtn)
+            addGradient(nextBtn)
         }).disposed(by: rx.disposeBag)
 
         output.result.emit(onNext: { [unowned self] in
-            self.textFieldErrorMessage(self.placeLabel, title: $0, superTextField: self.emailTextField)
+            textFieldErrorMessage(placeLabel, title: $0, superTextField: emailTextField)
         }, onCompleted: { [unowned self] in pushWithData()}).disposed(by: rx.disposeBag)
     }
 

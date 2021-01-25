@@ -27,23 +27,23 @@ final class NewPwViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "로그인"
+        navigationItem.title = "로그인"
 
         setupUI()
         bindViewModel()
     }
 
     private func setupUI() {
-        resetBtn.rx.tap.subscribe(onNext: {
-            if !YallyFilter.checkPw(self.pwTextField.text!) {
-                self.textFieldErrorMessage(self.pwErrorLabel, title: "비밀번호 형식이 맞지 않습니다.", superTextField: self.pwTextField)
+        resetBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
+            if !YallyFilter.checkPw(pwTextField.text!) {
+                textFieldErrorMessage(pwErrorLabel, title: "비밀번호 형식이 맞지 않습니다.", superTextField: pwTextField)
             } else {
-                self.errorMessageHidden(self.pwErrorLabel)
+                errorMessageHidden(pwErrorLabel)
             }
-            if self.pwTextField.text! != self.repwTextField.text! {
-                self.textFieldErrorMessage(self.repwErrorLabel, title: "비밀번호가 일치하지 않습니다.", superTextField: self.repwTextField)
+            if pwTextField.text! != repwTextField.text! {
+                textFieldErrorMessage(repwErrorLabel, title: "비밀번호가 일치하지 않습니다.", superTextField: repwTextField)
             } else {
-                self.errorMessageHidden(self.repwErrorLabel)
+                errorMessageHidden(repwErrorLabel)
             }
         }).disposed(by: rx.disposeBag)
     }
@@ -59,13 +59,13 @@ final class NewPwViewController: UIViewController {
 
         output.isEnable.drive(resetBtn.rx.isEnabled).disposed(by: rx.disposeBag)
         output.isEnable.drive(onNext: {[unowned self] _ in
-            self.addGradient(self.resetBtn)
+            addGradient(resetBtn)
         }).disposed(by: rx.disposeBag)
 
         output.result.emit(onNext: { [unowned self] in
-            self.textFieldErrorMessage(self.errorLabel, title: $0, superTextField: self.pwTextField)
-        }, onCompleted: {
-            self.pushVC(identifier: "main")
+            textFieldErrorMessage(errorLabel, title: $0, superTextField: pwTextField)
+        }, onCompleted: { [unowned self] in
+            pushVC(identifier: "main")
         }).disposed(by: rx.disposeBag)
     }
 

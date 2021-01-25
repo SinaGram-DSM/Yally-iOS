@@ -24,14 +24,14 @@ final class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = "로그인"
+        navigationItem.title = "로그인"
 
         emailTextField.clearButtonMode = .whileEditing
         pwTextField.clearButtonMode = .whileEditing
         bindViewModel()
 
-        forgotPwBtn.rx.tap.subscribe(onNext: {
-            self.pushVC(identifier: "Reset")
+        forgotPwBtn.rx.tap.subscribe(onNext: { [unowned self] in
+            pushVC(identifier: "Reset")
         }).disposed(by: rx.disposeBag)
     }
 
@@ -43,12 +43,14 @@ final class SignInViewController: UIViewController {
 
         output.isEnable.drive(signInBtn.rx.isEnabled).disposed(by: rx.disposeBag)
         output.isEnable.drive(onNext: {[unowned self] _ in
-            self.addGradient(self.signInBtn)
+            addGradient(signInBtn)
         }).disposed(by: rx.disposeBag)
 
         output.result.emit(
-                onNext: {[unowned self] message in self.textFieldErrorMessage(self.errorLabel, title: message, superTextField: self.pwTextField)},
-                onCompleted: { [unowned self] in pushVC(identifier: "main")
+                onNext: {[unowned self] message in
+                    textFieldErrorMessage(errorLabel, title: message, superTextField: pwTextField)},
+                onCompleted: { [unowned self] in
+                    pushVC(identifier: "main")
             }).disposed(by: rx.disposeBag)
     }
 }

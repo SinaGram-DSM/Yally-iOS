@@ -26,18 +26,18 @@ final class SplashViewController: UIViewController {
         splashImage.image = UIImage(named: "SplashImg")
         circleView.layer.cornerRadius = 30
 
-        let bar: UINavigationBar! = self.navigationController?.navigationBar
+        let bar: UINavigationBar! = navigationController?.navigationBar
         bar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         bar.shadowImage = UIImage()
     }
 
     private func setupUI() {
-        loginBtn.rx.tap.asObservable().subscribe(onNext: {
-            self.pushVC(identifier: "signInVC")
+        loginBtn.rx.tap.asObservable().subscribe(onNext: { [unowned self] in
+            pushVC(identifier: "signInVC")
         }).disposed(by: rx.disposeBag)
 
-        SignBtn.rx.tap.asObservable().subscribe(onNext: {
-            self.pushVC(identifier: "signUpVC")
+        SignBtn.rx.tap.asObservable().subscribe(onNext: { [unowned self] in
+            pushVC(identifier: "signUpVC")
         }).disposed(by: rx.disposeBag)
     }
 }

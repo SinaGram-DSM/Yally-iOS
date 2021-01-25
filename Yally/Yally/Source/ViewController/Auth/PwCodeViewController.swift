@@ -33,12 +33,12 @@ final class PwCodeViewController: UIViewController {
 
     private func bindViewModel() {
         self.pinCode.textChangeHandler = { [unowned self] (text, completed) in
-            self.nextBtn.isSelected = completed
-            self.nextBtn.isEnabled = completed
+            nextBtn.isSelected = completed
+            nextBtn.isEnabled = completed
         }
 
         nextBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
-            self.pushWithData()
+            pushWithData()
         }).disposed(by: rx.disposeBag)
     }
 
