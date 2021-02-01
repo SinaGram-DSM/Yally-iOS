@@ -196,6 +196,8 @@
 				EB4BC17F253B6DDE00BDCAE0 /* SignInViewModel.swift */,
 			);
 			path = Auth;
+            sourceTree = "<group>";
+        };
 		EB4BC19D253B707000BDCAE0 /* TimeLine */ = {
 			isa = PBXGroup;
 			children = (
