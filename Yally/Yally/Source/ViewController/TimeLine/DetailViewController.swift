@@ -43,8 +43,8 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         
         view.addSubview(CommentTextField)
         
-        CommentTextField.translatesAutoresizingMaskIntoConstraints = false
         CommentTextField.backgroundColor = .white
+        CommentTextField.translatesAutoresizingMaskIntoConstraints = false
         CommentTextField.bottomAnchor.constraint(equalTo: commentTableView.bottomAnchor).isActive = true
         CommentTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         CommentTextField.leadingAnchor.constraint(equalTo: commentTableView.leadingAnchor).isActive = true
@@ -52,7 +52,8 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         CommentTextField.layer.borderWidth = 0.3
         
         registerCell()
-        bindTableView()
+        bindViewModel()
+        ModifyCommentTyping()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,7 +87,7 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         detailTableView.rowHeight = 308
     }
     
-    func bindTableView() {
+    func bindViewModel() {
         let input = DetailViewModel.input(
             loadDetail: detailData.asSignal(onErrorJustReturn: ()),
             selectIndexPath: selectIndexPath,
@@ -120,9 +121,7 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                             player.play()
                         }
                         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
-                            if cell.sliderBar.isTracking {
-                                return
-                            }
+                            if cell.sliderBar.isTracking { return }
                             cell.sliderBar.maximumValue = Float(player.duration)
                             cell.sliderBar.value = Float(player.currentTime)
                             cell.timeLabel.text = self.stringFromTimeInterval(interval: player.currentTime)
@@ -161,16 +160,6 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                 }
             }.disposed(by: rx.disposeBag)
         
-        output.postYally.emit(onCompleted: { [unowned self] in
-            detailData.accept(())
-            detailTableView.reloadData()
-        }).disposed(by: rx.disposeBag)
-        
-        output.deleteYally.emit(onCompleted: { [unowned self] in
-            detailData.accept(())
-            detailTableView.reloadData()
-        }).disposed(by: rx.disposeBag)
-        
         DetailViewModel.detailComment
             .bind(to: commentTableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (row, repository, cell) in
                 
@@ -187,9 +176,7 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                             commentPlayer.play()
                         }
                         commentTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
-                            if cell.commentSlider.isTracking {
-                                return
-                            }
+                            if cell.commentSlider.isTracking { return }
                             cell.commentSlider.maximumValue = Float(commentPlayer.duration)
                             cell.commentSlider.value = Float(commentPlayer.currentTime)
                             cell.lastLabel.text = self.stringFromTimeInterval(interval: self.commentPlayer.currentTime)
@@ -227,45 +214,20 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
             commentTableView.reloadData()
         }).disposed(by: rx.disposeBag)
         
+        output.postYally.withLatestFrom(output.deleteYally).emit(onCompleted: { [unowned self] in
+            detailData.accept(())
+            detailTableView.reloadData()
+        }).disposed(by: rx.disposeBag)
+        
         output.deletePost.emit(onCompleted: {[unowned self] in
             navigationController?.popViewController(animated: true)
         }).disposed(by: rx.disposeBag)
-        
-        CommentTextField.recordBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
-            if !isRecord.value {
-                startRecording()
-                isRecord.accept(true)
-            } else {
-                finishRecording(success: true)
-                isRecord.accept(false)
-            }
-        }).disposed(by: rx.disposeBag)
-        
-        CommentTextField.sendBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
-            CommentTextField.commentTextView.text = ""
-        }).disposed(by: rx.disposeBag)
-    }
-    
-    func setupView() {
-        recordingSession = AVAudioSession.sharedInstance()
-        do {
-            try? recordingSession.setCategory(.record, mode: .default)
-            try? recordingSession.setActive(true)
-            
-            recordingSession.requestRecordPermission { [weak self] allowed in
-                DispatchQueue.main.async {
-                    if allowed {
-                        print("good")
-                    } else {
-                        // failed to record
-                    }
-                }
-            }
-        }
     }
     
     func startRecording() {
-        let audioFileName = getFileURL()
+        let fileName = NSUUID().uuidString + ".aac"
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let audioFileName = paths[0].appendingPathComponent(fileName)
         let setting = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
@@ -292,10 +254,20 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     
-    func getFileURL() -> URL {
-        let fileName = NSUUID().uuidString + ".aac"
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0].appendingPathComponent(fileName)
+    private func ModifyCommentTyping() {
+        CommentTextField.recordBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
+            if !isRecord.value {
+                startRecording()
+                isRecord.accept(true)
+            } else {
+                finishRecording(success: true)
+                isRecord.accept(false)
+            }
+        }).disposed(by: rx.disposeBag)
+        
+        CommentTextField.sendBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
+            CommentTextField.commentTextView.text = ""
+        }).disposed(by: rx.disposeBag)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
