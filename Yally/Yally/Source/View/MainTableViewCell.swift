@@ -28,7 +28,6 @@ class MainTableViewCell: UITableViewCell {
     @IBOutlet weak var stackView: UIStackView!
 
     private var onPopup: Bool = false
-    private var onClick: Bool = false
     var disposeBag = DisposeBag()
 
     override func awakeFromNib() {
@@ -58,27 +57,15 @@ class MainTableViewCell: UITableViewCell {
         }).disposed(by: rx.disposeBag)
 
         viewmoreBtn.rx.tap.subscribe(onNext: { [unowned self] _ in
-            if onPopup {
-                popupView.isHidden = true
-                popupTitle.isHidden = true
-
-            } else {
-                popupView.isHidden = false
-                popupTitle.isHidden = false
-            }
+            popupView.isHidden = onPopup ? true : false
+            popupTitle.isHidden = onPopup ? true : false
             onPopup = !onPopup
         }).disposed(by: rx.disposeBag)
 
         backImageBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
-            if backImageBtn.isSelected {
-                backImageBtn.alpha = 0.3
-                sliderBar.isHiddenAnimated(value: !backImageBtn.isSelected, duration: 0.5)
-                timeLabel.isHiddenAnimated(value: !backImageBtn.isSelected, duration: 0.5)
-            } else {
-                backImageBtn.alpha = 0.7
-                sliderBar.isHiddenAnimated(value: !backImageBtn.isSelected, duration: 0.5)
-                timeLabel.isHiddenAnimated(value: !backImageBtn.isSelected, duration: 0.5)
-            }
+            backImageBtn.alpha = backImageBtn.isSelected ? 0.3 : 0.7
+            sliderBar.isHiddenAnimated(value: !backImageBtn.isSelected, duration: 0.5)
+            timeLabel.isHiddenAnimated(value: !backImageBtn.isSelected, duration: 0.5)
             backImageBtn.isSelected = !backImageBtn.isSelected
         }).disposed(by: rx.disposeBag)
     }
