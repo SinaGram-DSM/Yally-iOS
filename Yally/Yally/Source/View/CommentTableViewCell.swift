@@ -41,6 +41,15 @@ class CommentTableViewCell: UITableViewCell {
         commentTextView.backgroundColor = .clear
         commentSlider.setThumbImage(UIImage(systemName: "circlebadge.fill"), for: .normal)
     }
+    
+    func configCell(_ model: Comment) {
+        commentSoundView.isHidden = model.sound == nil ? true : false
+        deleteCommentBtn.isHidden = model.isMine ? false : true
+        userImageView.load(urlString: model.user.img)
+        userNameLabel.text = model.user.nickname
+        commentTextView.text = model.content
+        postTimeLabel.text = model.createdAt
+    }
 
     override func prepareForReuse() {
         super.prepareForReuse()

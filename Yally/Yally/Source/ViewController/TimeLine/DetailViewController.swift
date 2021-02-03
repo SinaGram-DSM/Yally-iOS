@@ -100,6 +100,7 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         
         DetailViewModel.detailData.asObservable()
             .bind(to: detailTableView.rx.items(cellIdentifier: "mainCell", cellType: MainTableViewCell.self)) { [unowned self] (row, repository, cell) in
+                
                 cell.userNameLabel.text = repository.user.nickname
                 cell.postTimeLabel.text = repository.createdAt
                 cell.mainTextView.text = repository.content
@@ -108,10 +109,6 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                 cell.userImageView.load(urlString: repository.user.img)
                 cell.backImageBtn.load(url: repository.img!)
                 cell.doYally.isSelected = repository.isYally
-                
-                cell.doYally.rx.tap.subscribe(onNext: { _ in
-                    yallyIndex.accept(row)
-                }).disposed(by: cell.disposeBag)
                 
                 cell.backImageBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
                     if playing.value {
@@ -137,9 +134,13 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                     playing.accept(!playing.value)
                 }).disposed(by: self.rx.disposeBag)
                 
-                cell.popupTitle.rx.tap.subscribe(onNext: { _ in
-                    deleteText.accept(())
+                cell.doYally.rx.tap.subscribe(onNext: { _ in
+                    yallyIndex.accept(row)
                 }).disposed(by: cell.disposeBag)
+                
+                cell.popupTitle.rx.tap.bind { _ in
+                    deleteText.accept(())
+                }.disposed(by: cell.disposeBag)
                 
                 cell.sliderBar.rx.value.subscribe(onNext: { _ in
                     player.currentTime = TimeInterval(cell.sliderBar.value)
@@ -172,21 +173,8 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         
         DetailViewModel.detailComment
             .bind(to: commentTableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (row, repository, cell) in
-                if repository.sound == nil {
-                    cell.commentSoundView.isHidden = true
-                }
-                cell.userImageView.load(urlString: repository.user.img)
-                cell.userNameLabel.text = repository.user.nickname
-                cell.commentTextView.text = repository.content
-                cell.postTimeLabel.text = repository.createdAt
                 
-                cell.deleteCommentBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
-                    commentIndex.accept(row)
-                }).disposed(by: cell.disposeBag)
-                
-                cell.commentSlider.rx.value.subscribe(onNext: {[unowned self] _ in
-                    commentPlayer.currentTime = TimeInterval(cell.commentSlider.value)
-                }).disposed(by: cell.disposeBag)
+                cell.configCell(repository)
                 
                 cell.playBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
                     if !commentPlaying.value {
@@ -214,31 +202,27 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                     commentPlaying.accept(!commentPlaying.value)
                 }).disposed(by: cell.disposeBag)
                 
+                cell.deleteCommentBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
+                    commentIndex.accept(row)
+                }).disposed(by: cell.disposeBag)
+                
+                cell.commentSlider.rx.value.subscribe(onNext: {[unowned self] _ in
+                    commentPlayer.currentTime = TimeInterval(cell.commentSlider.value)
+                }).disposed(by: cell.disposeBag)
+                
                 if repository.sound != nil {
                     cell.commentSlider.isHidden = false
                     cell.playBtn.isHidden = false
                     cell.startLabel.isHidden = false
                     cell.lastLabel.isHidden = false
-                }
-                
-                if repository.isMine {
-                    cell.deleteCommentBtn.isHidden = false
-                }
-                
-                if repository.sound == nil {
-                    self.commentTableView.rowHeight = CGFloat(70 + (repository.content.count/30) * 20)
-                } else {
                     self.commentTableView.rowHeight = 104
+                }else {
+                    self.commentTableView.rowHeight = CGFloat(70 + (repository.content.count/30) * 20)
                 }
                 
             }.disposed(by: rx.disposeBag)
         
-        output.postComment.emit(onCompleted: {[unowned self] in
-            detailData.accept(())
-            commentTableView.reloadData()
-        }).disposed(by: rx.disposeBag)
-        
-        output.deleteComment.emit(onNext: {[unowned self] _ in
+        output.postComment.withLatestFrom(output.deleteComment).emit(onCompleted: {[unowned self] in
             detailData.accept(())
             commentTableView.reloadData()
         }).disposed(by: rx.disposeBag)
