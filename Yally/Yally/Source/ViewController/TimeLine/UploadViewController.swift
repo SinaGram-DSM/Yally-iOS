@@ -67,14 +67,14 @@ final class UploadViewController: UIViewController {
             let alert = UIAlertController(title: "죄송합니다", message: "준비 중인 서비스 입니다.", preferredStyle: .alert)
             let action = UIAlertAction(title: "네", style: .default, handler: nil)
             alert.addAction(action)
-            present(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
         
         coverBtn.rx.tap.subscribe(onNext: { _ in
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
-            present(imagePicker, animated: true, completion: nil)
+            self.present(imagePicker, animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
         
         previewDelete[1].rx.tap.subscribe(onNext: {[unowned self] _ in
@@ -166,11 +166,11 @@ final class UploadViewController: UIViewController {
             isRecord ? Observable<Int>.interval(1, scheduler: MainScheduler.instance) : .empty()
         }.subscribe(onNext: { value in
             if value == 300 {
-                .recording.stop()
+                self.recording.stop()
                 self.finishRecording(success: true)
                 self.isRecord.accept(false)
             }
-            timeLabel.text = String(value).formatTimer(value)
+            self.timeLabel.text = String(value).formatTimer(value)
         }).disposed(by: rx.disposeBag)
     }
     
