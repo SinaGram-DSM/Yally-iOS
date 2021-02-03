@@ -17,20 +17,20 @@ class HTTPClient {
 
     typealias HTTPResult = Observable<(HTTPURLResponse, Data)>
 
-    func get(_ url: YallyURL, params: [String:Any]?) -> HTTPResult {
-        return requestData(.get, baseURI + api.path, parameters: params, encoding: URLEncoding.queryString, headers: api.header)
+    func get(_ url: YallyURL, params: [String:Any]? = nil) -> HTTPResult {
+        return requestData(.get, baseURI + url.path, parameters: params, encoding: URLEncoding.queryString, headers: url.headers())
     }
 
-    func put(_ url: YallyURL, params: [String:Any]?) -> HTTPResult {
-        return requestData(.put, baseURI + api.path, parameters: params, encoding: URLEncoding.queryString, headers: api.header)
+    func put(_ url: YallyURL, params: [String:Any]? = nil) -> HTTPResult {
+        return requestData(.put, baseURI + url.path, parameters: params, encoding: URLEncoding.queryString, headers: url.headers())
+    }
+    
+    func post(_ url: YallyURL, params: [String:Any]? = nil) -> HTTPResult {
+        return requestData(.post, baseURI + url.path, parameters: params, encoding: URLEncoding.queryString, headers: url.headers())
     }
 
-    func post(_ url: YallyURL, params: [String:Any]?) -> HTTPResult {
-        return requestData(.post, baseURI + api.path, parameters: params, encoding: URLEncoding.queryString, headers: api.header)
-    }
-
-    func delete(_ url: YallyURL, params: [String:Any]?) -> HTTPResult {
-        return requestData(.delete, baseURI + api.path, parameters: params, encoding: URLEncoding.queryString, headers: api.header)
+    func delete(_ url: YallyURL, params: [String:Any]? = nil) -> HTTPResult {
+        return requestData(.delete, baseURI + url.path, parameters: params, encoding: URLEncoding.queryString, headers: url.headers())
     }
 }
 

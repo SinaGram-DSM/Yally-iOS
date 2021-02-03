@@ -58,7 +58,7 @@ class TimeLineAPI {
                     multipartFormData.append("\(value)".data(using: .utf8)!, withName: key, mimeType: "text/plain")
                 }
             }
-        }, to: baseURI + api.path, method: .post, headers: api.header)
+        }, to: baseURI + api.path, method: .post, headers: api.headers())
     }
 
     func postDetailPost(_ id: String) -> Observable<(DetailModel?, StatusCode)> {
@@ -119,7 +119,7 @@ class TimeLineAPI {
         httpClient.put(.updatePost(id: id), params: ["sound":sound, "content":content, "img":img, "hashtag":hashtag]).map {response, _ -> StatusCode in
             switch response.statusCode {
             case 201:
-                return .ok1
+                return .created
             case 404:
                 return .noHere
             default:
@@ -151,7 +151,7 @@ class TimeLineAPI {
 
                 multipartFormData.append(content.data(using: .utf8)!, withName: "content", mimeType: "text/plain")
 
-            }, to: baseURI + api.path, method: .post, headers: api.header)
+            }, to: baseURI + api.path, method: .post, headers: api.headers())
     }
 
     func deleteComment(_ id: String) -> Observable<StatusCode> {
@@ -259,15 +259,20 @@ class TimeLineAPI {
             for (key, value) in param {
                 if key == "hashtag" {
                     let arrayObj = value as! [Any]
-                    for i in 0..<arrayObj.count {
-                        let value = arrayObj[i] as! String
-                        print("\(key) \(value)")
-                        multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+//                    for i in 0..<arrayObj.count {
+//                        let value = arrayObj[i] as! String
+//                        print("\(key) \(value)")
+//                        multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
+//                    }
+                    
+                    arrayObj.compactMap { ($0 as? String)?.data(using: .utf8) }
+                      .forEach {
+                        multipartFormData.append($0, withName: key)
                     }
                 } else {
                     multipartFormData.append("\(value)".data(using: .utf8)!, withName: key, mimeType: "text/plain")
                 }
             }
-        }, to: baseURI + api.path, method: .put, headers: api.header)
+        }, to: baseURI + api.path, method: .put, headers: api.headers())
     }
 }
