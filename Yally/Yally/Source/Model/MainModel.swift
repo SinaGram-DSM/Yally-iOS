@@ -17,14 +17,14 @@ struct MainModel: Codable {
     let sound: String
     let img: String?
     let createdAt: String
-    let user: User
+    let user: MainUser
     let comment: Int
     let yally: Int
     var isYally: Bool
     let isMine: Bool
 }
 
-struct User: Codable {
+struct MainUser: Codable {
     let email: String
     let nickname: String
     let img: String

@@ -8,7 +8,7 @@
 import Foundation
 
 class Comment: Codable {
-    let user: User
+    let user: MainUser
     let id: String
     let content: String
     let sound: String?
