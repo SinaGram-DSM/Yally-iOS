@@ -38,18 +38,18 @@ final class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
-
         
         defaultBtn(recordingBtn)
         defaultBtn(fileBtn)
         defaultBtn(coverBtn)
+        
         setupUI()
         beforePost()
         
         postTextView.delegate = self
     }
     
-    func bindViewModel() {
+    private func bindViewModel() {
         let input = PostViewModel.input(
             postText: postTextView.rx.text.orEmpty.asDriver(),
             selectFile: audioFile.asDriver(onErrorJustReturn: getFileURL()),
@@ -62,7 +62,7 @@ final class PostViewController: UIViewController {
         }).disposed(by: rx.disposeBag)
     }
     
-    func beforePost() {
+    private func beforePost() {
         fileBtn.rx.tap.subscribe(onNext: { _ in
             let alert = UIAlertController(title: "죄송해요", message: "준비 중이 서비스 입니다.", preferredStyle: .alert)
             let action = UIAlertAction(title: "네", style: .default, handler: nil)
@@ -88,21 +88,18 @@ final class PostViewController: UIViewController {
         }).disposed(by: rx.disposeBag)
         
         recordingBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
+            recordView.isHidden = !isRecord.value ? false : true
+            guardLabel.isHidden = !isRecord.value ? false : true
+            timeLabel.isHidden = !isRecord.value ? false : true
             if !isRecord.value {
                 startRecording()
                 setTimer()
                 
-                recordView.isHidden = false
-                timeLabel.isHidden = false
-                guardLabel.isHidden = false
                 isRecord.accept(true)
             } else {
                 finishRecording(success: true)
                 setTimer()
-                
-                recordView.isHidden = true
-                timeLabel.isHidden = true
-                guardLabel.isHidden = true
+            
                 isRecord.accept(false)
             }
         }).disposed(by: rx.disposeBag)
@@ -161,7 +158,9 @@ final class PostViewController: UIViewController {
     }
     
     private func startRecording() {
-        let audioFileName = getFileURL()
+        let fileName = NSUUID().uuidString + ".aac"
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let audioFileName = paths[0].appendingPathComponent(fileName)
         let setting = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
@@ -189,13 +188,6 @@ final class PostViewController: UIViewController {
             print("recording failed!")
         }
     }
-    
-    private func getFileURL() -> URL {
-        let fileName = NSUUID().uuidString + ".aac"
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0].appendingPathComponent(fileName)
-    }
-    
 }
 
 //Util에 extension으로
@@ -208,11 +200,6 @@ extension String {
         return results?.map({
             (self as NSString).substring(with: $0.range(at: 1)).capitalized
         })
-    }
-    
-    func getPost(_ text: String) {
-        let test = text.replacingOccurrences(of: "#", with: "")
-        print(test)
     }
     
     func formatTimer(_ time: Int) -> String {

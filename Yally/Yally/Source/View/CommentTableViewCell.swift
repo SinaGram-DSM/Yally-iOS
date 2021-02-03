@@ -27,19 +27,19 @@ class CommentTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        playBtn.rx.tap.subscribe(onNext: {[unowned self] in
-            playBtn.isSelected = !playBtn.isSelected
-        }).disposed(by: rx.disposeBag)
-
         backCommentView.backgroundColor = UIColor().hexUIColor(hex: "EFEFEF")
         backCommentView.layer.cornerRadius = 12
         commentSoundView.backgroundColor = UIColor().hexUIColor(hex: "FDFDFD")
-        commentTextView.sizeToFit()
         commentSoundView.layer.cornerRadius = 12
+        commentTextView.sizeToFit()
         userImageView.layer.cornerRadius = 20
         postTimeLabel.textColor = .lightGray
         commentTextView.backgroundColor = .clear
         commentSlider.setThumbImage(UIImage(systemName: "circlebadge.fill"), for: .normal)
+        
+        playBtn.rx.tap.subscribe(onNext: {[unowned self] in
+            playBtn.isSelected = !playBtn.isSelected
+        }).disposed(by: rx.disposeBag)
     }
     
     func configCell(_ model: Comment) {
