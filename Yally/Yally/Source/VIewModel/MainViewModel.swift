@@ -47,7 +47,8 @@ final class MainViewModel: ViewModelType {
         let detailInfo = Signal.combineLatest(input.selectCell, loadData.asSignal(onErrorJustReturn: [])).asObservable()
         let deleteInfo = Signal.combineLatest(input.selectDelete, loadData.asSignal(onErrorJustReturn: []))
 
-        input.loadData.asObservable().subscribe(onNext: { _ in
+        input.loadData.asObservable().subscribe(onNext: {[weak self] _ in
+            guard let self = self else { return }
             api.getTimeLine(1).subscribe(onNext: { response, statusCode in
                 switch statusCode {
                 case .ok:
@@ -61,7 +62,8 @@ final class MainViewModel: ViewModelType {
             }).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
 
-        input.loadMoreData.asObservable().subscribe(onNext: { page in
+        input.loadMoreData.asObservable().subscribe(onNext: {[weak self] page in
+            guard let self = self else { return }
             api.getTimeLine(page).subscribe(onNext: { response, statusCode in
                 switch statusCode {
                 case .ok:
@@ -74,7 +76,8 @@ final class MainViewModel: ViewModelType {
             }).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
 
-        input.selectIndexPath.asObservable().withLatestFrom(info).subscribe(onNext: { row, data in
+        input.selectIndexPath.asObservable().withLatestFrom(info).subscribe(onNext: {[weak self] row, data in
+            guard let self = self else { return }
             let loadSet = data[row].id
             if !data[row].isYally {
                 api.postYally(loadSet).subscribe(onNext: { response in
@@ -106,7 +109,8 @@ final class MainViewModel: ViewModelType {
             nextView.onNext(selectIdx)
         }).disposed(by: disposeBag)
 
-        input.selectDelete.asObservable().withLatestFrom(deleteInfo).subscribe(onNext: { row, data in
+        input.selectDelete.asObservable().withLatestFrom(deleteInfo).subscribe(onNext: {[weak self] row, data in
+            guard let self = self else { return }
             let deleteId = data[row].id
             api.deletePost(deleteId).subscribe(onNext: { response in
                 switch response {

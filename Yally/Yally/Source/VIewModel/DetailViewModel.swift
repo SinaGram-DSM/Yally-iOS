@@ -47,14 +47,12 @@ final class DetailViewModel: ViewModelType {
         let deleteComment = PublishSubject<String>()
         let deletePost = PublishSubject<String>()
 
-        input.loadDetail.asObservable().subscribe(onNext: { _ in
+        input.loadDetail.asObservable().subscribe(onNext: {[weak self] _ in
+            guard let self = self else { return }
             api.postDetailPost(input.selectIndexPath).subscribe(onNext: { response, statusCode in
                 switch statusCode {
                 case .ok:
-                    var model = [DetailModel]()
-                    model.append(response!)
-                    DetailViewModel.detailData.accept(model)
-                    model.removeAll()
+                    DetailViewModel.detailData.accept([response!])
                 default:
                     result.onNext("자세히보기를 불러올 수 없음")
                 }
@@ -72,7 +70,8 @@ final class DetailViewModel: ViewModelType {
             }).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
 
-        input.deletePost.asObservable().subscribe(onNext: { _ in
+        input.deletePost.asObservable().subscribe(onNext: {[weak self] _ in
+            guard let self = self else { return }
             api.deletePost(input.selectIndexPath).subscribe(onNext: { response in
                 switch response {
                 case .ok:
@@ -83,7 +82,8 @@ final class DetailViewModel: ViewModelType {
             }).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
 
-        input.selectYally.asObservable().withLatestFrom(info).subscribe(onNext: { row, data in
+        input.selectYally.asObservable().withLatestFrom(info).subscribe(onNext: {[weak self] row, data in
+            guard let self = self else { return }
             if !data[row].isYally {
                 api.postYally(input.selectIndexPath).subscribe(onNext: { response in
                     switch response {
@@ -109,7 +109,8 @@ final class DetailViewModel: ViewModelType {
             }
         }).disposed(by: disposeBag)
 
-        input.deleteCommnet.asObservable().withLatestFrom(deleteComInfo).subscribe(onNext: { (row, data) in
+        input.deleteCommnet.asObservable().withLatestFrom(deleteComInfo).subscribe(onNext: {[weak self] (row, data) in
+            guard let self = self else { return }
             let delete = data[row].id
             api.deleteComment(delete).subscribe(onNext: { response in
                 switch response {
