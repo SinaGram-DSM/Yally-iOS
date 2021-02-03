@@ -88,6 +88,18 @@ class MainTableViewCell: UITableViewCell {
         popupView.layer.borderWidth = 0.5
         popupView.layer.borderColor = UIColor.gray.cgColor
     }
+    
+    func configCell(_ model: MainModel) {
+        userImageView.image = UIImage(named: model.user.img)
+        userNameLabel.text = model.user.nickname
+        postTimeLabel.text = model.createdAt
+        mainTextView.text = model.content
+        countOfYally.text = String(model.yally)
+        countOfComment.text = String(model.comment)
+        doYally.isSelected = model.isYally
+        userImageView.load(urlString: model.user.img)
+        backImageBtn.load(url: model.img!)
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
