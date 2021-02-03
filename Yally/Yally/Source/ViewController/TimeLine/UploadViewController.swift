@@ -94,21 +94,17 @@ final class UploadViewController: UIViewController {
         previewImg[1].load(urlString: viewImg.value!)
         
         recordingBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
+            recordView.isHidden = !isRecord.value ? false : true
+            guardLabel.isHidden = !isRecord.value ? false : true
+            timeLabel.isHidden = !isRecord.value ? false : true
+            
             if !isRecord.value {
                 startRecording()
                 setTimer()
-                
-                recordView.isHidden = false
-                timeLabel.isHidden = false
-                guardLabel.isHidden = false
                 isRecord.accept(true)
             } else {
                 finishRecording(success: true)
                 setTimer()
-                
-                recordView.isHidden = true
-                timeLabel.isHidden = true
-                guardLabel.isHidden = true
                 isRecord.accept(false)
             }
         }).disposed(by: rx.disposeBag)
@@ -130,26 +126,6 @@ final class UploadViewController: UIViewController {
         output.isEnable.drive(onNext: {[unowned self] enable in
             uploadBtn.isEnabled = enable
         }).disposed(by: rx.disposeBag)
-    }
-    
-    private func setupView() {
-        lineView.backgroundColor = .gray
-        
-        recordingSession = AVAudioSession.sharedInstance()
-        do {
-            try? recordingSession.setCategory(.record, mode: .default)
-            try? recordingSession.setActive(true)
-            
-            recordingSession.requestRecordPermission { [weak self] allowed in
-                DispatchQueue.main.async {
-                    if allowed {
-                        self!.loadRecordingUI()
-                    } else {
-                        // failed to record
-                    }
-                }
-            }
-        }
     }
     
     private func loadRecordingUI() {
@@ -175,7 +151,8 @@ final class UploadViewController: UIViewController {
     }
     
     private func startRecording() {
-        let audioFileName = getFileURL()
+        let fileName = NSUUID().uuidString + ".aac"
+        let audioFileName = getDocumentsDirectory().appendingPathComponent(fileName)
         let setting = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
@@ -204,16 +181,10 @@ final class UploadViewController: UIViewController {
         }
     }
     
-    private func getFileURL() -> URL {
-        let fileName = NSUUID().uuidString + ".aac"
-        return getDocumentsDirectory().appendingPathComponent(fileName)
-    }
-    
     private func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
-    
 }
 
 extension UploadViewController: AVAudioRecorderDelegate {

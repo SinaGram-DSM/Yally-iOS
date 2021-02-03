@@ -52,7 +52,7 @@ final class PostViewController: UIViewController {
     private func bindViewModel() {
         let input = PostViewModel.input(
             postText: postTextView.rx.text.orEmpty.asDriver(),
-            selectFile: audioFile.asDriver(onErrorJustReturn: getFileURL()),
+            selectFile: audioFile.asDriver(onErrorJustReturn: URL(string: "")!),
             selectCover: selectImg.asDriver(onErrorJustReturn: nil),
             doneTap: uploadBtn.rx.tap.asDriver())
         let output = viewModel.transform(input)
@@ -94,35 +94,13 @@ final class PostViewController: UIViewController {
             if !isRecord.value {
                 startRecording()
                 setTimer()
-                
                 isRecord.accept(true)
             } else {
                 finishRecording(success: true)
                 setTimer()
-            
                 isRecord.accept(false)
             }
         }).disposed(by: rx.disposeBag)
-    }
-    
-    private func setupView() {
-        lineView.backgroundColor = .gray
-        
-        recordingSession = AVAudioSession.sharedInstance()
-        do {
-            try? recordingSession.setCategory(.record, mode: .default)
-            try? recordingSession.setActive(true)
-            
-            recordingSession.requestRecordPermission { [weak self] allowed in
-                DispatchQueue.main.async {
-                    if allowed {
-                        self!.loadRecordingUI()
-                    } else {
-                        // failed to record
-                    }
-                }
-            }
-        }
     }
     
     private func loadRecordingUI() {
