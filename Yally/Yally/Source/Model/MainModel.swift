@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct posts: Codable {
+struct Posts: Codable {
     var posts: [MainModel] = [MainModel]()
 }
 

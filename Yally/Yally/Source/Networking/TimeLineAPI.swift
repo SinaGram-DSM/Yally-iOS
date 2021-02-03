@@ -13,12 +13,12 @@ class TimeLineAPI {
     let baseURI = "http://13.125.238.84:81"
     private let httpClient = HTTPClient()
 
-    func getTimeLine(_ page: Int) -> Observable<(posts?, StatusCode)> {
-        httpClient.get(.timeLine(page), params: nil).map { (response, data) -> (posts?, StatusCode) in
+    func getTimeLine(_ page: Int) -> Observable<(Posts?, StatusCode)> {
+        httpClient.get(.timeLine(page), params: nil).map { (response, data) -> (Posts?, StatusCode) in
             print(response.statusCode)
             switch response.statusCode {
             case 200:
-                guard let data = try? JSONDecoder().decode(posts.self, from: data) else { return (nil, .fault)}
+                guard let data = try? JSONDecoder().decode(Posts.self, from: data) else { return (nil, .fault)}
 
                 return  (data, .ok)
             case 404:
