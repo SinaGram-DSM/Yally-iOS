@@ -62,15 +62,8 @@ final class MainViewController: UIViewController {
         }).disposed(by: rx.disposeBag)
         
         output.loadData.bind(to: tableView.rx.items(cellIdentifier: "mainCell", cellType: MainTableViewCell.self)) { (row, repository, cell) in
-            cell.userImageView.image = UIImage(named: repository.user.img)
-            cell.userNameLabel.text = repository.user.nickname
-            cell.postTimeLabel.text = repository.createdAt
-            cell.mainTextView.text = repository.content
-            cell.countOfYally.text = String(repository.yally)
-            cell.countOfComment.text = String(repository.comment)
-            cell.doYally.isSelected = repository.isYally
-            cell.userImageView.load(urlString: repository.user.img)
-            cell.backImageBtn.load(url: repository.img!)
+            
+            cell.configCell(repository)
             
             cell.backImageBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
                 if playing.value {
@@ -92,7 +85,6 @@ final class MainViewController: UIViewController {
                 } else {
                     self.player.stop()
                 }
-                
                 cell.timeLabel.text = self.stringFromTimeInterval(interval: TimeInterval(cell.sliderBar.value))
                 playing.accept(!playing.value)
             }).disposed(by: cell.disposeBag)
