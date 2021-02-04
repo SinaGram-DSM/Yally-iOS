@@ -12,10 +12,10 @@ import NSObject_Rx
 import AVFoundation
 
 final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
-    
+
     @IBOutlet weak private var detailTableView: UITableView!
     @IBOutlet weak private var commentTableView: UITableView!
-    
+
     private let viewModel = DetailViewModel()
     private let detailData = BehaviorRelay<Void>(value: ())
     private let deleteText = PublishRelay<Void>()
@@ -23,10 +23,10 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
     private var commentIndex = PublishRelay<Int>()
     private var recordFile = BehaviorRelay<URL?>(value: nil)
     private var audioPlayer: AVAudioPlayer!
-    
+
     private var timer: Timer!
     private var commentTimer: Timer!
-    private let CommentTextField = InputTextField()
+    private let commentTextField = InputTextField()
     private var isRecord = BehaviorRelay<Bool>(value: false)
     private var recordingSession: AVAudioSession!
     private var recording: AVAudioRecorder!
@@ -35,58 +35,58 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
     private var playing = BehaviorRelay<Bool>(value: false)
     private var commentPlaying = BehaviorRelay<Bool>(value: false)
     private var originY: CGFloat?
-    
+
     var selectIndexPath = String()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.addSubview(CommentTextField)
-        
-        CommentTextField.backgroundColor = .white
-        CommentTextField.translatesAutoresizingMaskIntoConstraints = false
-        CommentTextField.bottomAnchor.constraint(equalTo: commentTableView.bottomAnchor).isActive = true
-        CommentTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        CommentTextField.leadingAnchor.constraint(equalTo: commentTableView.leadingAnchor).isActive = true
-        CommentTextField.trailingAnchor.constraint(equalTo: commentTableView.trailingAnchor).isActive = true
-        CommentTextField.layer.borderWidth = 0.3
-        
+
+        view.addSubview(commentTextField)
+
+        commentTextField.backgroundColor = .white
+        commentTextField.translatesAutoresizingMaskIntoConstraints = false
+        commentTextField.bottomAnchor.constraint(equalTo: commentTableView.bottomAnchor).isActive = true
+        commentTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        commentTextField.leadingAnchor.constraint(equalTo: commentTableView.leadingAnchor).isActive = true
+        commentTextField.trailingAnchor.constraint(equalTo: commentTableView.trailingAnchor).isActive = true
+        commentTextField.layer.borderWidth = 0.3
+
         registerCell()
         bindViewModel()
-        ModifyCommentTyping()
+        modifyCommentTyping()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+
         commentTableView.separatorStyle = .none
         detailTableView.allowsSelection = false
         commentTableView.backgroundColor = .clear
-        
+
         addKeyboardNotification()
         detailData.accept(())
-        
+
         detailTableView.reloadData()
         commentTableView.reloadData()
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        
+
         player.pause()
         commentPlayer.pause()
     }
-    
+
     private func registerCell() {
         let mainNib = UINib(nibName: "MainTableViewCell", bundle: nil)
         detailTableView.register(mainNib, forCellReuseIdentifier: "mainCell")
-        
+
         let commentNib = UINib(nibName: "CommentTableViewCell", bundle: nil)
         commentTableView.register(commentNib, forCellReuseIdentifier: "commentCell")
-        
+
         detailTableView.rowHeight = 308
     }
-    
+
     func bindViewModel() {
         let input = DetailViewModel.input(
             loadDetail: detailData.asSignal(onErrorJustReturn: ()),
@@ -94,14 +94,14 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
             selectYally: yallyIndex.asSignal(onErrorJustReturn: 0),
             deletePost: deleteText.asSignal(onErrorJustReturn: ()),
             deleteCommnet: commentIndex.asSignal(onErrorJustReturn: 0),
-            commentContent: CommentTextField.commentTextView.rx.text.orEmpty.asDriver(),
+            commentContent: commentTextField.commentTextView.rx.text.orEmpty.asDriver(),
             commentRecord: recordFile.asDriver(onErrorJustReturn: nil),
-            commentTap: CommentTextField.sendBtn.rx.tap.asDriver())
+            commentTap: commentTextField.sendBtn.rx.tap.asDriver())
         let output = viewModel.transform(input)
-        
+
         DetailViewModel.detailData.asObservable()
             .bind(to: detailTableView.rx.items(cellIdentifier: "mainCell", cellType: MainTableViewCell.self)) { [unowned self] (row, repository, cell) in
-                
+
                 cell.userNameLabel.text = repository.user.nickname
                 cell.postTimeLabel.text = repository.createdAt
                 cell.mainTextView.text = repository.content
@@ -110,7 +110,7 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                 cell.userImageView.load(urlString: repository.user.img)
                 cell.backImageBtn.load(url: repository.img!)
                 cell.doYally.isSelected = repository.isYally
-                
+
                 cell.backImageBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
                     if playing.value {
                         let realURL = self.fetchNonObsevable(url: URL(string: "https://yally-sinagram.s3.ap-northeast-2.amazonaws.com/" + repository.sound)!)
@@ -132,17 +132,17 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                     cell.timeLabel.text = self.stringFromTimeInterval(interval: TimeInterval(cell.sliderBar.value))
                     playing.accept(!playing.value)
                 }).disposed(by: self.rx.disposeBag)
-                
+
                 cell.doYally.rx.tap.subscribe(onNext: { _ in
                     yallyIndex.accept(row)
                 }).disposed(by: cell.disposeBag)
-                
+
                 cell.popupTitle.rx.tap.bind(to: deleteText).disposed(by: cell.disposeBag)
-                
+
                 cell.sliderBar.rx.value.subscribe(onNext: { _ in
                     player.currentTime = TimeInterval(cell.sliderBar.value)
                 }).disposed(by: cell.disposeBag)
-                
+
                 if repository.isMine {
                     cell.popupTitle.setTitle("삭제", for: .normal)
                     navigationItem.rightBarButtonItem = UIBarButtonItem(title: "수정", style: .plain, target: self, action: nil)
@@ -152,17 +152,17 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                         vc.viewImg.accept(repository.img)
                         vc.firstAudio.accept(repository.sound)
                         vc.content = repository.content
-                        
+
                         self.navigationController?.pushViewController(vc, animated: true)
                     }).disposed(by: rx.disposeBag)
                 }
             }.disposed(by: rx.disposeBag)
-        
+
         DetailViewModel.detailComment
             .bind(to: commentTableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (row, repository, cell) in
-                
+
                 cell.configCell(repository)
-                
+
                 cell.playBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
                     if !commentPlaying.value {
                         commentPlayer.play()
@@ -182,46 +182,46 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                     } else {
                         commentPlayer.stop()
                     }
-                    
+
                     cell.lastLabel.text = self.stringFromTimeInterval(interval: TimeInterval(cell.commentSlider.value))
                     commentPlaying.accept(!commentPlaying.value)
                 }).disposed(by: cell.disposeBag)
-                
+
                 cell.deleteCommentBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
                     commentIndex.accept(row)
                 }).disposed(by: cell.disposeBag)
-                
+
                 cell.commentSlider.rx.value.subscribe(onNext: {[unowned self] _ in
                     commentPlayer.currentTime = TimeInterval(cell.commentSlider.value)
                 }).disposed(by: cell.disposeBag)
-                
+
                 if repository.sound != nil {
                     cell.commentSlider.isHidden = false
                     cell.playBtn.isHidden = false
                     cell.startLabel.isHidden = false
                     cell.lastLabel.isHidden = false
                     self.commentTableView.rowHeight = 104
-                }else {
+                } else {
                     self.commentTableView.rowHeight = CGFloat(70 + (repository.content.count/30) * 20)
                 }
-                
+
             }.disposed(by: rx.disposeBag)
-        
+
         output.postComment.withLatestFrom(output.deleteComment).emit(onCompleted: {[unowned self] in
             detailData.accept(())
             commentTableView.reloadData()
         }).disposed(by: rx.disposeBag)
-        
+
         output.postYally.withLatestFrom(output.deleteYally).emit(onCompleted: { [unowned self] in
             detailData.accept(())
             detailTableView.reloadData()
         }).disposed(by: rx.disposeBag)
-        
+
         output.deletePost.emit(onCompleted: {[unowned self] in
             navigationController?.popViewController(animated: true)
         }).disposed(by: rx.disposeBag)
     }
-    
+
     func startRecording() {
         let fileName = NSUUID().uuidString + ".aac"
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -232,7 +232,7 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
             AVNumberOfChannelsKey: 1,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
-        
+
         do {
             recording = try AVAudioRecorder(url: audioFileName, settings: setting)
             recording?.delegate = self
@@ -241,7 +241,7 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
             recording?.stop()
         }
     }
-    
+
     func finishRecording(success: Bool) {
         recording.stop()
         if success {
@@ -251,9 +251,9 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
             print("recording failed!")
         }
     }
-    
-    private func ModifyCommentTyping() {
-        CommentTextField.recordBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
+
+    private func modifyCommentTyping() {
+        commentTextField.recordBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
             if !isRecord.value {
                 startRecording()
                 isRecord.accept(true)
@@ -262,16 +262,16 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                 isRecord.accept(false)
             }
         }).disposed(by: rx.disposeBag)
-        
-        CommentTextField.sendBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
-            CommentTextField.commentTextView.text = ""
+
+        commentTextField.sendBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
+            commentTextField.commentTextView.text = ""
         }).disposed(by: rx.disposeBag)
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
+
     private func addKeyboardNotification() {
         NotificationCenter.default.addObserver(
             self,
@@ -286,13 +286,13 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
             object: nil
         )
     }
-    
+
     @objc func keyboardWillShow(note: NSNotification) {
         guard let keyboardSize = (note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        
-        self.view.frame.origin.y = 0 - keyboardSize.height + CommentTextField.commentTextView.frame.height
+
+        self.view.frame.origin.y = 0 - keyboardSize.height + commentTextField.commentTextView.frame.height
     }
-    
+
     @objc func keyboardWillHide(note: NSNotification) {
         self.view.frame.origin.y = 0
     }
