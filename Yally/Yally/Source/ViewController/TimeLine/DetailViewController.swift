@@ -137,9 +137,7 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                     yallyIndex.accept(row)
                 }).disposed(by: cell.disposeBag)
                 
-                cell.popupTitle.rx.tap.bind { _ in
-                    deleteText.accept(())
-                }.disposed(by: cell.disposeBag)
+                cell.popupTitle.rx.tap.bind(to: deleteText).disposed(by: cell.disposeBag)
                 
                 cell.sliderBar.rx.value.subscribe(onNext: { _ in
                     player.currentTime = TimeInterval(cell.sliderBar.value)
