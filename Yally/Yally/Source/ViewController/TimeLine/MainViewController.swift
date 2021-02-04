@@ -111,17 +111,7 @@ final class MainViewController: UIViewController {
             }
         }.disposed(by: rx.disposeBag)
         
-        output.deletePost.drive(onNext: {[unowned self] _ in
-            loadData.accept(())
-            tableView.reloadData()
-        }).disposed(by: rx.disposeBag)
-        
-        output.yallyPost.drive(onNext: {[unowned self] _ in
-            loadData.accept(())
-            tableView.reloadData()
-        }).disposed(by: rx.disposeBag)
-        
-        output.yallyDelete.drive(onNext: {[unowned self] _ in
+        Observable.of(output.deletePost, output.yallyPost, output.yallyDelete).subscribe(onNext: {[unowned self] _ in
             loadData.accept(())
             tableView.reloadData()
         }).disposed(by: rx.disposeBag)
