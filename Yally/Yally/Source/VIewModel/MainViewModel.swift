@@ -47,9 +47,9 @@ final class MainViewModel: ViewModelType {
         let detailInfo = Signal.combineLatest(input.selectCell, loadData.asSignal(onErrorJustReturn: [])).asObservable()
         let deleteInfo = Signal.combineLatest(input.selectDelete, loadData.asSignal(onErrorJustReturn: []))
 
-        input.loadData.asObservable().subscribe(onNext: {[weak self] _ in
-            guard let self = self else { return }
-            api.getTimeLine(1).subscribe(onNext: { response, statusCode in
+        input.loadData.asObservable()
+            .flatMap{ api.getTimeLine(1) }
+            .subscribe(onNext: { response, statusCode in
                 switch statusCode {
                 case .ok:
                     loadData.accept(response!.posts)
@@ -59,12 +59,11 @@ final class MainViewModel: ViewModelType {
                 default:
                     result.onNext("타임라인을 불러올 수 없습니다.")
                 }
-            }).disposed(by: self.disposeBag)
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
 
-        input.loadMoreData.asObservable().subscribe(onNext: {[weak self] page in
-            guard let self = self else { return }
-            api.getTimeLine(page).subscribe(onNext: { response, statusCode in
+        input.loadMoreData.asObservable()
+            .flatMap{ api.getTimeLine($0) }
+            .subscribe(onNext: { response, statusCode in
                 switch statusCode {
                 case .ok:
                     loadMoreData.accept(response!.posts)
@@ -74,7 +73,6 @@ final class MainViewModel: ViewModelType {
                     print("더이상 불러올 타임라인이 없습니다.")
                 }
             }).disposed(by: self.disposeBag)
-        }).disposed(by: disposeBag)
 
         input.selectIndexPath.asObservable().withLatestFrom(info).subscribe(onNext: {[weak self] row, data in
             guard let self = self else { return }

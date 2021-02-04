@@ -59,7 +59,6 @@ final class DetailViewModel: ViewModelType {
             }).disposed(by: self.disposeBag)
 
             api.postDetailComment(input.selectIndexPath).subscribe(onNext: { response, statusCode in
-                print(statusCode)
                 switch statusCode {
                 case .ok:
                     response?.comments.reverse()
@@ -69,10 +68,10 @@ final class DetailViewModel: ViewModelType {
                 }
             }).disposed(by: self.disposeBag)
         }).disposed(by: disposeBag)
-
-        input.deletePost.asObservable().subscribe(onNext: {[weak self] _ in
-            guard let self = self else { return }
-            api.deletePost(input.selectIndexPath).subscribe(onNext: { response in
+        
+        input.deletePost.asObservable()
+            .flatMap { api.deletePost(input.selectIndexPath) }
+            .subscribe(onNext: { response in
                 switch response {
                 case .ok:
                     deletePost.onNext("")
@@ -80,8 +79,7 @@ final class DetailViewModel: ViewModelType {
                     deletePost.onNext("삭제할 수 있는 포스트가 없음")
                 }
             }).disposed(by: self.disposeBag)
-        }).disposed(by: disposeBag)
-
+        
         input.selectYally.asObservable().withLatestFrom(info).subscribe(onNext: {[weak self] row, data in
             guard let self = self else { return }
             if !data[row].isYally {
