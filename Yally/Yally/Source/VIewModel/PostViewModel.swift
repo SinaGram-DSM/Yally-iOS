@@ -30,9 +30,9 @@ final class PostViewModel: ViewModelType {
         let info = Driver.combineLatest(input.postText, input.selectFile, input.selectCover, hashtag)
         let isEnable = info.map { !$0.0.isEmpty }
         let result = PublishSubject<String>()
+        let api = TimeLineAPI()
 
         input.doneTap.asObservable().withLatestFrom(info).subscribe(onNext: { content, sound, img, hashtag in
-            let api = TimeLineAPI()
             api.postFormData(.createPost, param: ["content": content, "hashtag": hashtag ?? ""], sound, img ?? nil).responseJSON { (response) in
                 switch response.response?.statusCode {
                 case 201:
