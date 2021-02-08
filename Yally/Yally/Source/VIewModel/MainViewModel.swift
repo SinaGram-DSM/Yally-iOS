@@ -37,18 +37,18 @@ final class MainViewModel: ViewModelType {
         let loadMoreData = BehaviorRelay<[MainModel]>(value: [])
         let loadData = BehaviorRelay<[MainModel]>(value: [])
         var selectIdx = String()
-        
+
         let yallyPost = PublishSubject<String>()
         let yallyDelete = PublishSubject<String>()
         let deletePost = PublishSubject<String>()
         let nextView = PublishSubject<String>()
-        
+
         let info = Signal.combineLatest(input.selectIndexPath, loadData.asSignal(onErrorJustReturn: [])).asObservable()
         let detailInfo = Signal.combineLatest(input.selectCell, loadData.asSignal(onErrorJustReturn: [])).asObservable()
         let deleteInfo = Signal.combineLatest(input.selectDelete, loadData.asSignal(onErrorJustReturn: []))
 
         input.loadData.asObservable()
-            .flatMap{ api.getTimeLine(1) }
+            .flatMap { api.getTimeLine(1) }
             .subscribe(onNext: { response, statusCode in
                 switch statusCode {
                 case .ok:
@@ -62,7 +62,7 @@ final class MainViewModel: ViewModelType {
             }).disposed(by: disposeBag)
 
         input.loadMoreData.asObservable()
-            .flatMap{ api.getTimeLine($0) }
+            .flatMap { api.getTimeLine($0) }
             .subscribe(onNext: { response, statusCode in
                 switch statusCode {
                 case .ok:
@@ -107,18 +107,17 @@ final class MainViewModel: ViewModelType {
             nextView.onNext(selectIdx)
         }).disposed(by: disposeBag)
 
-        input.selectDelete.asObservable().withLatestFrom(deleteInfo).subscribe(onNext: {[weak self] row, data in
-            guard let self = self else { return }
-            let deleteId = data[row].id
-            api.deletePost(deleteId).subscribe(onNext: { response in
+        input.selectDelete.asObservable().withLatestFrom(deleteInfo)
+            .flatMap { row, data  in
+                api.deletePost(data[row].id)
+            }.subscribe(onNext: { response in
                 switch response {
-                 case .ok:
+                case .ok:
                     deletePost.onNext("")
                 default:
                     deletePost.onNext("Yally 실패")
                 }
-            }).disposed(by: self.disposeBag)
-        }).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
 
         return output(
             result: result.asSignal(onErrorJustReturn: "타임라인 불러오기 실패"),

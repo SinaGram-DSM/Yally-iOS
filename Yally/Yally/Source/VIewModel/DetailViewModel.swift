@@ -47,18 +47,20 @@ final class DetailViewModel: ViewModelType {
         let deleteComment = PublishSubject<String>()
         let deletePost = PublishSubject<String>()
 
-        input.loadDetail.asObservable().subscribe(onNext: {[weak self] _ in
-            guard let self = self else { return }
-            api.postDetailPost(input.selectIndexPath).subscribe(onNext: { response, statusCode in
+        input.loadDetail.asObservable()
+            .flatMap { api.postDetailPost(input.selectIndexPath) }
+            .subscribe(onNext: { response, statusCode in
                 switch statusCode {
                 case .ok:
                     DetailViewModel.detailData.accept([response!])
                 default:
                     result.onNext("자세히보기를 불러올 수 없음")
                 }
-            }).disposed(by: self.disposeBag)
+            }).disposed(by: disposeBag)
 
-            api.postDetailComment(input.selectIndexPath).subscribe(onNext: { response, statusCode in
+        input.loadDetail.asObservable()
+            .flatMap { api.postDetailComment(input.selectIndexPath)}
+            .subscribe(onNext: { response, statusCode in
                 switch statusCode {
                 case .ok:
                     response?.comments.reverse()
@@ -66,9 +68,8 @@ final class DetailViewModel: ViewModelType {
                 default:
                     result.onNext("댓글을 불러올 수 없음")
                 }
-            }).disposed(by: self.disposeBag)
-        }).disposed(by: disposeBag)
-        
+            }).disposed(by: disposeBag)
+
         input.deletePost.asObservable()
             .flatMap { api.deletePost(input.selectIndexPath) }
             .subscribe(onNext: { response in
@@ -79,7 +80,7 @@ final class DetailViewModel: ViewModelType {
                     deletePost.onNext("삭제할 수 있는 포스트가 없음")
                 }
             }).disposed(by: self.disposeBag)
-        
+
         input.selectYally.asObservable().withLatestFrom(info).subscribe(onNext: {[weak self] row, data in
             guard let self = self else { return }
             if !data[row].isYally {
@@ -107,19 +108,18 @@ final class DetailViewModel: ViewModelType {
             }
         }).disposed(by: disposeBag)
 
-        input.deleteCommnet.asObservable().withLatestFrom(deleteComInfo).subscribe(onNext: {[weak self] (row, data) in
-            guard let self = self else { return }
-            let delete = data[row].id
-            api.deleteComment(delete).subscribe(onNext: { response in
+        input.deleteCommnet.asObservable().withLatestFrom(deleteComInfo)
+            .flatMap { row, data in
+                api.deleteComment(data[row].id)
+            }.subscribe(onNext: { response in
                 switch response {
                 case .ok:
                     deleteComment.onNext("")
                 default:
                     deleteComment.onNext("댓글 삭제 취소")
                 }
-            }).disposed(by: self.disposeBag)
-        }).disposed(by: disposeBag)
-
+            }).disposed(by: disposeBag)
+        
         input.commentTap.asObservable().withLatestFrom(postInfo).subscribe(onNext: { content, record in
             api.postComment(.postComment(input.selectIndexPath), record, content).responseJSON { (response) in
                 switch response.response?.statusCode {
