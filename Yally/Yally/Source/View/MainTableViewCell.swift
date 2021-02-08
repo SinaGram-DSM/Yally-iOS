@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import NSObject_Rx
 
-class MainTableViewCell: UITableViewCell {
+final class MainTableViewCell: UITableViewCell {
 
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
