@@ -87,7 +87,7 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         detailTableView.rowHeight = 308
     }
 
-    func bindViewModel() {
+    private func bindViewModel() {
         let input = DetailViewModel.input(
             loadDetail: detailData.asSignal(onErrorJustReturn: ()),
             selectIndexPath: selectIndexPath,
@@ -219,7 +219,7 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         }).disposed(by: rx.disposeBag)
     }
 
-    func startRecording() {
+    private func startRecording() {
         let fileName = NSUUID().uuidString + ".aac"
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let audioFileName = paths[0].appendingPathComponent(fileName)
@@ -239,7 +239,7 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
 
-    func finishRecording(success: Bool) {
+    private func finishRecording(success: Bool) {
         recording.stop()
         if success {
             print("record successfully")
