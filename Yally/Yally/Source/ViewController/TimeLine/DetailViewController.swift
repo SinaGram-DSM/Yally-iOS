@@ -152,13 +152,13 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                         vc.firstAudio.accept(repository.sound)
                         vc.content = repository.content
 
-                        self.navigationController?.pushViewController(vc, animated: true)
+                        navigationController?.pushViewController(vc, animated: true)
                     }).disposed(by: rx.disposeBag)
                 }
             }.disposed(by: rx.disposeBag)
 
         DetailViewModel.detailComment
-            .bind(to: commentTableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (row, repository, cell) in
+            .bind(to: commentTableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) {[unowned self] (row, repository, cell) in
                 cell.configCell(repository)
                 cell.playBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
                     if !commentPlaying.value {
@@ -170,11 +170,11 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                             commentPlayer.volume = 1.0
                             commentPlayer.play()
                         }
-                        commentTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+                        commentTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {[unowned self] _ in
                             if cell.commentSlider.isTracking { return }
                             cell.commentSlider.maximumValue = Float(commentPlayer.duration)
                             cell.commentSlider.value = Float(commentPlayer.currentTime)
-                            cell.lastLabel.text = self.stringFromTimeInterval(interval: self.commentPlayer.currentTime)
+                            cell.lastLabel.text = stringFromTimeInterval(interval: commentPlayer.currentTime)
                         })
                     } else {
                         commentPlayer.stop()
@@ -197,7 +197,7 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                     cell.playBtn.isHidden = false
                     cell.startLabel.isHidden = false
                     cell.lastLabel.isHidden = false
-                    self.commentTableView.rowHeight = 104
+                    commentTableView.rowHeight = 104
                 } else {
                     self.commentTableView.rowHeight = CGFloat(70 + (repository.content.count/30) * 20)
                 }

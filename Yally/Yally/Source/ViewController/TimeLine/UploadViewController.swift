@@ -47,7 +47,7 @@ final class UploadViewController: UIViewController {
         postTextView.text = content
         navigationItem.rightBarButtonItem = uploadBtn
         postTextView.delegate = self
-        
+
         bindViewModel()
         beforeUpload()
         defaultBtn(recordingBtn)
@@ -56,28 +56,28 @@ final class UploadViewController: UIViewController {
     }
 
     private func beforeUpload() {
-        
+
         recordView.isHidden = true
         timeLabel.isHidden = true
         guardLabel.isHidden = true
-        
+
         let realURL = self.fetchNonObsevable(url: URL(string: "https://yally-sinagram.s3.ap-northeast-2.amazonaws.com/" + firstAudio.value!)!)
         if let url = realURL {
             audioFile.accept(url)
         }
 
-        fileBtn.rx.tap.subscribe(onNext: { _ in
+        fileBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
             let alert = UIAlertController(title: "죄송합니다", message: "준비 중인 서비스 입니다.", preferredStyle: .alert)
             let action = UIAlertAction(title: "네", style: .default, handler: nil)
             alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
 
-        coverBtn.rx.tap.subscribe(onNext: { _ in
+        coverBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
-            self.present(imagePicker, animated: true, completion: nil)
+            present(imagePicker, animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
 
         previewDelete[1].rx.tap.subscribe(onNext: {[unowned self] _ in
@@ -122,13 +122,13 @@ final class UploadViewController: UIViewController {
     private func setTimer() {
         isRecord.asObservable().flatMapLatest {  isRecord in
             isRecord ? Observable<Int>.interval(1, scheduler: MainScheduler.instance) : .empty()
-        }.subscribe(onNext: { value in
+        }.subscribe(onNext: {[unowned self] value in
             if value == 300 {
-                self.recording.stop()
-                self.finishRecording(success: true)
-                self.isRecord.accept(false)
+                recording.stop()
+                finishRecording(success: true)
+                isRecord.accept(false)
             }
-            self.timeLabel.text = String(value).formatTimer(value)
+            timeLabel.text = String(value).formatTimer(value)
         }).disposed(by: rx.disposeBag)
     }
 
