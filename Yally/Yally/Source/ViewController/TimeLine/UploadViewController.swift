@@ -109,25 +109,16 @@ final class UploadViewController: UIViewController {
             selectCover: selectImg.asDriver(),
             doneTap: uploadBtn.rx.tap.asDriver(onErrorJustReturn: ()))
         let output = viewModel.transform(input)
-        
+
         output.result.emit(onCompleted: {[unowned self] in
             navigationController?.popViewController(animated: true)
         }).disposed(by: rx.disposeBag)
-        
+
         output.isEnable.drive(onNext: {[unowned self] enable in
             uploadBtn.isEnabled = enable
         }).disposed(by: rx.disposeBag)
     }
-    
-    private func loadRecordingUI() {
-        recordingBtn.isSelected = true
-        recordView.isHidden = false
-        timeLabel.isHidden = false
-        guardLabel.isHidden = false
-        recordView.backgroundColor = .red
-        recordView.layer.cornerRadius = 10
-    }
-    
+
     private func setTimer() {
         isRecord.asObservable().flatMapLatest {  isRecord in
             isRecord ? Observable<Int>.interval(1, scheduler: MainScheduler.instance) : .empty()
@@ -140,17 +131,18 @@ final class UploadViewController: UIViewController {
             self.timeLabel.text = String(value).formatTimer(value)
         }).disposed(by: rx.disposeBag)
     }
-    
+
     private func startRecording() {
         let fileName = NSUUID().uuidString + ".aac"
-        let audioFileName = getDocumentsDirectory().appendingPathComponent(fileName)
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let audioFileName = paths[0].appendingPathComponent(fileName)
         let setting = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
             AVNumberOfChannelsKey: 1,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
-        
+
         do {
             recording = try AVAudioRecorder(url: audioFileName, settings: setting)
             recording?.delegate = self
@@ -170,11 +162,6 @@ final class UploadViewController: UIViewController {
             recording = nil
             print("recording failed!")
         }
-    }
-    
-    private func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
     }
 }
 

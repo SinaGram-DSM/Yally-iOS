@@ -69,49 +69,34 @@ final class PostViewController: UIViewController {
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
-        
+
         coverBtn.rx.tap.subscribe(onNext: { _ in
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
             self.present(imagePicker, animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
-        
+
         previewDelete[1].rx.tap.subscribe(onNext: {[unowned self] _ in
             previewImg[1].isHidden = true
             previewDelete[1].isHidden = true
         }).disposed(by: rx.disposeBag)
-        
+
         previewDelete[0].rx.tap.subscribe(onNext: {[unowned self] _ in
             previewImg[0].isHidden = true
             previewDelete[0].isHidden = true
         }).disposed(by: rx.disposeBag)
-        
+
         recordingBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
-            recordView.isHidden = !isRecord.value ? false : true
-            guardLabel.isHidden = !isRecord.value ? false : true
-            timeLabel.isHidden = !isRecord.value ? false : true
-            if !isRecord.value {
-                startRecording()
-                setTimer()
-                isRecord.accept(true)
-            } else {
-                finishRecording(success: true)
-                setTimer()
-                isRecord.accept(false)
-            }
+            recordView.isHidden = !isRecord.value
+            guardLabel.isHidden = !isRecord.value
+            timeLabel.isHidden = !isRecord.value
+            isRecord.accept(!isRecord.value)
+            !isRecord.value ? startRecording() : finishRecording(success: true)
+            setTimer()
         }).disposed(by: rx.disposeBag)
     }
-    
-    private func loadRecordingUI() {
-        recordingBtn.isSelected = true
-        recordView.isHidden = false
-        timeLabel.isHidden = false
-        guardLabel.isHidden = false
-        recordView.backgroundColor = .red
-        recordView.layer.cornerRadius = 10
-    }
-    
+
     private func setupUI() {
         recordView.isHidden = true
         timeLabel.isHidden = true
