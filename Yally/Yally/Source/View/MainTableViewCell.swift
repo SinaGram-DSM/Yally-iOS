@@ -32,7 +32,6 @@ final class MainTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         setupUI()
-        setupView()
     }
 
     override func prepareForReuse() {
@@ -43,14 +42,23 @@ final class MainTableViewCell: UITableViewCell {
     func setupUI() {
         backImageBtn.backgroundColor = .black
         backImageBtn.alpha = 0.7
+
         mainTextView.isEditable = false
         mainTextView.isSelectable = false
         mainTextView.textColor = .black
+
         userImageView.layer.cornerRadius = 20
+
         sliderBar.isHidden = true
+
         timeLabel.isHidden = true
-        popupView.isHidden = true
+
         popupTitle.isHidden = true
+
+        popupView.isHidden = true
+        popupView.layer.cornerRadius = 14
+        popupView.layer.borderWidth = 0.5
+        popupView.layer.borderColor = UIColor.gray.cgColor
 
         doYally.rx.tap.subscribe(onNext: {[unowned self] _ in
             doYally.isSelected = !doYally.isSelected
@@ -68,12 +76,6 @@ final class MainTableViewCell: UITableViewCell {
             timeLabel.isHiddenAnimated(value: !backImageBtn.isSelected, duration: 0.5)
             backImageBtn.isSelected = !backImageBtn.isSelected
         }).disposed(by: rx.disposeBag)
-    }
-
-    func setupView() {
-        popupView.layer.cornerRadius = 14
-        popupView.layer.borderWidth = 0.5
-        popupView.layer.borderColor = UIColor.gray.cgColor
     }
 
     func configCell(_ model: MainModel) {
