@@ -24,7 +24,7 @@ class HTTPClient {
     func put(_ url: YallyURL, params: [String:Any]? = nil) -> HTTPResult {
         return requestData(.put, baseURI + url.path, parameters: params, encoding: URLEncoding.queryString, headers: url.headers())
     }
-    
+
     func post(_ url: YallyURL, params: [String:Any]? = nil) -> HTTPResult {
         return requestData(.post, baseURI + url.path, parameters: params, encoding: URLEncoding.queryString, headers: url.headers())
     }

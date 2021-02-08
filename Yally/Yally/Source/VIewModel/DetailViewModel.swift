@@ -119,7 +119,7 @@ final class DetailViewModel: ViewModelType {
                     deleteComment.onNext("댓글 삭제 취소")
                 }
             }).disposed(by: disposeBag)
-        
+
         input.commentTap.asObservable().withLatestFrom(postInfo).subscribe(onNext: { content, record in
             api.postComment(.postComment(input.selectIndexPath), record, content).responseJSON { (response) in
                 switch response.response?.statusCode {

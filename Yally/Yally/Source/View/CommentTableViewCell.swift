@@ -36,12 +36,12 @@ class CommentTableViewCell: UITableViewCell {
         postTimeLabel.textColor = .lightGray
         commentTextView.backgroundColor = .clear
         commentSlider.setThumbImage(UIImage(systemName: "circlebadge.fill"), for: .normal)
-        
+
         playBtn.rx.tap.subscribe(onNext: {[unowned self] in
             playBtn.isSelected = !playBtn.isSelected
         }).disposed(by: rx.disposeBag)
     }
-    
+
     func configCell(_ model: Comment) {
         commentSoundView.isHidden = model.sound == nil ? true : false
         deleteCommentBtn.isHidden = model.isMine ? false : true

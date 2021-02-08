@@ -14,7 +14,7 @@ import MediaPlayer
 import Alamofire
 
 final class UploadViewController: UIViewController {
-    
+
     @IBOutlet weak private var userImageView: UIImageView!
     @IBOutlet weak private var postTextView: UITextView!
     @IBOutlet weak private var lineView: UIView!
@@ -26,7 +26,7 @@ final class UploadViewController: UIViewController {
     @IBOutlet weak private var recordView: UIImageView!
     @IBOutlet weak private var timeLabel: UILabel!
     @IBOutlet weak private var guardLabel: UILabel!
-    
+
     private let viewModel = UploadViewModel()
     private var recordingSession: AVAudioSession!
     private var recording: AVAudioRecorder!
@@ -35,81 +35,72 @@ final class UploadViewController: UIViewController {
     private var selectImg = BehaviorRelay<Data?>(value: nil)
     private var audioFile = BehaviorRelay<URL?>(value: nil)
     private var uploadBtn = UIBarButtonItem(title: "완료", style: .plain, target: self, action: nil)
-    
+
     var content = String()
     var selectIndexPath = String()
     var firstAudio = BehaviorRelay<String?>(value: nil)
     var viewImg = BehaviorRelay<String?>(value: nil)
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        postTextView.text = content
+        navigationItem.rightBarButtonItem = uploadBtn
+        postTextView.delegate = self
         
         bindViewModel()
         beforeUpload()
-        
-        postTextView.text = content
-        navigationItem.rightBarButtonItem = uploadBtn
-    
         defaultBtn(recordingBtn)
         defaultBtn(fileBtn)
         defaultBtn(coverBtn)
-        
-        postTextView.delegate = self
     }
-    
+
     private func beforeUpload() {
+        
+        recordView.isHidden = true
+        timeLabel.isHidden = true
+        guardLabel.isHidden = true
+        
         let realURL = self.fetchNonObsevable(url: URL(string: "https://yally-sinagram.s3.ap-northeast-2.amazonaws.com/" + firstAudio.value!)!)
         if let url = realURL {
             audioFile.accept(url)
         }
-        
+
         fileBtn.rx.tap.subscribe(onNext: { _ in
             let alert = UIAlertController(title: "죄송합니다", message: "준비 중인 서비스 입니다.", preferredStyle: .alert)
             let action = UIAlertAction(title: "네", style: .default, handler: nil)
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
-        
+
         coverBtn.rx.tap.subscribe(onNext: { _ in
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
             self.present(imagePicker, animated: true, completion: nil)
         }).disposed(by: rx.disposeBag)
-        
+
         previewDelete[1].rx.tap.subscribe(onNext: {[unowned self] _ in
             previewImg[1].isHidden = true
             previewDelete[1].isHidden = true
         }).disposed(by: rx.disposeBag)
-        
+
         previewDelete[0].rx.tap.subscribe(onNext: {[unowned self] _ in
             previewImg[0].isHidden = true
             previewDelete[0].isHidden = true
         }).disposed(by: rx.disposeBag)
-        
-        recordView.isHidden = true
-        timeLabel.isHidden = true
-        guardLabel.isHidden = true
-        
+
         previewImg[1].load(urlString: viewImg.value!)
-        
+
         recordingBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
             recordView.isHidden = !isRecord.value ? false : true
             guardLabel.isHidden = !isRecord.value ? false : true
             timeLabel.isHidden = !isRecord.value ? false : true
-            
-            if !isRecord.value {
-                startRecording()
-                setTimer()
-                isRecord.accept(true)
-            } else {
-                finishRecording(success: true)
-                setTimer()
-                isRecord.accept(false)
-            }
+            isRecord.accept(!isRecord.value)
+            !isRecord.value ? startRecording() : finishRecording(success: true)
         }).disposed(by: rx.disposeBag)
     }
-    
+
     private func bindViewModel() {
         let input = UploadViewModel.input(
             selectIndexPath: selectIndexPath,
@@ -168,7 +159,7 @@ final class UploadViewController: UIViewController {
             recording?.stop()
         }
     }
-    
+
     private func finishRecording(success: Bool) {
         recording.stop()
         if success {
@@ -197,7 +188,7 @@ extension UploadViewController: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             let data: Data? = image.jpegData(compressionQuality: 0.2)

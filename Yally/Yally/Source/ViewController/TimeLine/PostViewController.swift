@@ -13,7 +13,7 @@ import AVFoundation
 import MediaPlayer
 
 final class PostViewController: UIViewController {
-    
+
     @IBOutlet weak private var userImageView: UIImageView!
     @IBOutlet weak private var postTextView: UITextView!
     @IBOutlet weak private var lineView: UIView!
@@ -26,7 +26,7 @@ final class PostViewController: UIViewController {
     @IBOutlet weak private var recordView: UIImageView!
     @IBOutlet weak private var timeLabel: UILabel!
     @IBOutlet weak private var guardLabel: UILabel!
-    
+
     private var recordingSession: AVAudioSession!
     private var recording: AVAudioRecorder!
     private let hashtag: [String] = []
@@ -34,21 +34,21 @@ final class PostViewController: UIViewController {
     private let viewModel = PostViewModel()
     private var selectImg = BehaviorRelay<Data?>(value: nil)
     private var audioFile = PublishRelay<URL>()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
-        
+
         defaultBtn(recordingBtn)
         defaultBtn(fileBtn)
         defaultBtn(coverBtn)
-        
+
         setupUI()
         beforePost()
-        
+
         postTextView.delegate = self
     }
-    
+
     private func bindViewModel() {
         let input = PostViewModel.input(
             postText: postTextView.rx.text.orEmpty.asDriver(),
@@ -56,12 +56,12 @@ final class PostViewController: UIViewController {
             selectCover: selectImg.asDriver(onErrorJustReturn: nil),
             doneTap: uploadBtn.rx.tap.asDriver())
         let output = viewModel.transform(input)
-        
+
         output.result.emit(onCompleted: {
             self.navigationController?.popViewController(animated: true)
         }).disposed(by: rx.disposeBag)
     }
-    
+
     private func beforePost() {
         fileBtn.rx.tap.subscribe(onNext: { _ in
             let alert = UIAlertController(title: "죄송해요", message: "준비 중이 서비스 입니다.", preferredStyle: .alert)
@@ -121,7 +121,7 @@ final class PostViewController: UIViewController {
         previewImg[1].isHidden = true
         previewDelete[1].isHidden = true
     }
-    
+
     private func setTimer() {
         isRecord.asObservable().flatMapLatest {  isRecord in
             isRecord ? Observable<Int>.interval(1, scheduler: MainScheduler.instance) : .empty()
@@ -134,7 +134,7 @@ final class PostViewController: UIViewController {
             self.timeLabel.text = String(value).formatTimer(value)
         }).disposed(by: rx.disposeBag)
     }
-    
+
     private func startRecording() {
         let fileName = NSUUID().uuidString + ".aac"
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -145,7 +145,7 @@ final class PostViewController: UIViewController {
             AVNumberOfChannelsKey: 1,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
-        
+
         do {
             recording = try AVAudioRecorder(url: audioFileName, settings: setting)
             recording?.delegate = self
@@ -154,7 +154,7 @@ final class PostViewController: UIViewController {
             recording?.stop()
         }
     }
-    
+
     private func finishRecording(success: Bool) {
         recording.stop()
         if success {
@@ -172,21 +172,21 @@ final class PostViewController: UIViewController {
 extension String {
     func getHashtags() -> [String]? {
         let hashtagDetector = try? NSRegularExpression(pattern: "#(\\w+)", options: NSRegularExpression.Options.caseInsensitive)
-        
+
         let results = hashtagDetector?.matches(in: self, options: .withoutAnchoringBounds, range: NSRange(location: 0, length: count))
-        
+
         return results?.map({
             (self as NSString).substring(with: $0.range(at: 1)).capitalized
         })
     }
-    
+
     func formatTimer(_ time: Int) -> String {
         let minutes = Int(time) / 60 % 60
         let seconds = Int(time) % 60
-        
+
         return String(format:"%02i:%02i", minutes, seconds)
     }
-    
+
     func convertHashtags(text: String) -> NSAttributedString {
         let attrString = NSMutableAttributedString(string: text)
         attrString.beginEditing()
@@ -221,32 +221,32 @@ extension PostViewController: MPMediaPickerControllerDelegate, UIImagePickerCont
     func mediaPickerDidCancel(_ mediaPicker: MPMediaPickerController) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     func mediaPicker(_ mediaPicker: MPMediaPickerController, didPickMediaItems mediaItemCollection: MPMediaItemCollection) {
         guard let mediaItem = mediaItemCollection.items.first else {
             NSLog("No item selected.")
             return
         }
-        
+
         if let val = mediaItem.value(forKey: MPMediaItemPropertyAssetURL) as? URL {
             let asset = AVURLAsset.init(url: val)
-            
+
             if asset.isExportable {
                 let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A)
-                
+
                 let exportPath: String = NSTemporaryDirectory().appendingFormat("/\(UUID().uuidString).m4a") as String
                 let exportUrl: URL = NSURL.fileURL(withPath: exportPath as String) as URL
-                
+
                 exportSession?.outputURL = exportUrl as URL
                 exportSession?.outputFileType = AVFileType.m4a
                 audioFile.accept(exportUrl)
-                
+
                 exportSession?.exportAsynchronously(completionHandler: {
                     // do some stuff with the file
                     do {
                         try FileManager.default.removeItem(atPath: (exportPath as String?)!)
                         print(exportUrl)
-                        
+
                     } catch {
                         print(error)
                     }
@@ -255,11 +255,11 @@ extension PostViewController: MPMediaPickerControllerDelegate, UIImagePickerCont
             }
         }
     }
-    
+
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             selectImg.accept(image.jpegData(compressionQuality: 0.2))

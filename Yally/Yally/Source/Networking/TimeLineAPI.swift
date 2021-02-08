@@ -264,7 +264,7 @@ class TimeLineAPI {
 //                        print("\(key) \(value)")
 //                        multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
 //                    }
-                    
+
                     arrayObj.compactMap { ($0 as? String)?.data(using: .utf8) }
                       .forEach {
                         multipartFormData.append($0, withName: key)
