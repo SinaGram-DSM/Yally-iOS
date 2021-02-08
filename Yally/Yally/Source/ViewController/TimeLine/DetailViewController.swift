@@ -101,7 +101,6 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
 
         DetailViewModel.detailData.asObservable()
             .bind(to: detailTableView.rx.items(cellIdentifier: "mainCell", cellType: MainTableViewCell.self)) { [unowned self] (row, repository, cell) in
-
                 cell.userNameLabel.text = repository.user.nickname
                 cell.postTimeLabel.text = repository.createdAt
                 cell.mainTextView.text = repository.content
@@ -137,11 +136,11 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
                     yallyIndex.accept(row)
                 }).disposed(by: cell.disposeBag)
 
-                cell.popupTitle.rx.tap.bind(to: deleteText).disposed(by: cell.disposeBag)
-
                 cell.sliderBar.rx.value.subscribe(onNext: { _ in
                     player.currentTime = TimeInterval(cell.sliderBar.value)
                 }).disposed(by: cell.disposeBag)
+
+                cell.popupTitle.rx.tap.bind(to: deleteText).disposed(by: cell.disposeBag)
 
                 if repository.isMine {
                     cell.popupTitle.setTitle("삭제", for: .normal)
@@ -160,9 +159,7 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
 
         DetailViewModel.detailComment
             .bind(to: commentTableView.rx.items(cellIdentifier: "commentCell", cellType: CommentTableViewCell.self)) { (row, repository, cell) in
-
                 cell.configCell(repository)
-
                 cell.playBtn.rx.tap.subscribe(onNext: {[unowned self] _ in
                     if !commentPlaying.value {
                         commentPlayer.play()
@@ -207,12 +204,12 @@ final class DetailViewController: UIViewController, AVAudioPlayerDelegate {
 
             }.disposed(by: rx.disposeBag)
 
-        output.postComment.withLatestFrom(output.deleteComment).emit(onCompleted: {[unowned self] in
+        Observable.of(output.postComment, output.deleteComment).subscribe(onNext: {[unowned self] _ in
             detailData.accept(())
             commentTableView.reloadData()
         }).disposed(by: rx.disposeBag)
 
-        output.postYally.withLatestFrom(output.deleteYally).emit(onCompleted: { [unowned self] in
+        Observable.of(output.postYally, output.deleteYally).subscribe(onNext: {[unowned self] _ in
             detailData.accept(())
             detailTableView.reloadData()
         }).disposed(by: rx.disposeBag)
