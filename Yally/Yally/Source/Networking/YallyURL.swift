@@ -16,8 +16,18 @@ enum YallyURL {
     case resetCodeToEmail
     case modifyPassword
     case refreshToken
+    case timeLine(_ page: Int)
+    case createPost
+    case detailPost(id: String)
+    case detailPostComment(id: String)
+    case deletePost(id: String)
+    case updatePost(id: String)
+    case postComment(_ id: String)
+    case deleteComment(_ id: String)
+    case postYally(id: String)
+    case cancelYally(id: String)
 
-    func path() -> String {
+    var path: String {
         switch self {
         case .signIn:
             return "/user/auth"
@@ -33,6 +43,20 @@ enum YallyURL {
             return "/user/auth/password"
         case .refreshToken:
             return "/user/auth/refresh"
+        case .timeLine(let page):
+            return "/timeline/\(page)"
+        case .createPost:
+            return "/post"
+        case .detailPost(let id), .deletePost(let id), .updatePost(let id):
+            return "/post/\(id)"
+        case .detailPostComment(let id):
+            return "/post/\(id)/comment"
+        case .postComment(let id):
+            return "/post/comment/\(id)"
+        case .deleteComment(let commentid):
+            return "/post/comment/\(commentid)"
+        case .postYally(let id), .cancelYally(let id):
+            return "/post/yally/\(id)"
         }
     }
 
@@ -48,5 +72,4 @@ enum YallyURL {
             return ["Authorization" : "Bearer " + token]
         }
     }
-
 }
